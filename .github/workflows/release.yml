@@ -3,7 +3,7 @@ name: Generate v2ray routing rules
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 9 * * *"
+    - cron: "20 8 * * *"
 
 jobs:
   build:
