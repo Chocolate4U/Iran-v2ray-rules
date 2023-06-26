@@ -82,11 +82,11 @@ jobs:
       
       - name: Generate Release Notes
         run: | 
-          echo "*Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-          echo "*Number of IR Domains -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "*Number of Ads and Tracking Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
-          echo "*Number of Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
-          echo "*Number of Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
+          echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
+          echo "* Number of IR Domains -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
+          echo "* Number of Ads and Tracking Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
+          echo "* Number of Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
+          echo "* Number of Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v1
