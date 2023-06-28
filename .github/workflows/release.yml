@@ -3,7 +3,7 @@ name: Generate v2ray routing rules
 on:
   workflow_dispatch:
   schedule:
-    - cron: "20 8 * * *"
+    - cron: "30 5 * * *"
 
 jobs:
   build:
@@ -100,3 +100,22 @@ jobs:
             ./release/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Push assets to release branch
+        run: |
+          cd release || exit 1
+          git init
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b release
+          git add .
+          git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin release
+
+      - name: Purge jsdelivr CDN
+        run: |
+          cd release || exit 1
+          for file in $(ls); do
+            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
+          done
