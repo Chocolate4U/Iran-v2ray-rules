@@ -30,54 +30,75 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install dos2unix 
+          sudo apt-get install dos2unix
+          sudo apt-get install idn2
 
-      - name: Generate ir domain list
+      - name: Create release directory
+        run: mkdir release
+
+      - name: Generate ir domains list
         run: |
           echo -e "ir\nxn--mgba3a4f16a" > ir-temp.txt
           curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt > domains.txt
           cat domains.txt | grep -Ev ".+\.ir$" | cat - ir-temp.txt | sort -u > ir.txt
-          echo "TOTAL_IR=$(cat domains.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_IR=$(cat ir.txt | wc -l)" >> $GITHUB_ENV
           rm -f ir-temp.txt
+          mv ir.txt ./release/ir.txt
 
-      - name: Generate ads and tracking domain list
+      - name: Generate ad domains list
         run: |
-          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > ads-and-tracking-raw.txt
-          curl -sSL https://small.oisd.nl/domainswild2 >> ads-and-tracking-raw.txt
-          curl -sSL https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/wildcards.txt >> ads-and-tracking-raw.txt
-          curl -sSL https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml >> ads-and-tracking-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Apple-AdBlock.txt >> ads-and-tracking-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Huawei-AdBlock.txt >> ads-and-tracking-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> ads-and-tracking-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> ads-and-tracking-raw.txt
-          cat ads-and-tracking-raw.txt | sed -e 's/^\(\*\|\.\|\-\|0.0.0.0 \)*//g' -e '/!\|@\|#\|*\|_\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}\|10.10.34/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | sort -u > ads-and-tracking-temp.txt
+          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > ads-raw.txt
+          curl -sSL https://small.oisd.nl/domainswild2 >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/badmojr/1Hosts/master/Lite/wildcards.txt >> ads-raw.txt
+          curl -sSL https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Apple-AdBlock.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Huawei-AdBlock.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/personal-onlydomains.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.lgwebos-onlydomains.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.tiktok-onlydomains.txt >> ads-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.winoffice-onlydomains.txt >> ads-raw.txt
+          cat ads-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads-temp.txt
+
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist.txt > whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist-referral.txt >> whitelist-raw.txt
           curl -sSL https://local.oisd.nl/commonly_whitelisted.php >> whitelist-raw.txt
-          curl -sSL https://raw.githubusercontent.com/notracking/hosts-blocklists-scripts/master/hostnames.whitelist.txt >> whitelist-raw.txt
-          cat whitelist-raw.txt | sed -e 's/^\(\*\|\.\|\-\)*//g' -e '/!\|@\|#\|*\|_\|\[\|]/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | sort -u > whitelist-temp.txt
-          comm -23 ads-and-tracking-temp.txt whitelist-temp.txt > ads-and-tracking.txt
-          echo "TOTAL_ADS=$(cat ads-and-tracking.txt | wc -l)" >> $GITHUB_ENV
-          rm -f ads-and-tracking-raw.txt whitelist-raw.txt ads-and-tracking-temp.txt whitelist-temp.txt
+          curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt >> whitelist-raw.txt
+          curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
+          cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > whitelist-temp.txt
 
-      - name: Generate malware domain list
+          comm -23 ads-temp.txt whitelist-temp.txt > ads.txt
+          echo "TOTAL_ADS=$(cat ads.txt | wc -l)" >> $GITHUB_ENV
+          rm -f ads-raw.txt whitelist-raw.txt ads-temp.txt whitelist-temp.txt
+          mv ads.txt ./release/ads.txt
+
+      - name: Generate malware domains list
         run: |
-          curl -sSL https://urlhaus.abuse.ch/downloads/hostfile | sed -e 's/^\(\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e '/!\|@\|#\|*\|_\|\[\|]/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | sort -u > malware.txt
+          curl -sSL https://urlhaus.abuse.ch/downloads/hostfile | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > malware.txt
           echo "TOTAL_MALWARE=$(cat malware.txt | wc -l)" >> $GITHUB_ENV
+          mv malware.txt ./release/malware.txt
 
-      - name: Generate phishing domain list
+      - name: Generate phishing domains list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | sed -e 's/^\(\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e '/!\|@\|#\|*\|_\|\[\|]/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | sort -u > phishing.txt
+          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > phishing.txt
           echo "TOTAL_PHISHING=$(cat phishing.txt | wc -l)" >> $GITHUB_ENV
+          mv phishing.txt ./release/phishing.txt
+
+      - name: Generate cryptominers domains list
+        run: |
+          curl -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > cryptominers.txt
+          echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
+          mv cryptominers.txt ./release/cryptominers.txt
 
       - name: Generate geosite.dat file
         run: |
-          mkdir -p release
           mkdir -p v2ray/data/
-          cp ir.txt v2ray/data/ir
-          cp ads-and-tracking.txt v2ray/data/ads-and-tracking
-          cp malware.txt v2ray/data/malware
-          cp phishing.txt v2ray/data/phishing
+          cp ./release/ir.txt v2ray/data/ir
+          cp ./release/ads.txt v2ray/data/ads
+          cp ./release/malware.txt v2ray/data/malware
+          cp ./release/phishing.txt v2ray/data/phishing
+          cp ./release/cryptominers.txt v2ray/data/cryptominers
           cd domain-list-community
           go run ./ --datapath=../v2ray/data --outputdir=../release --outputname=geosite.dat
           sha256sum ../release/geosite.dat > ../release/geosite.dat.sha256sum
@@ -85,24 +106,12 @@ jobs:
       - name: Generate Release Notes
         run: | 
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-          echo "* Number of IR Domains -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "* Number of Ads and Tracking Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
+          echo "* Number of IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
+          echo "* Number of Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
           echo "* Number of Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
           echo "* Number of Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
+          echo "* Number of CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
 
-      - name: Release and upload assets
-        uses: softprops/action-gh-release@v1
-        with:
-          name: ${{ env.RELEASE_NAME }}
-          tag_name: ${{ env.TAG_NAME }}
-          body_path: RELEASE_NOTES
-          draft: false
-          prerelease: false
-          files: |
-            ./release/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
       - name: Push assets to release branch
         run: |
           cd release || exit 1
@@ -115,9 +124,25 @@ jobs:
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f origin release
 
-      - name: Purge jsdelivr CDN
+      - name: Purge jsdelivr CDN cache
         run: |
           cd release || exit 1
           for file in $(ls); do
             curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
           done
+
+      - name: Release and upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ env.RELEASE_NAME }}
+          tag_name: ${{ env.TAG_NAME }}
+          body_path: RELEASE_NOTES
+          draft: false
+          prerelease: false
+          files: |
+            ./release/geosite.dat
+            ./release/geosite.dat.sha256sum
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+
