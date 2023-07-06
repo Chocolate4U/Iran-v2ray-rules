@@ -59,14 +59,14 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.lgwebos-onlydomains.txt >> ads-raw.txt
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.tiktok-onlydomains.txt >> ads-raw.txt
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/native.winoffice-onlydomains.txt >> ads-raw.txt
-          cat ads-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads-temp.txt
+          cat ads-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads-temp.txt
 
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist.txt > whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist-referral.txt >> whitelist-raw.txt
           curl -sSL https://local.oisd.nl/commonly_whitelisted.php >> whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt >> whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
-          cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > whitelist-temp.txt
+          cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > whitelist-temp.txt
 
           comm -23 ads-temp.txt whitelist-temp.txt > ads.txt
           echo "TOTAL_ADS=$(cat ads.txt | wc -l)" >> $GITHUB_ENV
@@ -75,19 +75,19 @@ jobs:
 
       - name: Generate malware domains list
         run: |
-          curl -sSL https://urlhaus.abuse.ch/downloads/hostfile | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > malware.txt
+          curl -sSL https://urlhaus.abuse.ch/downloads/hostfile | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > malware.txt
           echo "TOTAL_MALWARE=$(cat malware.txt | wc -l)" >> $GITHUB_ENV
           mv malware.txt ./release/malware.txt
 
       - name: Generate phishing domains list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > phishing.txt
+          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > phishing.txt
           echo "TOTAL_PHISHING=$(cat phishing.txt | wc -l)" >> $GITHUB_ENV
           mv phishing.txt ./release/phishing.txt
 
       - name: Generate cryptominers domains list
         run: |
-          curl -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0.0.0.0\|127.0.0.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > cryptominers.txt
+          curl -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > cryptominers.txt
           echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
           mv cryptominers.txt ./release/cryptominers.txt
 
