@@ -14,7 +14,7 @@ This is an Enhanced and All-in-One "geosite.dat" routing file to use in v2ray/xr
 `geosite:phishing`
 : Includes a list of scam and phishing domains.
 
-`geosite:cryptominer`
+`geosite:cryptominers`
 : Includes a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
 
 # How to download
@@ -49,7 +49,7 @@ Add the following to your v2ray/xray client configuration:
         "geosite:ads",
         "geosite:malware",
         "geosite:phishing",
-        "geosite:cryptominer"
+        "geosite:cryptominers"
       ],
       "type": "field"
     },
@@ -80,7 +80,7 @@ All rights are reserved for All upstream sources used in this project according 
 | AdGuard DNS filter | Adguard Team | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter) | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads |
 | URLhaus | abuse.ch | [Home Page](https://urlhaus.abuse.ch) | [CC0](https://urlhaus.abuse.ch/api/#tos) | malware |
 | Phishing URL Blocklist | malware-filter Group | [Home Page](https://gitlab.com/malware-filter/phishing-filter) | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE) | phishing |
-| NoCoin adblock list | hoshsadiq | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list) | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE) | cryptomining |
+| NoCoin adblock list | hoshsadiq | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list) | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE) | cryptominers |
 
 # Special Thanks
 - All list maintainers that mentioned in this project.
