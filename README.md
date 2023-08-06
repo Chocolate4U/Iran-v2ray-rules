@@ -18,11 +18,11 @@ This is an Enhanced and All-in-One "geosite.dat" routing file to use in v2ray/xr
 : Includes a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
 
 # How to download
-`https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat`
+[https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat)
 
 Or
 
-`https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat`
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
 
 # Usage
 ## v2ray/xray core
