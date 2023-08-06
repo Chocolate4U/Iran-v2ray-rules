@@ -2,19 +2,19 @@
 This is an Enhanced and All-in-One "geosite.dat" routing file to use in v2ray/xray and all their compatible clients.
 
 # Categories
-`ir`
+`geosite:ir`
 : Includes non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
 
-`ads`
+`geosite:ads`
 : Includes a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to has as low as possible false positives while also retain small size and efficiency.
 
-`malware`
+`geosite:malware`
 : Includes a list of active malware domains.
 
-`phishing`
+`geosite:phishing`
 : Includes a list of scam and phishing domains.
 
-`CryptoMiner`
+`geosite:cryptominer`
 : Includes a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
 
 # How to download
