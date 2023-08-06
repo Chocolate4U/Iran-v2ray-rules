@@ -1,4 +1,4 @@
-# Iran-v2ray-rules
+# Iran V2Ray Rules
 This is an Enhanced and All-in-One "geosite.dat" routing file to use in v2ray/xray and all their compatible clients.
 
 # Categories
