@@ -36,6 +36,19 @@ jobs:
       - name: Create release directory
         run: mkdir release
 
+      - name: Get messengers IP list
+        run: |
+          curl -sSL https://raw.githubusercontent.com/Chocolate4U/ito.gov.ir-Mirror/main/data/Messengers.csv | awk -F"," '{print $2}' | sed '1d' > messengers-ip.txt
+
+      - name: Get GeoLite2
+        env:
+          LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
+        run: |
+          curl -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          unzip GeoLite2-Country-CSV.zip
+          rm -f GeoLite2-Country-CSV.zip
+          mv GeoLite2* geolite2
+
       - name: Generate ir domains list
         run: |
           echo -e "ir\nxn--mgba3a4f16a" > ir-temp.txt
@@ -83,6 +96,19 @@ jobs:
           echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
           mv cryptominers.txt ./release/cryptominers.txt
 
+      - name: Generate geoip.dat and country.mmdb files
+        run: |
+          git clone https://github.com/Chocolate4U/geoip.git
+          cd geoip
+          go run ./
+          cp ./output/dat/geoip.dat ./output/maxmind/country.mmdb ../release
+          cp -fpPR ./output/text ../release
+
+      - name: Verify country.mmdb
+        run: |
+          go install -v github.com/maxmind/mmdbverify@latest
+          $(go env GOPATH)/bin/mmdbverify -file release/country.mmdb
+
       - name: Generate geosite.dat file
         run: |
           mkdir -p v2ray/data/
@@ -93,6 +119,11 @@ jobs:
           cp ./release/cryptominers.txt v2ray/data/cryptominers
           cd domain-list-community
           go run ./ --datapath=../v2ray/data --outputdir=../release --outputname=geosite.dat
+
+      - name: Generate sha256sum
+        run: |
+          sha256sum ../release/geoip.dat > ../release/geoip.dat.sha256sum
+          sha256sum ../release/country.mmdb > ../release/country.mmdb.sha256sum
           sha256sum ../release/geosite.dat > ../release/geosite.dat.sha256sum
       
       - name: Generate Release Notes
@@ -132,8 +163,12 @@ jobs:
           draft: false
           prerelease: false
           files: |
+            ./release/geoip.dat
+            ./release/geoip.dat.sha256sum
             ./release/geosite.dat
             ./release/geosite.dat.sha256sum
+            ./release/country.mmdb
+            ./release/country.mmdb.sha256sum
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
