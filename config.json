@@ -1,0 +1,73 @@
+{
+    "input": [
+        {
+            "type": "maxmindGeoLite2CountryCSV",
+            "action": "add",
+            "args": {
+                "country": "../geolite2/GeoLite2-Country-Locations-en.csv",
+                "ipv4": "../geolite2/GeoLite2-Country-Blocks-IPv4.csv",
+                "ipv6": "../geolite2/GeoLite2-Country-Blocks-IPv6.csv",
+                "wantedList": [
+                    "ir"
+                ]
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "ir",
+                "uri": "../messengers-ip.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "arvancloud",
+                "uri": "https://www.arvancloud.ir/en/ips.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "abrderak",
+                "uri": "https://api.derak.cloud/public/ipv4"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "abrderak",
+                "uri": "https://api.derak.cloud/public/ipv6"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "iranserver",
+                "uri": "https://ips.f95.com/ip.txt"
+            }
+        },
+        {
+            "type": "private",
+            "action": "add"
+        }
+    ],
+    "output": [
+        {
+            "type": "v2rayGeoIPDat",
+            "action": "output",
+            "args": {
+                "outputName": "geoip.dat"
+            }
+        },
+        {
+            "type": "text",
+            "action": "output"
+        }
+    ]
+}
