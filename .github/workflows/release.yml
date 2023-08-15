@@ -115,8 +115,8 @@ jobs:
 
       - name: Generate sha256sum
         run: |
-          sha256sum ../release/geoip.dat > ../release/geoip.dat.sha256sum
-          sha256sum ../release/geosite.dat > ../release/geosite.dat.sha256sum
+          sha256sum release/geoip.dat > release/geoip.dat.sha256sum
+          sha256sum release/geosite.dat > release/geosite.dat.sha256sum
       
       - name: Generate Release Notes
         run: | 
