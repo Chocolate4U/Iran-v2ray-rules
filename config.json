@@ -32,7 +32,7 @@
             "type": "text",
             "action": "add",
             "args": {
-                "name": "abrderak",
+                "name": "derakcloud",
                 "uri": "https://api.derak.cloud/public/ipv4"
             }
         },
@@ -40,7 +40,7 @@
             "type": "text",
             "action": "add",
             "args": {
-                "name": "abrderak",
+                "name": "derakcloud",
                 "uri": "https://api.derak.cloud/public/ipv6"
             }
         },
@@ -63,6 +63,20 @@
             "action": "output",
             "args": {
                 "outputName": "geoip.dat"
+            }
+        },
+        {
+            "type": "maxmindMMDB",
+            "action": "output",
+            "args": {
+                "outputName": "Country.mmdb",
+                "overwriteList": [
+                    "ir",
+                    "private",
+                    "arvancloud",
+                    "derakcloud",
+                    "iranserver"
+                ]
             }
         },
         {
