@@ -93,14 +93,19 @@ jobs:
           echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
           mv cryptominers.txt release
 
-      - name: Generate geoip.dat and country.mmdb files
+      - name: Generate geoip.dat and Country.mmdb files
         run: |
           git clone https://github.com/Loyalsoldier/geoip.git
           cd geoip
           go run ./ -c ../config.json
           cp output/dat/geoip.dat ../release
-          cp output/maxmind/country.mmdb ../release
+          cp output/maxmind/Country.mmdb ../release
           cp -fpPR output/text ../release
+
+      - name: Verify Country.mmdb file
+        run: |
+          go install -v github.com/maxmind/mmdbverify@latest
+          $(go env GOPATH)/bin/mmdbverify -file Country.mmdb
 
       - name: Generate geosite.dat file
         run: |
@@ -117,7 +122,7 @@ jobs:
       - name: Generate sha256sum
         run: |
           sha256sum release/geoip.dat > release/geoip.dat.sha256sum
-          sha256sum release/country.mmdb > release/country.mmdb.sha256sum
+          sha256sum release/Country.mmdb > release/Country.mmdb.sha256sum
           sha256sum release/geosite.dat > release/geosite.dat.sha256sum
       
       - name: Generate Release Notes
