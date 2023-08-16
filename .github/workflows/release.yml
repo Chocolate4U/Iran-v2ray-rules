@@ -105,7 +105,7 @@ jobs:
       - name: Verify Country.mmdb file
         run: |
           go install -v github.com/maxmind/mmdbverify@latest
-          $(go env GOPATH)/bin/mmdbverify -file Country.mmdb
+          $(go env GOPATH)/bin/mmdbverify -file release/Country.mmdb
 
       - name: Generate geosite.dat file
         run: |
