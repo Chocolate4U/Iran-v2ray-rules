@@ -93,12 +93,13 @@ jobs:
           echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
           mv cryptominers.txt release
 
-      - name: Generate geoip.dat file
+      - name: Generate geoip.dat and country.mmdb files
         run: |
-          git clone https://github.com/v2fly/geoip.git
+          git clone https://github.com/Loyalsoldier/geoip.git
           cd geoip
           go run ./ -c ../config.json
           cp output/dat/geoip.dat ../release
+          cp output/maxmind/country.mmdb ../release
           cp -fpPR output/text ../release
 
       - name: Generate geosite.dat file
@@ -116,6 +117,7 @@ jobs:
       - name: Generate sha256sum
         run: |
           sha256sum release/geoip.dat > release/geoip.dat.sha256sum
+          sha256sum release/country.mmdb > release/country.mmdb.sha256sum
           sha256sum release/geosite.dat > release/geosite.dat.sha256sum
       
       - name: Generate Release Notes
@@ -155,10 +157,9 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            release/geoip.dat
-            release/geoip.dat.sha256sum
-            release/geosite.dat
-            release/geosite.dat.sha256sum
+            release/*.dat
+            release/*.mmdb
+            release/*.sha256sum
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
