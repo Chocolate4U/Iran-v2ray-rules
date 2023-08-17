@@ -154,7 +154,7 @@ This repository is not affiliated, associated, authorized, endorsed by, or in an
 The data in this repository is gathered from publicly available resources and is provided as-is, intended for informational purposes only with no guarantee of accuracy, liability or availability. We are not responsible for any harm or damage that may arise from using the data in this repository, and you, as the user, are the sole responsible for using it.
 
 # :pray: Special Thanks
-- All list maintainers that mentioned in this project.
+- All maintainers that mentioned in this project.
 - [Project V](https://github.com/v2fly)
 - [Project X](https://github.com/XTLS)
 - [Domain list community](https://github.com/v2fly/domain-list-community)
