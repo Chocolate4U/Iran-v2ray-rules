@@ -1,23 +1,32 @@
-# :earth_asia: Iran V2Ray Rules
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.png">
+  <source media="(prefers-color-scheme: light)" srcset="assets/logo-dark.png">
+  <img alt="a logo for iran v2ray rules in both dark and light mode" src="assets/logo-dark.png">
+</picture>
+
+# :writing_hand: Introduction
 This is an Enhanced and All-in-One set of geo-location routing files optimized for Iranian users to use in v2ray/xray and all their compatible clients.
 
-# :scroll: Categories
+:information_source: For Sing-Box geolocation rules please refer to [Iran Sing-Box Rules](https://github.com/Chocolate4U/Iran-sing-box-rules)  
+:information_source: For Clash geolocation rules please refer to [Iran Clash Rules](https://github.com/Chocolate4U/Iran-clash-rules)
+
+# :page_with_curl: Categories
 
 ## GeoIP  
 `geoip:ir`  
-: Contains Iran IP adresses from Maxmind database and IP adresses of Iranian messengers such as `eitaa`, `rubika`, etc.
+: Contains Iran IP addresses from Maxmind database and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
 
 `geoip:private`  
-: Contains a list of local (LAN) IP adresses.
+: Contains a list of local (LAN) IP addresses.
 
 `geoip:arvancloud`  
-: Contains IP adresses of ArvanCloud.ir CDN.
+: Contains IP addresses of ArvanCloud.ir CDN.
 
 `geoip:derakcloud`  
-: Contains IP adresses of Derak.cloud CDN.
+: Contains IP addresses of Derak.cloud CDN.
 
 `geoip:iranserver`  
-: Contains IP adresses of IranServer.com CDN.
+: Contains IP addresses of IranServer.com CDN.
 
 ## GeoSite  
 `geosite:ir`  
@@ -47,7 +56,7 @@ Same as `GeoIP` but in Maxmind's MMDB format.
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)  
 
-# :writing_hand: Usage
+# :computer: Usage
 ## v2ray/xray core
 Add the following to your v2ray/xray client configuration:
 ```
@@ -113,7 +122,7 @@ All contributions are welcome and appreciated. You can contribute to this projec
 
 
 # :copyright: License
-This project, except for upstream sources, is licensed under the GNU GPLv3 License - see the [LICENSE](https://github.com/Chocolate4U/Iran-v2ray-rules/blob/main/LICENSE) file for details.
+This project, except for upstream sources, is licensed under the GNU GPLv3 License - see the [LICENSE](LICENSE) file for details.
 
 All rights are reserved for All upstream sources used in this project according to their respective licenses. Please refer to [Sources](#sources) section for more details.
 
