@@ -7,42 +7,42 @@
 # :writing_hand: Introduction
 This is an Enhanced and All-in-One set of geo-location routing files optimized for Iranian users to use in v2ray/xray and all their compatible clients.
 
-:information_source: For Sing-Box geolocation rules please refer to [Iran Sing-Box Rules](https://github.com/Chocolate4U/Iran-sing-box-rules)  
-:information_source: For Clash geolocation rules please refer to [Iran Clash Rules](https://github.com/Chocolate4U/Iran-clash-rules)
+:bulb: For Sing-Box geolocation rules please refer to [Iran Sing-Box Rules](https://github.com/Chocolate4U/Iran-sing-box-rules)  
+:bulb: For Clash geolocation rules please refer to [Iran Clash Rules](https://github.com/Chocolate4U/Iran-clash-rules)
 
 # :page_with_curl: Categories
 
 ## GeoIP  
-`geoip:ir`  
-: Contains Iran IP addresses from Maxmind database and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
+- `geoip:ir`  
+  Contains Iran IP addresses from Maxmind database and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
 
-`geoip:private`  
-: Contains a list of local (LAN) IP addresses.
+- `geoip:private`  
+  Contains a list of local (LAN) IP addresses.
 
-`geoip:arvancloud`  
-: Contains IP addresses of ArvanCloud.ir CDN.
+- `geoip:arvancloud`  
+  Contains IP addresses of ArvanCloud.ir CDN.
 
-`geoip:derakcloud`  
-: Contains IP addresses of Derak.cloud CDN.
+- `geoip:derakcloud`  
+  Contains IP addresses of Derak.cloud CDN.
 
-`geoip:iranserver`  
-: Contains IP addresses of IranServer.com CDN.
+- `geoip:iranserver`  
+  Contains IP addresses of IranServer.com CDN.
 
 ## GeoSite  
-`geosite:ir`  
-: Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
+- `geosite:ir`  
+  Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
 
-`geosite:ads`  
-: Contains a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to has as low as possible false positives while also retain small size and efficiency.
+- `geosite:ads`  
+  Contains a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to has as low as possible false positives while also retain small size and efficiency.
 
-`geosite:malware`  
-: Contains a list of active malware domains.
+- `geosite:malware`  
+  Contains a list of active malware domains.
 
-`geosite:phishing`  
-: Contains a list of scam and phishing domains.
+- `geosite:phishing`  
+  Contains a list of scam and phishing domains.
 
-`geosite:cryptominers`  
-: Contains a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
+- `geosite:cryptominers`  
+  Contains a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
 
 ## Country.mmdb  
 Same as `GeoIP` but in Maxmind's MMDB format.
