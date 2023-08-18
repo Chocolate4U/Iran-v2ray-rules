@@ -128,11 +128,11 @@ jobs:
       - name: Generate Release Notes
         run: | 
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-          echo "* Number of IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "* Number of Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
-          echo "* Number of Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
-          echo "* Number of Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
-          echo "* Number of CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
+          echo "* IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
+          echo "* Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
+          echo "* Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
+          echo "* Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
+          echo "* CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
 
       - name: Push assets to release branch
         run: |
