@@ -4,6 +4,13 @@
   <img alt="a logo for iran v2ray rules in both dark and light mode" src="assets/logo-dark.png">
 </picture>
 
+<p align="center">
+<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Chocolate4U/Iran-v2ray-rules/release.yml?event=schedule&logo=github">
+<img alt="GitHub release" src="https://img.shields.io/github/v/release/Chocolate4U/Iran-v2ray-rules">
+<img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/Chocolate4U/Iran-v2ray-rules">
+<img alt="license" src="https://img.shields.io/github/license/Chocolate4U/Iran-v2ray-rules">
+</p>
+
 # :writing_hand: Introduction
 This is an Enhanced and All-in-One set of geo-location routing files optimized for Iranian users to use in v2ray/xray and all their compatible clients.
 
