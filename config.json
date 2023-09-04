@@ -258,6 +258,14 @@
             }
         },
         {
+            "type": "v2rayGeoIPDat",
+            "action": "output",
+            "args": {
+                "outputName": "geoip-lite.dat",
+                "wantedList": ["ir","arvancloud","derakcloud","iranserver", "private"]
+            }
+        },
+        {
             "type": "maxmindMMDB",
             "action": "output",
             "args": {
@@ -284,6 +292,14 @@
                     "phishing",
                     "malware"
                 ]
+            }
+        },
+        {
+            "type": "maxmindMMDB",
+            "action": "output",
+            "args": {
+                "outputName": "Country-lite.mmdb",
+                "wantedList": ["ir", "private"]
             }
         },
         {
