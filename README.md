@@ -80,18 +80,34 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geoip:malware`  
   Contains Active Malware IP addresses.
 
+## GeoIP-Lite
+- `geoip:ir`  
+  Contains Iran IP addresses from Maxmind database and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
+
+- `geoip:private`  
+  Contains a list of local (LAN) IP addresses.
+
+- `geoip:arvancloud`  
+  Contains IP addresses of ArvanCloud.ir CDN.
+
+- `geoip:derakcloud`  
+  Contains IP addresses of Derak.cloud CDN.
+
+- `geoip:iranserver`  
+  Contains IP addresses of IranServer.com CDN.
+
 ## GeoSite  
 - `geosite:ir`  
   Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
 
 - `geosite:ads`  
+  Contains a list of Persian advertisement and tracking domains.
+
+- `geosite:category-ads-all`  
   Contains a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to has as low as possible false positives while also retain small size and efficiency.
 
 - `geosite:malware`  
   Contains a list of active malware domains.
-
-- `geosite:category-ads-all`  
-  Contains domains from `geosite:ads` and `geosite:malware`.
 
 - `geosite:phishing`  
   Contains a list of scam and phishing domains.
@@ -105,8 +121,18 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geosite:nsfw`
   Contains a list of porn and gambling websites.
 
+## GeoSite Lite
+- `geosite:ir`  
+  Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
+
+- `geosite:ads`  
+  Contains a list of Persian advertisement and tracking domains.
+
 ## Country.mmdb  
 Same as `GeoIP` but in Maxmind's MMDB format.
+
+## Country-lite.mmdb
+Same as `GeoIP Lite` but in Maxmind's MMDB format.
 
 # :arrow_down: How to download
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> From GitHub
@@ -139,7 +165,7 @@ Add the following to your v2ray/xray client configuration:
     {
       "outboundTag": "block",
       "domain": [
-        "geosite:ads",
+        "geosite:category-ads-all",
         "geosite:malware",
         "geosite:phishing",
         "geosite:cryptominers"
@@ -162,7 +188,7 @@ Add the following to your v2ray/xray client configuration:
       "type": "field"
     },
     {
-      "outboundTag": "Direct",
+      "outboundTag": "direct",
       "ip": [
         "geoip:ir",
         "geoip:private",
@@ -175,8 +201,8 @@ Add the following to your v2ray/xray client configuration:
 ```
 
 # :information_desk_person: How is this made?  
-`geoip.dat` and `Country.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to mentioned repository for instrunctions on how to make custom `geoip` files.  
-`geosite.dat` is generated using source code from [Domain list community](https://github.com/v2fly/domain-list-community). Please refer to mentioned repository for instrunctions on how to make custom `geosite` files.  
+`geoip.dat`,`geoip-lite.dat` and `Country.mmdb`,`Country-lite.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to mentioned repository for instrunctions on how to make custom `geoip` files.  
+`geosite.dat`,`geosite-lite.dat` is generated using source code from [Domain list community](https://github.com/v2fly/domain-list-community). Please refer to mentioned repository for instrunctions on how to make custom `geosite` files.  
 
 # :handshake: Contribution
 All contributions are welcome and appreciated. You can contribute to this project in 2 ways:  

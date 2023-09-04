@@ -55,14 +55,19 @@ jobs:
           rm -f ir-temp.txt
           mv ir.txt release
 
-      - name: Generate ad domains list
+      - name: Generate ads list
         run: |
-          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > ads-raw.txt
-          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt >> ads-raw.txt
-          curl -sSL https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml >> ads-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> ads-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> ads-raw.txt
-          cat ads-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads-temp.txt
+          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads.txt
+          echo "TOTAL_IR_ADS=$(cat ads.txt | wc -l)" >> $GITHUB_ENV
+
+      - name: Generate category-ads-all list
+        run: |
+          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > category-ads-all-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt >> category-ads-all-raw.txt
+          curl -sSL https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml >> category-ads-all-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> category-ads-all-raw.txt
+          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> category-ads-all-raw.txt
+          cat category-ads-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > category-ads-all-temp.txt
 
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist.txt > whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist-referral.txt >> whitelist-raw.txt
@@ -70,10 +75,10 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
           cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > whitelist-temp.txt
 
-          comm -23 ads-temp.txt whitelist-temp.txt > ads.txt
-          echo "TOTAL_ADS=$(cat ads.txt | wc -l)" >> $GITHUB_ENV
-          rm -f ads-raw.txt whitelist-raw.txt ads-temp.txt whitelist-temp.txt
-          mv ads.txt release
+          comm -23 category-ads-all-temp.txt whitelist-temp.txt > category-ads-all.txt
+          echo "TOTAL_ADS=$(cat category-ads-all.txt | wc -l)" >> $GITHUB_ENV
+          rm -f category-ads-all-raw.txt whitelist-raw.txt category-ads-all-temp.txt whitelist-temp.txt
+          mv ads.txt category-ads-all.txt release
 
       - name: Generate malware list
         run: |
@@ -107,46 +112,52 @@ jobs:
           echo "TOTAL_NSFW=$(cat nsfw.txt | wc -l)" >> $GITHUB_ENV
           mv nsfw.txt release
 
-      - name: Generate geoip.dat and Country.mmdb files
+      - name: Generate geoip.dat, geoip-lite.dat, Country.mmdb and Country-lite.mmdb files
         run: |
           git clone https://github.com/Loyalsoldier/geoip.git
           cd geoip
           go run ./ -c ../config.json
-          cp output/dat/geoip.dat ../release
-          cp output/maxmind/Country.mmdb ../release
+          cp output/dat/geoip.dat output/dat/geoip-lite.dat ../release
+          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb ../release
           cp -fpPR output/text ../release
 
-      - name: Verify Country.mmdb file
+      - name: Verify Country.mmdb and Country-lite.mmdb files
         run: |
           go install -v github.com/maxmind/mmdbverify@latest
           $(go env GOPATH)/bin/mmdbverify -file release/Country.mmdb
+          $(go env GOPATH)/bin/mmdbverify -file release/Country-lite.mmdb
 
-      - name: Generate geosite.dat file
+      - name: Generate geosite.dat and geosite-lite.dat file
         run: |
           git clone https://github.com/v2fly/domain-list-community
           mkdir -p v2ray/data/
           cp release/ir.txt v2ray/data/ir
           cp release/ads.txt v2ray/data/ads
+          cp release/category-ads-all.txt v2ray/data/category-ads-all
           cp release/malware.txt v2ray/data/malware
-          echo -e "include:ads\ninclude:malware" > v2ray/data/category-ads-all
           cp release/phishing.txt v2ray/data/phishing
           cp release/cryptominers.txt v2ray/data/cryptominers
           cp release/social.txt v2ray/data/social
           cp release/nsfw.txt v2ray/data/nsfw
           cd domain-list-community
           go run ./ --datapath=../v2ray/data --outputdir=../release --outputname=geosite.dat
+          go run ./ --datapath=../v2ray/data --exportlists=ir,ads --outputdir=../release --outputname=geosite-lite.dat
 
       - name: Generate sha256sum
         run: |
           sha256sum release/geoip.dat > release/geoip.dat.sha256sum
+          sha256sum release/geoip-lite.dat > release/geoip-lite.dat.sha256sum
           sha256sum release/Country.mmdb > release/Country.mmdb.sha256sum
+          sha256sum release/Country-lite.mmdb > release/Country-lite.mmdb.sha256sum
           sha256sum release/geosite.dat > release/geosite.dat.sha256sum
+          sha256sum release/geosite-lite.dat > release/geosite-lite.dat.sha256sum
       
       - name: Generate Release Notes
         run: | 
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
           echo "* IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "* Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
+          echo "* IR Ad Domains -> ${{ env.TOTAL_IR_ADS }}" >> RELEASE_NOTES
+          echo "* All Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
           echo "* Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
           echo "* Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
           echo "* CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
