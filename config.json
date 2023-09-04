@@ -299,13 +299,7 @@
             "action": "output",
             "args": {
                 "outputName": "Country-lite.mmdb",
-                "overwriteList": [
-                    "ir",
-                    "private",
-                    "arvancloud",
-                    "derakcloud",
-                    "iranserver"
-                ]
+                "wantedList": ["ir", "private"]
             }
         },
         {

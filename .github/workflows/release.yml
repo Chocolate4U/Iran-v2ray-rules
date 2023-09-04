@@ -131,8 +131,11 @@ jobs:
         run: |
           git clone https://github.com/v2fly/domain-list-community
           mkdir -p v2ray/data/
+          mkdir -p v2ray/datalite/
           cp release/ir.txt v2ray/data/ir
+          cp release/ir.txt v2ray/datalite/ir
           cp release/ads.txt v2ray/data/ads
+          cp release/ads.txt v2ray/datalite/ads
           cp release/category-ads-all.txt v2ray/data/category-ads-all
           cp release/malware.txt v2ray/data/malware
           cp release/phishing.txt v2ray/data/phishing
@@ -141,7 +144,7 @@ jobs:
           cp release/nsfw.txt v2ray/data/nsfw
           cd domain-list-community
           go run ./ --datapath=../v2ray/data --outputdir=../release --outputname=geosite.dat
-          go run ./ --datapath=../v2ray/data --exportlists=ir,ads --outputdir=../release --outputname=geosite-lite.dat
+          go run ./ --datapath=../v2ray/datalite --outputdir=../release --outputname=geosite-lite.dat
 
       - name: Generate sha256sum
         run: |

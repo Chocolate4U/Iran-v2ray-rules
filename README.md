@@ -87,15 +87,6 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geoip:private`  
   Contains a list of local (LAN) IP addresses.
 
-- `geoip:arvancloud`  
-  Contains IP addresses of ArvanCloud.ir CDN.
-
-- `geoip:derakcloud`  
-  Contains IP addresses of Derak.cloud CDN.
-
-- `geoip:iranserver`  
-  Contains IP addresses of IranServer.com CDN.
-
 ## GeoSite  
 - `geosite:ir`  
   Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
