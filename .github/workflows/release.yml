@@ -49,8 +49,11 @@ jobs:
       - name: Generate ir domains list
         run: |
           curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | sort -u > ir.txt
+          curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt > redundant-domains.txt
+          comm -23 ir.txt redundant-domains.txt > ir-lite.txt
           echo "TOTAL_IR=$(cat ir.txt | wc -l)" >> $GITHUB_ENV
-          mv ir.txt release
+          echo "TOTAL_IR_LITE=$(cat ir-lite.txt | wc -l)" >> $GITHUB_ENV
+          mv ir.txt ir-lite.txt release
 
       - name: Generate ads list
         run: |
@@ -130,7 +133,7 @@ jobs:
           mkdir -p v2ray/data/
           mkdir -p v2ray/datalite/
           cp release/ir.txt v2ray/data/ir
-          cp release/ir.txt v2ray/datalite/ir
+          cp release/ir-lite.txt v2ray/datalite/ir
           cp release/ads.txt v2ray/data/ads
           cp release/ads.txt v2ray/datalite/ads
           cp release/category-ads-all.txt v2ray/data/category-ads-all
