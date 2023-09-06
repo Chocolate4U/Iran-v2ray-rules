@@ -48,11 +48,8 @@ jobs:
 
       - name: Generate ir domains list
         run: |
-          echo -e "ir\nxn--mgba3a4f16a" > ir-temp.txt
-          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt > domains.txt
-          cat domains.txt | grep -Ev ".+\.ir$" | cat - ir-temp.txt | sort -u > ir.txt
+          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | sort -u > ir.txt
           echo "TOTAL_IR=$(cat ir.txt | wc -l)" >> $GITHUB_ENV
-          rm -f ir-temp.txt
           mv ir.txt release
 
       - name: Generate ads list
