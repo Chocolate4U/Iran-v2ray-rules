@@ -159,6 +159,7 @@ jobs:
         run: | 
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
           echo "* IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
+          echo "* Active IR Domains (Excluding .ir Domains, Used in geosite-lite) -> ${{ env.TOTAL_IR_LITE }}" >> RELEASE_NOTES
           echo "* IR Ad Domains -> ${{ env.TOTAL_IR_ADS }}" >> RELEASE_NOTES
           echo "* All Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
           echo "* Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
@@ -179,7 +180,7 @@ jobs:
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f origin release
 
-      - name: Purge jsdelivr CDN cache
+      - name: Purge jsDelivr CDN cache
         run: |
           cd release || exit 1
           for file in $(ls); do
