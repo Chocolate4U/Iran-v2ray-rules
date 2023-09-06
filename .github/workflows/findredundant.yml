@@ -17,7 +17,7 @@ jobs:
           sudo apt-get install csvkit
 
       - name: Get Check-domains script
-        run: wget https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/test/Check-domains.ps1
+        run: wget https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/Check-domains.ps1
 
       - name: Get domains
         run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
