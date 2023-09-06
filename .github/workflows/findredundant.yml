@@ -1,0 +1,57 @@
+name: Find Redundant Domains
+on: workflow_dispatch
+
+jobs:
+  check-domains:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set ENV variables
+        run: |
+          echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install csvkit
+
+      - name: Get Check-domains script
+        run: wget https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/test/Check-domains.ps1
+
+      - name: Get domains
+        run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
+
+      - name: Check Domains with Cloudflare
+        shell: pwsh
+        run: |
+          .\Check-domains.ps1 -Mode DOH -DOHServer Cloudflare -Concurrency 100
+          New-Item -Name "Cloudflare" -ItemType "directory"
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
+
+      - name: Check Domains with Google
+        shell: pwsh
+        run: |
+          .\Check-domains.ps1 -Mode DOH -DOHServer Google -Concurrency 100
+          New-Item -Name "Google" -ItemType "directory"
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
+
+      - name: Generate final result
+        run: |
+          csvgrep -c 2 -m "DEAD" ./Cloudflare/Results-DOH.csv | awk -F"," '{print $1}' | sed '1d' | sort -u > redundant-cloudflare.txt
+          csvgrep -c 2 -m "DEAD" ./Google/Results-DOH.csv | awk -F"," '{print $1}' | sed '1d' | sort -u > redundant-google.txt
+          comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
+
+      - name: Push result to redundant branch
+        run: |
+          mkdir redundant
+          cp redundant-domains.txt redundant
+          cd redundant || exit 1
+          git init
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b redundant
+          git add .
+          git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin redundant
