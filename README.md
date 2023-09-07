@@ -5,10 +5,10 @@
 </picture>
 
 <p align="center">
-<img alt="GitHub Workflow Status (with event)" src="https://img.shields.io/github/actions/workflow/status/Chocolate4U/Iran-v2ray-rules/release.yml?style=flat-square&logo=github">
+<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Chocolate4U/Iran-v2ray-rules/release.yml?style=flat-square&logo=github">
 <img alt="GitHub release" src="https://flat.badgen.net/github/release/Chocolate4U/Iran-v2ray-rules?cache=300">
 <img alt="GitHub Release Date" src="https://flat.badgen.net/github/last-commit/Chocolate4U/Iran-v2ray-rules/release?label=release%20date&cache=300">
-<img alt="license" src="https://flat.badgen.net/github/license/Chocolate4U/Iran-v2ray-rules?cache=300">
+<img alt="license" src="https://flat.badgen.net/github/license/Chocolate4U/Iran-v2ray-rules">
 </p>
 
 # :writing_hand: Introduction
