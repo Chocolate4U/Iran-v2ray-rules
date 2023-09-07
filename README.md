@@ -5,10 +5,10 @@
 </picture>
 
 <p align="center">
-<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Chocolate4U/Iran-v2ray-rules/release.yml?style=flat-square&logo=github">
-<img alt="GitHub release" src="https://flat.badgen.net/github/release/Chocolate4U/Iran-v2ray-rules?cache=300">
-<img alt="GitHub Release Date" src="https://flat.badgen.net/github/last-commit/Chocolate4U/Iran-v2ray-rules/release?label=release%20date&cache=300">
-<img alt="license" src="https://flat.badgen.net/github/license/Chocolate4U/Iran-v2ray-rules">
+<img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/Chocolate4U/Iran-v2ray-rules/release.yml?event=schedule&style=for-the-badge&logo=github&cacheSeconds=3600">
+<img alt="GitHub release" src="https://img.shields.io/github/v/release/Chocolate4U/Iran-v2ray-rules?style=for-the-badge&cacheSeconds=3600">
+<img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/Chocolate4U/Iran-v2ray-rules?display_date=published_at&style=for-the-badge&cacheSeconds=3600">
+<img alt="GitHub" src="https://img.shields.io/github/license/Chocolate4U/Iran-v2ray-rules?style=for-the-badge&color=blue&cacheSeconds=3600">
 </p>
 
 # :writing_hand: Introduction
@@ -19,7 +19,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 
 # :page_with_curl: Categories
 
-## GeoIP  
+## GeoIP
 - `geoip:ir`  
   Contains Iran IP addresses from Maxmind database and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
 
@@ -87,7 +87,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geoip:private`  
   Contains a list of local (LAN) IP addresses.
 
-## GeoSite  
+## GeoSite
 - `geosite:ir`  
   Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) and rules to bypass all `.ir` domains.
 
@@ -112,7 +112,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geosite:nsfw`
   Contains a list of porn and gambling websites.
 
-## GeoSite Lite
+## GeoSite-Lite
 - `geosite:ir`  
   Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) with dead domains removed and rules to bypass all `.ir` domains.  
   All IR domains from normal GeoSite get checked every 24 hours and after removal of non-Active domains, will get in this category.  
@@ -121,7 +121,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geosite:ads`  
   Contains a list of Persian advertisement and tracking domains.
 
-## Country.mmdb  
+## Country.mmdb
 Same as `GeoIP` but in Maxmind's MMDB format.
 
 ## Country-lite.mmdb
