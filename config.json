@@ -262,7 +262,7 @@
             "action": "output",
             "args": {
                 "outputName": "geoip-lite.dat",
-                "wantedList": ["ir","arvancloud","derakcloud","iranserver", "private"]
+                "wantedList": ["ir", "private"]
             }
         },
         {
