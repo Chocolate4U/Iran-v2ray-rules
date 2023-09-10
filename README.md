@@ -11,6 +11,8 @@
 <img alt="GitHub" src="https://img.shields.io/github/license/Chocolate4U/Iran-v2ray-rules?style=for-the-badge&color=blue&cacheSeconds=3600">
 </p>
 
+[فارسی](README.fa.md)  
+
 # :writing_hand: Introduction
 This is an Enhanced and All-in-One set of geo-location routing files optimized for Iranian users to use in v2ray/xray and all their compatible clients.
 
@@ -132,15 +134,15 @@ Same as `GeoIP Lite` but in Maxmind's MMDB format.
 `GeoIP` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat)  
 `GeoSite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat)  
 
-`GeoIP Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat)  
-`GeoSite Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat)  
+`GeoIP-Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat)  
+`GeoSite-Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat)  
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> From jsDelivr CDN
 `GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
 `GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)  
 
-`GeoIP Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
-`GeoSite Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)  
+`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
+`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)  
 
 # :computer: Usage
 ## v2ray/xray core
