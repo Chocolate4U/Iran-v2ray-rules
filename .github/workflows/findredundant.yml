@@ -34,14 +34,14 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          .\Check-domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100
+          .\Check-domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Cloudflare" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
 
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          .\Check-domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100
+          .\Check-domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Google" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
 
