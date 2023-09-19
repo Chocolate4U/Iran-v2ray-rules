@@ -20,6 +20,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install csvkit
 
+      - name: Install PowerShell 7.3
+        run: |
+          wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
+          sudo dpkg -i powershell_7.3.7-1.deb_amd64.deb
+
       - name: Get Check-domains script
         run: wget https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-domains.ps1
 
