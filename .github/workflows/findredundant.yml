@@ -22,11 +22,11 @@ jobs:
 
       - name: Install PowerShell 7.3
         run: |
-          wget https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
+          curl -sSLO https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
           sudo dpkg -i powershell_7.3.7-1.deb_amd64.deb
 
-      - name: Get Check-domains script
-        run: wget https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-domains.ps1
+      - name: Get Check-Domains script
+        run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
 
       - name: Get domains
         run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
@@ -34,14 +34,14 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          .\Check-domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Cloudflare" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
 
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          .\Check-domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Google" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
 
