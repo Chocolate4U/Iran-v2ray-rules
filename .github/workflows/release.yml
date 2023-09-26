@@ -49,16 +49,16 @@ jobs:
       - name: Generate ir domains list
         run: |
           curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | sort -u > ir.txt
-          curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt > redundant-domains.txt
+          curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt
           comm -23 ir.txt redundant-domains.txt > ir-lite.txt
-          echo "TOTAL_IR=$(cat ir.txt | wc -l)" >> $GITHUB_ENV
-          echo "TOTAL_IR_LITE=$(cat ir-lite.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_IR=$(wc -l < ir.txt)" >> $GITHUB_ENV
+          echo "TOTAL_IR_LITE=$(wc -l < ir-lite.txt)" >> $GITHUB_ENV
           mv ir.txt ir-lite.txt release
 
       - name: Generate ads list
         run: |
           curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > ads.txt
-          echo "TOTAL_IR_ADS=$(cat ads.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_IR_ADS=$(wc -l < ads.txt)" >> $GITHUB_ENV
 
       - name: Generate category-ads-all list
         run: |
@@ -76,7 +76,7 @@ jobs:
           cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > whitelist-temp.txt
 
           comm -23 category-ads-all-temp.txt whitelist-temp.txt > category-ads-all.txt
-          echo "TOTAL_ADS=$(cat category-ads-all.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_ADS=$(wc -l < category-ads-all.txt)" >> $GITHUB_ENV
           rm -f category-ads-all-raw.txt whitelist-raw.txt category-ads-all-temp.txt whitelist-temp.txt
           mv ads.txt category-ads-all.txt release
 
@@ -84,32 +84,32 @@ jobs:
         run: |
           curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed '/#/d' > malware.txt
           curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-ips-online.txt | sed '/#/d' > malware-ip.txt
-          echo "TOTAL_MALWARE=$(cat malware.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_MALWARE=$(wc -l < malware.txt)" >> $GITHUB_ENV
           mv malware.txt release
 
       - name: Generate phishing list
         run: |
           curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-names.txt | sed '/#/d' > phishing.txt
           curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-ips.txt | sed '/#/d' > phishing-ip.txt
-          echo "TOTAL_PHISHING=$(cat phishing.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_PHISHING=$(wc -l < phishing.txt)" >> $GITHUB_ENV
           mv phishing.txt release
 
       - name: Generate cryptominers domains list
         run: |
           curl -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > cryptominers.txt
-          echo "TOTAL_CRYPTO=$(cat cryptominers.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_CRYPTO=$(wc -l < cryptominers.txt)" >> $GITHUB_ENV
           mv cryptominers.txt release
 
       - name: Generate Social Media domains list
         run: |
           curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > social.txt
-          echo "TOTAL_SOCIAL=$(cat social.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_SOCIAL=$(wc -l < social.txt)" >> $GITHUB_ENV
           mv social.txt release
 
       - name: Generate nsfw domains list
         run: |
           curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > nsfw.txt
-          echo "TOTAL_NSFW=$(cat nsfw.txt | wc -l)" >> $GITHUB_ENV
+          echo "TOTAL_NSFW=$(wc -l < nsfw.txt)" >> $GITHUB_ENV
           mv nsfw.txt release
 
       - name: Generate geoip.dat, geoip-lite.dat, Country.mmdb and Country-lite.mmdb files
@@ -129,7 +129,7 @@ jobs:
 
       - name: Generate geosite.dat and geosite-lite.dat file
         run: |
-          git clone https://github.com/v2fly/domain-list-community
+          git clone https://github.com/v2fly/domain-list-community.git
           mkdir -p v2ray/data/
           mkdir -p v2ray/datalite/
           cp release/ir.txt v2ray/data/ir
