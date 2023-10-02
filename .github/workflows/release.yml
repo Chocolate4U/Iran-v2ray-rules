@@ -37,6 +37,13 @@ jobs:
         run: |
           curl -sSL https://raw.githubusercontent.com/Chocolate4U/ito.gov.ir-Mirror/main/data/Messengers.csv | awk -F"," '{print $2}' | sed '1d' > messengers-ip.txt
 
+      - name: Get domestic CDNs IP list
+        run: |
+          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt -o arvancloud-ip.txt || cp data/arvancloud-ip.txt arvancloud-ip.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 -o derakcloud-ipv4.txt || cp data/derakcloud-ipv4.txt derakcloud-ipv4.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 -o derakcloud-ipv6.txt || cp data/derakcloud-ipv6.txt derakcloud-ipv6.txt
+          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt -o iranserver-ip.txt || cp data/iranserver-ip.txt iranserver-ip.txt
+
       - name: Get GeoLite2
         env:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
@@ -82,14 +89,14 @@ jobs:
 
       - name: Generate malware list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed '/#/d' > malware.txt
+          curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > malware.txt
           curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-ips-online.txt | sed '/#/d' > malware-ip.txt
           echo "TOTAL_MALWARE=$(wc -l < malware.txt)" >> $GITHUB_ENV
           mv malware.txt release
 
       - name: Generate phishing list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-names.txt | sed '/#/d' > phishing.txt
+          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-names.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | sort -u > phishing.txt
           curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-ips.txt | sed '/#/d' > phishing-ip.txt
           echo "TOTAL_PHISHING=$(wc -l < phishing.txt)" >> $GITHUB_ENV
           mv phishing.txt release
