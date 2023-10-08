@@ -15,7 +15,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.20'
+          go-version: '1.21'
           cache: false
 
       - name: Set ENV variables
@@ -121,9 +121,9 @@ jobs:
 
       - name: Generate geoip.dat, geoip-lite.dat, Country.mmdb and Country-lite.mmdb files
         run: |
-          git clone https://github.com/Loyalsoldier/geoip.git
-          cd geoip
-          go run ./ -c ../config.json
+          git clone https://github.com/Chocolate4U/v2ray-geoip.git
+          cd v2ray-geoip
+          go run ./
           cp output/dat/geoip.dat output/dat/geoip-lite.dat ../release
           cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb ../release
           cp -fpPR output/text ../release
@@ -136,22 +136,22 @@ jobs:
 
       - name: Generate geosite.dat and geosite-lite.dat file
         run: |
-          git clone https://github.com/v2fly/domain-list-community.git
-          mkdir -p v2ray/data/
-          mkdir -p v2ray/datalite/
-          cp release/ir.txt v2ray/data/ir
-          cp release/ir-lite.txt v2ray/datalite/ir
-          cp release/ads.txt v2ray/data/ads
-          cp release/ads.txt v2ray/datalite/ads
-          cp release/category-ads-all.txt v2ray/data/category-ads-all
-          cp release/malware.txt v2ray/data/malware
-          cp release/phishing.txt v2ray/data/phishing
-          cp release/cryptominers.txt v2ray/data/cryptominers
-          cp release/social.txt v2ray/data/social
-          cp release/nsfw.txt v2ray/data/nsfw
-          cd domain-list-community
-          go run ./ --datapath=../v2ray/data --outputdir=../release --outputname=geosite.dat
-          go run ./ --datapath=../v2ray/datalite --outputdir=../release --outputname=geosite-lite.dat
+          git clone https://github.com/Chocolate4U/v2ray-geosite.git
+          cd v2ray-geosite
+          mkdir data datalite
+          cp ../release/ir.txt data/ir
+          cp ../release/ir-lite.txt datalite/ir
+          cp ../release/ads.txt data/ads
+          cp ../release/ads.txt datalite/ads
+          cp ../release/category-ads-all.txt data/category-ads-all
+          cp ../release/malware.txt data/malware
+          cp ../release/phishing.txt data/phishing
+          cp ../release/cryptominers.txt data/cryptominers
+          cp ../release/social.txt data/social
+          cp ../release/nsfw.txt data/nsfw
+          
+          go run ./ --datapath=data --outputdir=../release --outputname=geosite.dat
+          go run ./ --datapath=datalite --outputdir=../release --outputname=geosite-lite.dat
 
       - name: Generate sha256sum
         run: |
