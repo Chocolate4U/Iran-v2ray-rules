@@ -22,8 +22,8 @@ jobs:
 
       - name: Install PowerShell 7.3
         run: |
-          curl -sSLO https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
-          sudo dpkg -i powershell_7.3.7-1.deb_amd64.deb
+          curl -sSLO https://github.com/PowerShell/PowerShell/releases/download/v7.3.8/powershell_7.3.8-1.deb_amd64.deb
+          sudo dpkg -i powershell_7.3.8-1.deb_amd64.deb
 
       - name: Get Check-Domains script
         run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
