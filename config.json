@@ -4,9 +4,9 @@
             "type": "maxmindGeoLite2CountryCSV",
             "action": "add",
             "args": {
-                "country": "../geolite2/GeoLite2-Country-Locations-en.csv",
-                "ipv4": "../geolite2/GeoLite2-Country-Blocks-IPv4.csv",
-                "ipv6": "../geolite2/GeoLite2-Country-Blocks-IPv6.csv",
+                "country": "geolite2/GeoLite2-Country-Locations-en.csv",
+                "ipv4": "geolite2/GeoLite2-Country-Blocks-IPv4.csv",
+                "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv",
                 "wantedList": [
                     "ir"
                 ]
@@ -17,7 +17,15 @@
             "action": "add",
             "args": {
                 "name": "ir",
-                "uri": "../messengers-ip.txt"
+                "uri": "messengers-ip.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+              "name": "cn",
+              "uri": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
             }
         },
         {
@@ -25,7 +33,7 @@
             "action": "add",
             "args": {
                 "name": "arvancloud",
-                "uri": "../arvancloud-ip.txt"
+                "uri": "arvancloud-ip.txt"
             }
         },
         {
@@ -33,7 +41,8 @@
             "action": "add",
             "args": {
                 "name": "derakcloud",
-                "uri": "../derakcloud-ipv4.txt"
+                "uri": "derakcloud-ipv4.txt",
+                "onlyIPType": "ipv4"
             }
         },
         {
@@ -41,7 +50,8 @@
             "action": "add",
             "args": {
                 "name": "derakcloud",
-                "uri": "../derakcloud-ipv6.txt"
+                "uri": "derakcloud-ipv6.txt",
+                "onlyIPType": "ipv6"
             }
         },
         {
@@ -49,7 +59,15 @@
             "action": "add",
             "args": {
                 "name": "iranserver",
-                "uri": "../iranserver-ip.txt"
+                "uri": "iranserver-ip.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "parspack",
+                "uri": "parspack-ip.txt"
             }
         },
         {
@@ -233,7 +251,7 @@
             "action": "add",
             "args": {
                 "name": "phishing",
-                "uri": "../phishing-ip.txt"
+                "uri": "phishing-ip.txt"
             }
         },
         {
@@ -241,7 +259,7 @@
             "action": "add",
             "args": {
                 "name": "malware",
-                "uri": "../malware-ip.txt"
+                "uri": "malware-ip.txt"
             }
         },
         {
@@ -272,6 +290,7 @@
                 "outputName": "Country.mmdb",
                 "overwriteList": [
                     "ir",
+                    "cn",
                     "private",
                     "arvancloud",
                     "derakcloud",

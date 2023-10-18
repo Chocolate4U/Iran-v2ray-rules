@@ -39,10 +39,11 @@ jobs:
 
       - name: Get domestic CDNs IP list
         run: |
-          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt -o arvancloud-ip.txt || cp data/arvancloud-ip.txt arvancloud-ip.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 -o derakcloud-ipv4.txt || cp data/derakcloud-ipv4.txt derakcloud-ipv4.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 -o derakcloud-ipv6.txt || cp data/derakcloud-ipv6.txt derakcloud-ipv6.txt
-          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt -o iranserver-ip.txt || cp data/iranserver-ip.txt iranserver-ip.txt
+          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt -o arvancloud-ip.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/arvancloud.txt -o arvancloud-ip.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 -o derakcloud-ipv4.txt || curl -sSL https://github.com/Chocolate4U/Iran-v2ray-rules/blob/release/text/derakcloud.txt -o derakcloud-ipv4.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 -o derakcloud-ipv6.txt || curl -sSL https://github.com/Chocolate4U/Iran-v2ray-rules/blob/release/text/derakcloud.txt -o derakcloud-ipv6.txt
+          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt -o iranserver-ip.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt -o iranserver-ip.txt
+          curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt -o parspack-ip.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt -o parspack-ip.txt
 
       - name: Get GeoLite2
         env:
@@ -126,12 +127,11 @@ jobs:
 
       - name: Generate geoip.dat, geoip-lite.dat, Country.mmdb and Country-lite.mmdb files
         run: |
-          git clone https://github.com/Chocolate4U/v2ray-geoip.git
-          cd v2ray-geoip
-          go run ./
-          cp output/dat/geoip.dat output/dat/geoip-lite.dat ../release
-          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb ../release
-          cp -fpPR output/text ../release
+          go install -v github.com/Loyalsoldier/geoip@latest
+          $(go env GOPATH)/bin/geoip -c config.json
+          cp output/dat/geoip.dat output/dat/geoip-lite.dat release
+          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb release
+          cp -fpPR output/text release
 
       - name: Verify Country.mmdb and Country-lite.mmdb files
         run: |
