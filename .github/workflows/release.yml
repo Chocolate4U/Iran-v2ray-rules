@@ -5,24 +5,30 @@ on:
   schedule:
     - cron: "0 1 * * *"
 
+env:
+  RELEASE_NAME: $(date +%Y%m%d%H%M)
+  TAG_NAME: $(date +%Y%m%d%H%M)
+  RELEASE_DATE: $(date +'%F %T %Z')
+
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Iran-v2ray-rules repository
+        uses: actions/checkout@v4
+      
+      - name: Checkout v2ray-geosite repository
+        uses: actions/checkout@v4
+        with:
+          repository: Chocolate4U/v2ray-geosite
+          path: v2ray-geosite
 
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
           go-version: '1.21'
-          cache: false
-
-      - name: Set ENV variables
-        run: |
-          echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "RELEASE_DATE=$(date +'%F %T %Z')" >> $GITHUB_ENV
+          cache-dependency-path: v2ray-geosite/go.sum
 
       - name: Install dependencies
         run: |
@@ -141,7 +147,6 @@ jobs:
 
       - name: Generate geosite.dat and geosite-lite.dat file
         run: |
-          git clone https://github.com/Chocolate4U/v2ray-geosite.git
           cd v2ray-geosite
           mkdir data datalite
           cp ../release/ir.txt data/ir
