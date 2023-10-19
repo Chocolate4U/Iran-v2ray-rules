@@ -21,7 +21,7 @@
 
 ## GeoIP
 - `geoip:ir`  
-  <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس MaxMind به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
+  <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس Maxmind و IP2Location به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
 
 - `geoip:private`  
   <p align="right">دربر گیرنده IP های شبکه محلی (LAN).</p>
@@ -34,6 +34,9 @@
 
 - `geoip:iranserver`  
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور.</p>
+
+- `geoip:parspack`  
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک.</p>
 
 - `geoip:cloudflare`  
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
@@ -82,7 +85,7 @@
 
 ## GeoIP-Lite
 - `geoip:ir`  
-  <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس MaxMind به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
+  <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس Maxmind و IP2Location به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
 
 - `geoip:private`  
   <p align="right">دربر گیرنده IP های شبکه محلی (LAN).</p>
@@ -193,7 +196,10 @@
       "ip": [
         "geoip:ir",
         "geoip:private",
-        "geoip:arvancloud"
+        "geoip:arvancloud",
+        "geoip:derakcloud,
+        "geoip:iranserver,
+        "geoip:parspack
       ],
       "type": "field"
     },
