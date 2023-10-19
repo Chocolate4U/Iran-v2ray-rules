@@ -17,6 +17,22 @@
             "action": "add",
             "args": {
                 "name": "ir",
+                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/ip2location-ir.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "ir",
+                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/ip2location-ir6.txt"
+            }
+        },
+        {
+            "type": "text",
+            "action": "add",
+            "args": {
+                "name": "ir",
                 "uri": "messengers-ip.txt"
             }
         },
