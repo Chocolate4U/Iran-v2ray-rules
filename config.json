@@ -17,7 +17,7 @@
             "action": "add",
             "args": {
                 "name": "ir",
-                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/ip2location-ir.txt"
+                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir.txt"
             }
         },
         {
@@ -25,7 +25,7 @@
             "action": "add",
             "args": {
                 "name": "ir",
-                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/ip2location-ir6.txt"
+                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir6.txt"
             }
         },
         {
@@ -311,6 +311,7 @@
                     "arvancloud",
                     "derakcloud",
                     "iranserver",
+                    "parspack",
                     "cloudflare",
                     "google",
                     "amazon",
