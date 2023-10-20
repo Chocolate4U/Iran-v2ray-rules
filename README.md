@@ -41,10 +41,10 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
   Contains IP addresses of ParsPack.com CDN.
 
 - `geoip:cloudflare`  
-  Contains IP addresses of ClouFlare CDN.
+  Contains IP addresses of Cloudflare CDN.
 
 - `geoip:google`  
-  Contains IP addresses of Google, GoogleCloud and GoogleBot.
+  Contains the IP addresses of Google, GoogleCloud and GoogleBot.
 
 - `geoip:amazon`  
   Contains IP addresses of Amazon and Amazon Web Services (AWS).
@@ -53,13 +53,13 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
   Contains IP addresses of Microsoft and Azure Platform.
 
 - `geoip:bing`  
-  Contains IP addresses of Bing and Bingbot.
+  Contains the IP addresses of Bing and Bingbot.
 
 - `geoip:github`  
   Contains IP addresses of GitHub.
 
 - `geoip:facebook`  
-  Contains IP addresses of Meta ecosystem, including Facebook, Instagram and WhatsApp.
+  Contains IP addresses of the Meta ecosystem, including Facebook, Instagram and WhatsApp.
 
 - `geoip:twitter`  
   Contains IP addresses of Twitter (now called X!).
@@ -71,10 +71,10 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
   Contains IP addresses of Oracle Cloud.
 
 - `geoip:digitalocean`  
-  Contains IP addresses of DigitalOcean related services.
+  Contains IP addresses of DigitalOcean-related services.
 
 - `geoip:linode`  
-  Contains IP addresses of Linode related services.
+  Contains IP addresses of Linode-related services.
 
 - `geoip:openai`  
   Contains IP addresses of OpenAI and ChatGPT.
@@ -100,7 +100,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
   Contains a list of Persian advertisement and tracking domains.
 
 - `geosite:category-ads-all`  
-  Contains a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to has as low as possible false positives while also retain small size and efficiency.
+  Contains a curated list of Persian and Foreign advertisement and tracking domains based on multiple sources. It is optimized to have as low as possible false positives while also retaining a small size and efficiency.
 
 - `geosite:malware`  
   Contains a list of active malware domains.
@@ -120,8 +120,8 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 ## GeoSite-Lite
 - `geosite:ir`  
   Contains non-ir TLD Iranian domains (e.g. `.com` `.net` `.org` etc.) with dead domains removed and rules to bypass all `.ir` domains.  
-  All IR domains from normal GeoSite get checked every 24 hours and after removal of non-Active domains, will get in this category.  
-  The test may not be very accurate, so I recommend to update this list every day or regularly.
+  All IR domains from normal GeoSite get checked every 24 hours and after the removal of non-active domains, will get in this category.  
+  The test may not be very accurate, so I recommend updating this list daily or regularly.
   
 - `geosite:ads`  
   Contains a list of Persian advertisement and tracking domains.
@@ -208,17 +208,17 @@ Add the following to your v2ray/xray client configuration:
 ```
 
 # :information_desk_person: How is this made?  
-`geoip.dat`,`geoip-lite.dat` and `Country.mmdb`,`Country-lite.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to mentioned repository for instrunctions on how to make custom `geoip` files.  
-`geosite.dat`,`geosite-lite.dat` is generated using source code from [Domain list community](https://github.com/v2fly/domain-list-community). Please refer to mentioned repository for instrunctions on how to make custom `geosite` files.  
+`geoip.dat`,`geoip-lite.dat` and `Country.mmdb`,`Country-lite.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to the mentioned repository for instructions on how to make custom `geoip` files.  
+`geosite.dat`,`geosite-lite.dat` is generated using source code from [Domain list community](https://github.com/v2fly/domain-list-community). Please refer to the mentioned repository for instructions on how to make custom `geosite` files.  
 
 # :handshake: Contribution
 All contributions are welcome and appreciated. You can contribute to this project in 2 ways:  
-1. Contribute to it's upstream sources  
+1. Contribute to its upstream sources  
    Do you know a Domain that should be bypassed? report it to [Iran Hosted Domains](https://github.com/bootmortis/iran-hosted-domains)  
-   Do you know a persian advertisement domain that should be blocked or a false positive? report it to [PersianBlocker](https://github.com/MasterKia/PersianBlocker)  
-   Do you know... OK you got the idea!  
+   Do you know a Persian advertisement domain that should be blocked or a false positive? report it to [PersianBlocker](https://github.com/MasterKia/PersianBlocker)  
+   Do you know... OK, you got the idea!  
 2. Contribute directly to this project  
-   Report issues, open pull requests, suggest new sources or categories or any idea in general to make this repository more useful for everyone.  
+   Report issues, open pull requests, suggest new sources or categories or any idea, in general, to make this repository more useful for everyone.  
 
 :raising_hand_man: Also one more thing, if this repository was useful to you, kindly leave a :star: up there so this project can be seen by more people.
 
@@ -264,7 +264,7 @@ This repository is not affiliated, associated, authorized, endorsed by, or in an
 The data in this repository is gathered from publicly available resources and is provided as-is, intended for informational purposes only with no guarantee of accuracy, liability or availability and We are not responsible for any harm or damage that may arise from using the data in this repository. Please do your research before using any data from this repository.
 
 # :pray: Special Thanks
-- All maintainers that mentioned in this project.
+- All maintainers that are mentioned in this project.
 - [Project V](https://github.com/v2fly)
 - [Project X](https://github.com/XTLS)
 - [Domain list community](https://github.com/v2fly/domain-list-community)
