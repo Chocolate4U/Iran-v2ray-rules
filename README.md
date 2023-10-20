@@ -29,55 +29,55 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
   Contains a list of local (LAN) IP addresses.
 
 - `geoip:arvancloud`  
-  Contains IP addresses of ArvanCloud.ir CDN.
+  Contains the IP addresses of ArvanCloud.ir CDN.
 
 - `geoip:derakcloud`  
-  Contains IP addresses of Derak.cloud CDN.
+  Contains the IP addresses of Derak.cloud CDN.
 
 - `geoip:iranserver`  
-  Contains IP addresses of IranServer.com CDN.
+  Contains the IP addresses of IranServer.com CDN.
 
 - `geoip:parspack`  
-  Contains IP addresses of ParsPack.com CDN.
+  Contains the IP addresses of ParsPack.com CDN.
 
 - `geoip:cloudflare`  
-  Contains IP addresses of Cloudflare CDN.
+  Contains the IP addresses of Cloudflare CDN.
 
 - `geoip:google`  
   Contains the IP addresses of Google, GoogleCloud and GoogleBot.
 
 - `geoip:amazon`  
-  Contains IP addresses of Amazon and Amazon Web Services (AWS).
+  Contains the IP addresses of Amazon and Amazon Web Services (AWS).
 
 - `geoip:microsoft`  
-  Contains IP addresses of Microsoft and Azure Platform.
+  Contains the IP addresses of Microsoft and Azure Platform.
 
 - `geoip:bing`  
   Contains the IP addresses of Bing and Bingbot.
 
 - `geoip:github`  
-  Contains IP addresses of GitHub.
+  Contains the IP addresses of GitHub.
 
 - `geoip:facebook`  
-  Contains IP addresses of the Meta ecosystem, including Facebook, Instagram and WhatsApp.
+  Contains the IP addresses of the Meta ecosystem, including Facebook, Instagram and WhatsApp.
 
 - `geoip:twitter`  
-  Contains IP addresses of Twitter (now called X!).
+  Contains the IP addresses of Twitter (now called X!).
 
 - `geoip:telegram`  
-  Contains IP addresses of Telegram Messenger.
+  Contains the IP addresses of Telegram Messenger.
 
 - `geoip:oracle`  
-  Contains IP addresses of Oracle Cloud.
+  Contains the IP addresses of Oracle Cloud.
 
 - `geoip:digitalocean`  
-  Contains IP addresses of DigitalOcean-related services.
+  Contains the IP addresses of DigitalOcean-related services.
 
 - `geoip:linode`  
-  Contains IP addresses of Linode-related services.
+  Contains the IP addresses of Linode-related services.
 
 - `geoip:openai`  
-  Contains IP addresses of OpenAI and ChatGPT.
+  Contains the IP addresses of OpenAI and ChatGPT.
 
 - `geoip:phishing`  
   Contains Phishing IP addresses.
