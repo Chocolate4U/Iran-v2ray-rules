@@ -1,346 +1,361 @@
 {
-    "input": [
-        {
-            "type": "maxmindGeoLite2CountryCSV",
-            "action": "add",
-            "args": {
-                "country": "geolite2/GeoLite2-Country-Locations-en.csv",
-                "ipv4": "geolite2/GeoLite2-Country-Blocks-IPv4.csv",
-                "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv",
-                "wantedList": [
-                    "ir"
-                ]
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "ir",
-                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "ir",
-                "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "ir",
-                "uri": "messengers-ip.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-              "name": "cn",
-              "uri": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "arvancloud",
-                "uri": "arvancloud-ip.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "derakcloud",
-                "uri": "derakcloud-ipv4.txt",
-                "onlyIPType": "ipv4"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "derakcloud",
-                "uri": "derakcloud-ipv6.txt",
-                "onlyIPType": "ipv6"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "iranserver",
-                "uri": "iranserver-ip.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "parspack",
-                "uri": "parspack-ip.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "cloudflare",
-                "uri": "https://www.cloudflare.com/ips-v4"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "cloudflare",
-                "uri": "https://www.cloudflare.com/ips-v6"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "google",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "google",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "amazon",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "amazon",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "microsoft",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "microsoft",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "bing",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/bing/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "github",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "github",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "facebook",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "facebook",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "twitter",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "twitter",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "telegram",
-                "uri": "https://core.telegram.org/resources/cidr.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "oracle",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/oracle/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "digitalocean",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "digitalocean",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "linode",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv4.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "linode",
-                "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv6.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "openai",
-                "uri": "https://openai.com/gptbot-ranges.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "phishing",
-                "uri": "phishing-ip.txt"
-            }
-        },
-        {
-            "type": "text",
-            "action": "add",
-            "args": {
-                "name": "malware",
-                "uri": "malware-ip.txt"
-            }
-        },
-        {
-            "type": "private",
-            "action": "add"
-        }
-    ],
-    "output": [
-        {
-            "type": "v2rayGeoIPDat",
-            "action": "output",
-            "args": {
-                "outputName": "geoip.dat"
-            }
-        },
-        {
-            "type": "v2rayGeoIPDat",
-            "action": "output",
-            "args": {
-                "outputName": "geoip-lite.dat",
-                "wantedList": ["ir", "private"]
-            }
-        },
-        {
-            "type": "maxmindMMDB",
-            "action": "output",
-            "args": {
-                "outputName": "Country.mmdb",
-                "overwriteList": [
-                    "ir",
-                    "cn",
-                    "private",
-                    "arvancloud",
-                    "derakcloud",
-                    "iranserver",
-                    "parspack",
-                    "cloudflare",
-                    "google",
-                    "amazon",
-                    "microsoft",
-                    "bing",
-                    "github",
-                    "facebook",
-                    "twitter",
-                    "telegram",
-                    "oracle",
-                    "digitalocean",
-                    "linode",
-                    "openai",
-                    "phishing",
-                    "malware"
-                ]
-            }
-        },
-        {
-            "type": "maxmindMMDB",
-            "action": "output",
-            "args": {
-                "outputName": "Country-lite.mmdb",
-                "wantedList": ["ir", "private"]
-            }
-        },
-        {
-            "type": "text",
-            "action": "output"
-        }
-    ]
+  "input": [
+    {
+      "type": "maxmindGeoLite2CountryCSV",
+      "action": "add",
+      "args": {
+        "country": "geolite2/GeoLite2-Country-Locations-en.csv",
+        "ipv4": "geolite2/GeoLite2-Country-Blocks-IPv4.csv",
+        "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv",
+        "wantedList": ["ir", "ru", "us"]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "ir",
+        "uri": "messengers-ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cn",
+        "uri": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "arvancloud",
+        "uri": "arvancloud-ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "derakcloud",
+        "uri": "derakcloud-ipv4.txt",
+        "onlyIPType": "ipv4"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "derakcloud",
+        "uri": "derakcloud-ipv6.txt",
+        "onlyIPType": "ipv6"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "iranserver",
+        "uri": "iranserver-ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "parspack",
+        "uri": "parspack-ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cloudflare",
+        "uri": "https://www.cloudflare.com/ips-v4"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "cloudflare",
+        "uri": "https://www.cloudflare.com/ips-v6"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "google",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "google",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "amazon",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "amazon",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "microsoft",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "microsoft",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "bing",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/bing/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "github",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "github",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "facebook",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "facebook",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "twitter",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "twitter",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "telegram",
+        "uri": "https://core.telegram.org/resources/cidr.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "oracle",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/oracle/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "digitalocean",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "digitalocean",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "linode",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv4.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "linode",
+        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv6.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "openai",
+        "uri": "https://openai.com/gptbot-ranges.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "phishing",
+        "uri": "phishing-ip.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "malware",
+        "uri": "malware-ip.txt"
+      }
+    },
+    {
+      "type": "private",
+      "action": "add"
+    }
+  ],
+  "output": [
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "geoip.dat"
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "geoip-lite.dat",
+        "wantedList": ["ir", "private"]
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
+        "outputName": "security-ip.dat",
+        "wantedList": ["phishing", "malware"]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "Country.mmdb",
+        "overwriteList": [
+          "ir",
+          "cn",
+          "ru",
+          "arvancloud",
+          "derakcloud",
+          "iranserver",
+          "parspack",
+          "cloudflare",
+          "google",
+          "amazon",
+          "microsoft",
+          "bing",
+          "github",
+          "facebook",
+          "twitter",
+          "telegram",
+          "oracle",
+          "digitalocean",
+          "linode",
+          "openai",
+          "phishing",
+          "malware",
+          "private"
+        ]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "Country-lite.mmdb",
+        "wantedList": ["ir", "private"]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "Security-ip.mmdb",
+        "wantedList": ["phishing", "malware"]
+      }
+    },
+    {
+      "type": "text",
+      "action": "output"
+    }
+  ]
 }
