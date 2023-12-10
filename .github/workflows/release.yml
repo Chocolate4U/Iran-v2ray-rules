@@ -59,7 +59,7 @@ jobs:
         run: |
           mkdir ir-cdn
           curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt > ir-cdn/arvancloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/arvancloud.txt > ir-cdn/arvancloud.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 > ir-cdn/derakcloud.txt && sed -i -e '$a\' derakcloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 > ir-cdn/derakcloud.txt && sed -i -e '$a\' ir-cdn/derakcloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
           curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 >> ir-cdn/derakcloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
           curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt > ir-cdn/iranserver.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt > ir-cdn/iranserver.txt
           curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt > ir-cdn/parspack.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt > ir-cdn/parspack.txt
