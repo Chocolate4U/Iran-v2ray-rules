@@ -24,32 +24,25 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 
 ## GeoIP
 
+- Contains IP Addresses of all countries from Maxmind and IP2Location databases.
+
 - `geoip:ir`  
-  Contains Iran IP addresses from Maxmind and IP2Location databases and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
-
-- `geoip:cn`  
-  Contains China IP addresses from Loyalsoldier/v2ray-rules-dat repository.
-
-- `geoip:ru`  
-  Contains Russia IP addresses from Maxmind database.
-
-- `geoip:us`  
-  Contains United States IP addresses from Maxmind database.
+  Contains Iran IP addresses from Maxmind and IP2Location databases, IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc. and IP addresses of `arvancloud`, `derakcloud`, `iranserver` and `parspack` CDNs.
 
 - `geoip:private`  
   Contains a list of local (LAN) IP addresses.
 
 - `geoip:arvancloud`  
-  Contains the IP addresses of ArvanCloud.ir CDN.
+  Contains the IP addresses of ArvanCloud.ir CDN. :information_source: Integrated in `geoip:ir` and no longer needed to be written as a separate rule.
 
 - `geoip:derakcloud`  
-  Contains the IP addresses of Derak.cloud CDN.
+  Contains the IP addresses of Derak.cloud CDN. :information_source: Integrated in `geoip:ir` and no longer needed to be written as a separate rule.
 
 - `geoip:iranserver`  
-  Contains the IP addresses of IranServer.com CDN.
+  Contains the IP addresses of IranServer.com CDN. :information_source: Integrated in `geoip:ir` and no longer needed to be written as a separate rule.
 
 - `geoip:parspack`  
-  Contains the IP addresses of ParsPack.com CDN.
+  Contains the IP addresses of ParsPack.com CDN. :information_source: Integrated in `geoip:ir` and no longer needed to be written as a separate rule.
 
 - `geoip:cloudflare`  
   Contains the IP addresses of Cloudflare CDN.
@@ -99,7 +92,7 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 ## GeoIP-Lite
 
 - `geoip:ir`  
-  Contains Iran IP addresses from Maxmind and IP2Location databases and IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc.
+  Contains Iran IP addresses from Maxmind and IP2Location databases, IP addresses of Iranian messengers such as `eitaa`, `rubika`, etc. and IP addresses of `arvancloud`, `derakcloud`, `iranserver` and `parspack` CDNs.
 
 - `geoip:private`  
   Contains a list of local (LAN) IP addresses.
@@ -250,11 +243,7 @@ Add the following to your v2ray/xray client configuration:
       "outboundTag": "direct",
       "ip": [
         "geoip:ir",
-        "geoip:private",
-        "geoip:arvancloud",
-        "geoip:derakcloud,
-        "geoip:iranserver,
-        "geoip:parspack
+        "geoip:private"
       ],
       "type": "field"
     },
@@ -264,7 +253,8 @@ Add the following to your v2ray/xray client configuration:
 
 # :information_desk_person: How is this made?
 
-`geoip.dat`,`geoip-lite.dat` and `Country.mmdb`,`Country-lite.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to the mentioned repository for instructions on how to make custom `geoip` files.  
+`geoip.dat`,`geoip-lite.dat` and `Country.mmdb`,`Country-lite.mmdb` are generated using source code from [geoip](https://github.com/Loyalsoldier/geoip) repository by [Loyalsoldier](https://github.com/Loyalsoldier). Please refer to the mentioned repository for instructions on how to make custom `geoip` files.
+
 `geosite.dat`,`geosite-lite.dat` is generated using source code from [Domain list community](https://github.com/v2fly/domain-list-community). Please refer to the mentioned repository for instructions on how to make custom `geosite` files.
 
 # :handshake: Contribution
@@ -292,10 +282,9 @@ All rights are reserved for All upstream sources used in this project according 
 
 | Source                 | Maintainer           | Home Page                                                                                 | License                                                                              | Category          |
 | ---------------------- | -------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------- |
-| GeoLite2               | MaxMind              | [Home Page](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)                 | [CC BY-SA 4.0](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data#license) | ir, ru, us        |
-| IP2Location LITE       | IP2Location          | [Home Page](https://lite.ip2location.com/ip2location-lite)                                | [CC BY-SA 4.0](https://lite.ip2location.com/terms-of-use)                            | ir                |
+| GeoLite2               | MaxMind              | [Home Page](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)                 | [CC BY-SA 4.0](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data#license) | Country IPs       |
+| IP2Location LITE       | IP2Location          | [Home Page](https://lite.ip2location.com/ip2location-lite)                                | [CC BY-SA 4.0](https://lite.ip2location.com/terms-of-use)                            | Country IPs       |
 | ITO GOV                | ITO GOV              | [Home Page](https://eservices.ito.gov.ir/Page/IPListMessenger)                            | N/A                                                                                  | ir(messenger IPs) |
-| V2ray-rules-dat        | Loyalsoldier         | [Home Page](https://github.com/Loyalsoldier/v2ray-rules-dat)                              | [GPL-3.0](https://github.com/Loyalsoldier/v2ray-rules-dat/blob/master/LICENSE)       | cn                |
 | Arvan Cloud            | Arvan Cloud          | [Home Page](https://www.arvancloud.ir/en/dev/ips)                                         | All rights reserved                                                                  | arvancloud        |
 | Derak Cloud            | Derak Cloud          | [Home Page](https://derak.cloud/لیست-بازه-های-ip)                                         | All rights reserved                                                                  | derakcloud        |
 | IranServer             | IranServer           | [Home Page](https://docs.iranserver.com/irserver-cloud/cdn/allow-iranserver-ip-addresses) | All rights reserved                                                                  | iranserver        |
