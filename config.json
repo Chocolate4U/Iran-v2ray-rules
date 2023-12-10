@@ -6,24 +6,14 @@
       "args": {
         "country": "geolite2/GeoLite2-Country-Locations-en.csv",
         "ipv4": "geolite2/GeoLite2-Country-Blocks-IPv4.csv",
-        "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv",
-        "wantedList": ["ir", "ru", "us", "af"]
+        "ipv6": "geolite2/GeoLite2-Country-Blocks-IPv6.csv"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "ir",
-        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "ir",
-        "uri": "https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/ip2location/ip2location-ir6.txt"
+        "inputDir": "./ip2location"
       }
     },
     {
@@ -38,50 +28,39 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "cn",
-        "uri": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
+        "name": "ir",
+        "uri": "./ir-cdn/arvancloud.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "arvancloud",
-        "uri": "arvancloud-ip.txt"
+        "name": "ir",
+        "uri": "./ir-cdn/derakcloud.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "derakcloud",
-        "uri": "derakcloud-ipv4.txt",
-        "onlyIPType": "ipv4"
+        "name": "ir",
+        "uri": "./ir-cdn/iranserver.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "derakcloud",
-        "uri": "derakcloud-ipv6.txt",
-        "onlyIPType": "ipv6"
+        "name": "ir",
+        "uri": "./ir-cdn/parspack.txt"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "iranserver",
-        "uri": "iranserver-ip.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "parspack",
-        "uri": "parspack-ip.txt"
+        "inputDir": "./ir-cdn"
       }
     },
     {
@@ -312,14 +291,6 @@
         "outputName": "Country.mmdb",
         "overwriteList": [
           "ir",
-          "cn",
-          "ru",
-          "us",
-          "af",
-          "arvancloud",
-          "derakcloud",
-          "iranserver",
-          "parspack",
           "cloudflare",
           "google",
           "amazon",
