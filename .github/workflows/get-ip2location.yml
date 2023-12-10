@@ -24,28 +24,27 @@ jobs:
         env:
           DOWNLOAD_TOKEN: ${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}
         run: |
-          curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITE" -o IP2LOCATION-LITE-DB1.CSV.ZIP
-          curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITEIPV6" -o IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP
+          curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITECSV" -o IP2LOCATION-LITE-DB1.CSV.ZIP
           unzip IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1
-          unzip IP2LOCATION-LITE-DB1.IPV6.CSV.ZIP -d IP2LOCATION-LITE-DB1.IPV6
       
-      - name: Get ip2location-csv-converter script
-        run: curl -sSLO https://raw.githubusercontent.com/ip2location/ip2location-python-csv-converter/master/ip2location-csv-converter.py
+      - name: install ip2location-csv-converter script
+        run: pip install ip2location-python-csv-converter
     
       - name: Convert database from numeric to cidr
         run: |
-          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1/IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.CIDR.CSV
-          python ip2location-csv-converter.py -cidr -replace IP2LOCATION-LITE-DB1.IPV6/IP2LOCATION-LITE-DB1.IPV6.CSV IP2LOCATION-LITE-DB1.IPV6.CIDR.CSV
+          ip2location-csv-converter -cidr -replace IP2LOCATION-LITE-DB1/IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.CIDR.CSV
     
-      - name: Extract IR IPs
-        run: |
-          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.CIDR.CSV | csvcut -c 1 | sed '1d' > ip2location-ir.txt
-          csvgrep -c 2 -m "IR" IP2LOCATION-LITE-DB1.IPV6.CIDR.CSV | csvcut -c 1 | sed '/ffff/d' > ip2location-ir6.txt
-    
-      - name: Push assets to ip2location branch
+      - name: Extract Countries IPs
         run: |
           mkdir -p ip2location
-          cp ip2location-ir.txt ip2location-ir6.txt ip2location
+          cat IP2LOCATION-LITE-DB1.CIDR.CSV | awk -F"," '{print $2}' | sort -u | sed -e '1d' -e 's/\"//g' > countries.txt
+          while read l
+          do
+            csvgrep -c 2 -m "$l" IP2LOCATION-LITE-DB1.CIDR.CSV | csvcut -c 1 | sed '1d' > "ip2location/$l.txt"
+          done < countries.txt
+
+      - name: Push assets to ip2location branch
+        run: |
           cd ip2location || exit 1
           git init
           git config --local user.name "github-actions[bot]"
