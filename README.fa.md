@@ -22,32 +22,25 @@
 
 ## GeoIP
 
+- <p align="right">شامل کلیه IP های تمامی کشورها از هر دو دیتابیس Maxmind و IP2Location.</p>
+
 - `geoip:ir`
   <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس Maxmind و IP2Location به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
-
-- `geoip:cn`
-  <p align="right">دربر گیرنده IP های چین گرفته شده از مخزن Loyalsoldier/v2ray-rulesdat.</p>
-
-- `geoip:ru`
-  <p align="right">دربر گیرنده IP های روسیه استخراج شده از دیتابس MaxMind.</p>
-
-- `geoip:us`
-  <p align="right"></p>
 
 - `geoip:private`
   <p align="right">دربر گیرنده IP های ایالات متحده استخراج شده از دیتابس MaxMind.</p>
 
 - `geoip:arvancloud`
-  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابرآروان.</p>
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابرآروان. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
 - `geoip:derakcloud`
-  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابردراک.</p>
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابردراک. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
 - `geoip:iranserver`
-  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور.</p>
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
 - `geoip:parspack`
-  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک.</p>
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
 - `geoip:cloudflare`
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
@@ -102,14 +95,6 @@
 - `geoip:private`
   <p align="right">دربر گیرنده IP های شبکه محلی (LAN).</p>
 
-## Country.mmdb
-
-<p align="right">مثل دسته "GeoIP" اما با فرمت اختصاصی MaxMind.</p>
-
-## Country-lite.mmdb
-
-<p align="right">مثل دسته "GeoIP-Lite" اما با فرمت اختصاصی MaxMind.</p>
-
 ## Security-IP
 
 - `geoip:phishing`
@@ -118,11 +103,77 @@
 - `geoip:malware`
   <p align="right">دربر گیرنده IP های بدافزار.</p>
 
+## GeoIP-Services
+
+- `geoip:arvancloud`
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابرآروان.</p>
+
+- `geoip:derakcloud`
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابردراک.</p>
+
+- `geoip:iranserver`
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور.</p>
+
+- `geoip:parspack`
+  <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک.</p>
+
+- `geoip:cloudflare`
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
+
+- `geoip:google`
+  <p align="right">دربر گیرنده IP های گوگل، گوگل کلود و گوگل بات.</p>
+
+- `geoip:amazon`
+  <p align="right">در برگیرنده IP های آمازون و سرویس ابری آمازون(AWS).</p>
+
+- `geoip:microsoft`
+  <p align="right">دربر گیرنده IP های مایکروسافت و سرویس ابری آژور.</p>
+
+- `geoip:bing`
+  <p align="right">دربر گیرنده IP های موتور جستجوی بینگ.</p>
+
+- `geoip:github`
+  <p align="right">دربر گیرنده IP های گیت هاب.</p>
+
+- `geoip:facebook`
+  <p align="right">دربر گیرنده IP های اکوسیستم متا، از جمله فیسبوک، اینستاگرام و واتس اپ.</p>
+
+- `geoip:twitter`
+  <p align="right">دربر گیرنده IP های توییتر (یا به عبارتی X!).</p>
+
+- `geoip:telegram`
+  <p align="right">دربر گیرنده IP های تلگرام.</p>
+
+- `geoip:oracle`
+  <p align="right">دربر گیرنده IP های سرویس ابری اوراکل.</p>
+
+- `geoip:digitalocean`
+  <p align="right">دربر گیرنده IP سرویس های ابری دیجیتال اوشن.</p>
+
+- `geoip:linode`
+  <p align="right">دربر گیرنده IP سرویس ابری لینود.</p>
+
+- `geoip:openai`
+  <p align="right">دربر گیرنده IP های OpenAI و ChatGPT.</p>
+
+## Country.mmdb
+
+<p align="right">مثل دسته "GeoIP" اما با فرمت اختصاصی MaxMind.</p>
+
+## Country-lite.mmdb
+
+<p align="right">مثل دسته "GeoIP-Lite" اما با فرمت اختصاصی MaxMind.</p>
+
 ## Security-IP.mmdb
 
 <p align="right">مثل دسته "Security-IP" اما با فرمت اختصاصی MaxMind.</p>
 
+## Services.mmdb
+
+<p align="right">مثل دسته "GeoIP-Services" اما با فرمت اختصاصی MaxMind.</p>
+
 ## GeoSite
+
 - کلیه دسته بندی ها موجود در مخزن [domain-list-community](https://github.com/v2fly/domain-list-community) پشتبانی می شوند، به علاوه موارد زیر:
 
 - `geosite:ir`
@@ -250,11 +301,7 @@
       "outboundTag": "direct",
       "ip": [
         "geoip:ir",
-        "geoip:private",
-        "geoip:arvancloud",
-        "geoip:derakcloud,
-        "geoip:iranserver,
-        "geoip:parspack
+        "geoip:private"
       ],
       "type": "field"
     },
@@ -292,8 +339,8 @@
 
 | Source                 | Maintainer           | Home Page                                                                                 | License                                                                              | Category          |
 | ---------------------- | -------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------- |
-| GeoLite2               | MaxMind              | [Home Page](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)                 | [CC BY-SA 4.0](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data#license) | ir,ru,us          |
-| IP2Location LITE       | IP2Location          | [Home Page](https://lite.ip2location.com/ip2location-lite)                                | [CC BY-SA 4.0](https://lite.ip2location.com/terms-of-use)                            | ir                |
+| GeoLite2               | MaxMind              | [Home Page](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)                 | [CC BY-SA 4.0](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data#license) | Country IPs       |
+| IP2Location LITE       | IP2Location          | [Home Page](https://lite.ip2location.com/ip2location-lite)                                | [CC BY-SA 4.0](https://lite.ip2location.com/terms-of-use)                            | Country IPs       |
 | ITO GOV                | ITO GOV              | [Home Page](https://eservices.ito.gov.ir/Page/IPListMessenger)                            | N/A                                                                                  | ir(messenger IPs) |
 | V2ray-rules-dat        | Loyalsoldier         | [Home Page](https://github.com/Loyalsoldier/v2ray-rules-dat)                              | [GPL-3.0](https://github.com/Loyalsoldier/v2ray-rules-dat/blob/master/LICENSE)       | cn                |
 | Arvan Cloud            | Arvan Cloud          | [Home Page](https://www.arvancloud.ir/en/dev/ips)                                         | All rights reserved                                                                  | arvancloud        |

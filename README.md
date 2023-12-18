@@ -97,14 +97,6 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 - `geoip:private`  
   Contains a list of local (LAN) IP addresses.
 
-## Country.mmdb
-
-Same as `GeoIP` but in Maxmind's MMDB format.
-
-## Country-lite.mmdb
-
-Same as `GeoIP Lite` but in Maxmind's MMDB format.
-
 ## Security-IP
 
 - `geoip:phishing`  
@@ -113,9 +105,74 @@ Same as `GeoIP Lite` but in Maxmind's MMDB format.
 - `geoip:malware`  
   Contains Active Malware IP addresses.
 
+## GeoIP-Services
+
+- `geoip:arvancloud`  
+  Contains the IP addresses of ArvanCloud.ir CDN.
+
+- `geoip:derakcloud`  
+  Contains the IP addresses of Derak.cloud CDN.
+
+- `geoip:iranserver`  
+  Contains the IP addresses of IranServer.com CDN.
+
+- `geoip:parspack`  
+  Contains the IP addresses of ParsPack.com CDN.
+
+- `geoip:cloudflare`  
+  Contains the IP addresses of Cloudflare CDN.
+
+- `geoip:google`  
+  Contains the IP addresses of Google, GoogleCloud and GoogleBot.
+
+- `geoip:amazon`  
+  Contains the IP addresses of Amazon and Amazon Web Services (AWS).
+
+- `geoip:microsoft`  
+  Contains the IP addresses of Microsoft and Azure Platform.
+
+- `geoip:bing`  
+  Contains the IP addresses of Bing and Bingbot.
+
+- `geoip:github`  
+  Contains the IP addresses of GitHub.
+
+- `geoip:facebook`  
+  Contains the IP addresses of the Meta ecosystem, including Facebook, Instagram and WhatsApp.
+
+- `geoip:twitter`  
+  Contains the IP addresses of Twitter (now called X!).
+
+- `geoip:telegram`  
+  Contains the IP addresses of Telegram Messenger.
+
+- `geoip:oracle`  
+  Contains the IP addresses of Oracle Cloud.
+
+- `geoip:digitalocean`  
+  Contains the IP addresses of DigitalOcean-related services.
+
+- `geoip:linode`  
+  Contains the IP addresses of Linode-related services.
+
+- `geoip:openai`  
+  Contains the IP addresses of OpenAI and ChatGPT.
+
+## Country.mmdb
+
+Same as `GeoIP` but in Maxmind's MMDB format.
+
+## Country-lite.mmdb
+
+Same as `GeoIP Lite` but in Maxmind's MMDB format.
+
 ## Security-IP.mmdb
 
 Same as `Security-IP` but in Maxmind's MMDB format.
+
+## Services.mmdb
+
+same as `GeoIP-Services` but in Maxmind's MMDB format.
 
 ## GeoSite
 
