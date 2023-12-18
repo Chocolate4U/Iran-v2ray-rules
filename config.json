@@ -280,6 +280,32 @@
       "type": "v2rayGeoIPDat",
       "action": "output",
       "args": {
+        "outputName": "geoip-services.dat",
+        "wantedList": [
+          "arvancloud",
+          "derakcloud",
+          "iranserver",
+          "parspack",
+          "cloudflare",
+          "google",
+          "amazon",
+          "microsoft",
+          "bing",
+          "github",
+          "facebook",
+          "twitter",
+          "telegram",
+          "oracle",
+          "digitalocean",
+          "linode",
+          "openai"
+        ]
+      }
+    },
+    {
+      "type": "v2rayGeoIPDat",
+      "action": "output",
+      "args": {
         "outputName": "security-ip.dat",
         "wantedList": ["phishing", "malware"]
       }
@@ -324,6 +350,32 @@
       "args": {
         "outputName": "Security-ip.mmdb",
         "wantedList": ["phishing", "malware"]
+      }
+    },
+    {
+      "type": "maxmindMMDB",
+      "action": "output",
+      "args": {
+        "outputName": "Services.mmdb",
+        "wantedList": [
+          "arvancloud",
+          "derakcloud",
+          "iranserver",
+          "parspack",
+          "cloudflare",
+          "google",
+          "amazon",
+          "microsoft",
+          "bing",
+          "github",
+          "facebook",
+          "twitter",
+          "telegram",
+          "oracle",
+          "digitalocean",
+          "linode",
+          "openai"
+        ]
       }
     },
     {

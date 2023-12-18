@@ -162,16 +162,17 @@ jobs:
           go install -v github.com/Loyalsoldier/geoip@latest
           rm -rf ip2location/.git
           $(go env GOPATH)/bin/geoip -c config.json
-          cp output/dat/geoip.dat output/dat/geoip-lite.dat output/dat/security-ip.dat release
-          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb output/maxmind/Security-ip.mmdb release
+          cp output/dat/geoip.dat output/dat/geoip-lite.dat output/dat/security-ip.dat output/dat/geoip-services.dat release
+          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb output/maxmind/Security-ip.mmdb output/maxmind/Services.mmdb release
           cp -fpPR output/text release
 
-      - name: Verify Country.mmdb, Country-lite.mmdb and Security-ip.mmdb files
+      - name: Verify *.mmdb files
         run: |
           go install -v github.com/maxmind/mmdbverify@latest
           $(go env GOPATH)/bin/mmdbverify -file release/Country.mmdb
           $(go env GOPATH)/bin/mmdbverify -file release/Country-lite.mmdb
           $(go env GOPATH)/bin/mmdbverify -file release/Security-ip.mmdb
+          $(go env GOPATH)/bin/mmdbverify -file release/Services.mmdb
 
       - name: Generate geosite.dat, geosite-lite.dat and security.dat files
         run: |
@@ -207,9 +208,11 @@ jobs:
           sha256sum release/geoip.dat > release/geoip.dat.sha256sum
           sha256sum release/geoip-lite.dat > release/geoip-lite.dat.sha256sum
           sha256sum release/security-ip.dat > release/security-ip.dat.sha256sum
+          sha256sum release/geoip-services.dat > release/geoip-services.dat.sha256sum
           sha256sum release/Country.mmdb > release/Country.mmdb.sha256sum
           sha256sum release/Country-lite.mmdb > release/Country-lite.mmdb.sha256sum
           sha256sum release/Security-ip.mmdb > release/Security-ip.mmdb.sha256sum
+          sha256sum release/Services.mmdb > release/Services.mmdb.sha256sum
           sha256sum release/geosite.dat > release/geosite.dat.sha256sum
           sha256sum release/geosite-lite.dat > release/geosite-lite.dat.sha256sum
           sha256sum release/security.dat > release/security.dat.sha256sum
