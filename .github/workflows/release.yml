@@ -96,8 +96,7 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> category-ads-all-raw.txt
           cat category-ads-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-temp.txt
 
-          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist.txt > whitelist-raw.txt
-          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/whitelist-referral.txt >> whitelist-raw.txt
+          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/whitelist-referral.txt > whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt >> whitelist-raw.txt
           curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
           cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > whitelist-temp.txt
