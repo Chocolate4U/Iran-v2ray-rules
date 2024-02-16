@@ -3,7 +3,7 @@ name: Get IP2Location-Lite database
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 2 * *"
+    - cron: "0 0 2,16 * *"
 
 env:
   RELEASE_NAME: $(date +%Y%m%d%H%M)
