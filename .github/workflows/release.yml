@@ -186,8 +186,6 @@ jobs:
           cp ../release/nsfw.txt data/nsfw
 
           go mod edit -go=1.21
-          go get -u
-          go mod tidy
           go run ./ --datapath=data --outputdir=../release --outputname=geosite.dat
 
           mkdir datalite
