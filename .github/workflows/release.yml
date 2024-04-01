@@ -53,30 +53,30 @@ jobs:
 
       - name: Get messengers IP list
         run: |
-          curl -sSL https://raw.githubusercontent.com/Chocolate4U/ito.gov.ir-Mirror/main/data/Messengers.csv | awk -F"," '{print $2}' | sed '1d' > messengers-ip.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/ito.gov.ir-Mirror/main/data/Messengers.csv | awk -F"," '{print $2}' | sed '1d' > messengers-ip.txt
 
       - name: Get domestic CDNs IP list
         run: |
           mkdir ir-cdn
-          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt > ir-cdn/arvancloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/arvancloud.txt > ir-cdn/arvancloud.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 > ir-cdn/derakcloud.txt && sed -i -e '$a\' ir-cdn/derakcloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 >> ir-cdn/derakcloud.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
-          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt > ir-cdn/iranserver.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt > ir-cdn/iranserver.txt
-          curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt > ir-cdn/parspack.txt || curl -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt > ir-cdn/parspack.txt
+          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt > ir-cdn/arvancloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/arvancloud.txt > ir-cdn/arvancloud.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 > ir-cdn/derakcloud.txt && sed -i -e '$a\' ir-cdn/derakcloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
+          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 >> ir-cdn/derakcloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
+          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt > ir-cdn/iranserver.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt > ir-cdn/iranserver.txt
+          curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt > ir-cdn/parspack.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt > ir-cdn/parspack.txt
 
       - name: Get GeoLite2
         env:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
         run: |
-          curl -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
           unzip GeoLite2-Country-CSV.zip
           rm -f GeoLite2-Country-CSV.zip
           mv GeoLite2* geolite2
 
       - name: Generate ir domains list
         run: |
-          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ir.txt
-          curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt
+          curl --connect-timeout 15 -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ir.txt
+          curl --connect-timeout 15 -sSLO https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt
           comm -23 ir.txt redundant-domains.txt > ir-lite.txt
           echo "TOTAL_IR=$(wc -l < ir.txt)" >> $GITHUB_ENV
           echo "TOTAL_IR_LITE=$(wc -l < ir-lite.txt)" >> $GITHUB_ENV
@@ -84,21 +84,19 @@ jobs:
 
       - name: Generate ads list
         run: |
-          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > ads.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > ads.txt
           echo "TOTAL_IR_ADS=$(wc -l < ads.txt)" >> $GITHUB_ENV
 
       - name: Generate category-ads-all list
         run: |
-          curl -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > category-ads-all-raw.txt
-          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt >> category-ads-all-raw.txt
-          curl -sSL https://pgl.yoyo.org/adservers/serverlist.php?hostformat=nohtml >> category-ads-all-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> category-ads-all-raw.txt
-          curl -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> category-ads-all-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > category-ads-all-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt >> category-ads-all-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> category-ads-all-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> category-ads-all-raw.txt
           cat category-ads-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-temp.txt
 
-          curl -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/whitelist-referral.txt > whitelist-raw.txt
-          curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt >> whitelist-raw.txt
-          curl -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt > whitelist-raw.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
           cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > whitelist-temp.txt
 
           comm -23 category-ads-all-temp.txt whitelist-temp.txt > category-ads-all-temp-temp.txt
@@ -111,8 +109,8 @@ jobs:
 
       - name: Generate malware list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > malware-temp.txt
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-ips-online.txt | sed '/#/d' > malware-ip.txt
+          curl --connect-timeout 15 -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > malware-temp.txt
+          curl --connect-timeout 15 -sSL https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-dnscrypt-blocked-ips-online.txt | sed '/#/d' > malware-ip.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' malware-temp.txt > malware-sub.txt
           cat malware-temp.txt | LC_ALL=C grep -f malware-sub.txt | LC_ALL=C sort -u > malware-redundant-sub.txt
           comm -23 malware-temp.txt malware-redundant-sub.txt > malware.txt
@@ -121,8 +119,8 @@ jobs:
 
       - name: Generate phishing list
         run: |
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-names.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > phishing-temp.txt
-          curl -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-ips.txt | sed '/#/d' > phishing-ip.txt
+          curl --connect-timeout 15 -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-names.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > phishing-temp.txt
+          curl --connect-timeout 15 -sSL https://malware-filter.gitlab.io/malware-filter/phishing-filter-dnscrypt-blocked-ips.txt | sed '/#/d' > phishing-ip.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' phishing-temp.txt > phishing-sub.txt
           cat phishing-temp.txt | LC_ALL=C grep -f phishing-sub.txt | LC_ALL=C sort -u > phishing-redundant-sub.txt
           comm -23 phishing-temp.txt phishing-redundant-sub.txt > phishing.txt
@@ -131,7 +129,7 @@ jobs:
 
       - name: Generate cryptominers domains list
         run: |
-          curl -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > cryptominers-temp.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > cryptominers-temp.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' cryptominers-temp.txt > cryptominers-sub.txt
           cat cryptominers-temp.txt | LC_ALL=C grep -f cryptominers-sub.txt | LC_ALL=C sort -u > cryptominers-redundant-sub.txt
           comm -23 cryptominers-temp.txt cryptominers-redundant-sub.txt > cryptominers.txt
@@ -140,7 +138,7 @@ jobs:
 
       - name: Generate Social Media domains list
         run: |
-          curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > social-temp.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > social-temp.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' social-temp.txt > social-sub.txt
           cat social-temp.txt | LC_ALL=C grep -f social-sub.txt | LC_ALL=C sort -u > social-redundant-sub.txt
           comm -23 social-temp.txt social-redundant-sub.txt > social.txt
@@ -149,7 +147,7 @@ jobs:
 
       - name: Generate nsfw domains list
         run: |
-          curl -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > nsfw-temp.txt
+          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > nsfw-temp.txt
           sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' nsfw-temp.txt > nsfw-sub.txt
           cat nsfw-temp.txt | LC_ALL=C grep -f nsfw-sub.txt | LC_ALL=C sort -u > nsfw-redundant-sub.txt
           comm -23 nsfw-temp.txt nsfw-redundant-sub.txt > nsfw.txt

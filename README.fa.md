@@ -360,7 +360,6 @@
 | Iran Hosted Domains         | bootmortis            | [Home Page](https://github.com/bootmortis/iran-hosted-domains) | [MIT](https://github.com/bootmortis/iran-hosted-domains/blob/main/LICENSE)      | ir              |
 | PersianBlocker              | MasterKia             | [Home Page](https://github.com/MasterKia/PersianBlocker)       | [AGPL-3.0](https://github.com/MasterKia/PersianBlocker/blob/main/LICENSE)       | ads             |
 | DNS Blocklists              | Hagezi                | [Home Page](https://github.com/hagezi/dns-blocklists)          | All rights reserved                                                             | ads             |
-| Ad and tracking server list | Peter Lowe            | [Home Page](https://pgl.yoyo.org/adservers)                    | [McRae GPL](https://pgl.yoyo.org/license)                                       | ads             |
 | GoodbyeAds                  | jerryn70              | [Home Page](https://github.com/jerryn70/GoodbyeAds)            | [MIT](https://github.com/jerryn70/GoodbyeAds/blob/master/LICENSE)               | ads             |
 | AdGuard DNS filter          | Adguard Team          | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter)  | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads             |
 | URLhaus                     | abuse.ch              | [Home Page](https://urlhaus.abuse.ch)                          | [CC0](https://urlhaus.abuse.ch/api/#tos)                                        | malware         |
