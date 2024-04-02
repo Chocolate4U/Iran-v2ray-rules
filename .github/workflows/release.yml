@@ -247,7 +247,7 @@ jobs:
           done
 
       - name: Release and upload assets
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.TAG_NAME }}
@@ -263,7 +263,7 @@ jobs:
 
       - name: Clean older releases
         if: ${{ !inputs.PRE_RELEASE }}
-        uses: dev-drprasad/delete-older-releases@v0.3.2
+        uses: dev-drprasad/delete-older-releases@v0.3.3
         with:
           keep_latest: 7
           delete_tags: true
