@@ -21,7 +21,7 @@
       "action": "add",
       "args": {
         "name": "ir",
-        "uri": "messengers-ip.txt"
+        "uri": "./messengers-ip.txt"
       }
     },
     {
@@ -68,7 +68,7 @@
       "action": "add",
       "args": {
         "name": "cloudflare",
-        "uri": "https://www.cloudflare.com/ips-v4"
+        "uri": "./ipranges/cloudflare/ipv4_merged.txt"
       }
     },
     {
@@ -76,7 +76,7 @@
       "action": "add",
       "args": {
         "name": "cloudflare",
-        "uri": "https://www.cloudflare.com/ips-v6"
+        "uri": "./ipranges/cloudflare/ipv6_merged.txt"
       }
     },
     {
@@ -84,7 +84,7 @@
       "action": "add",
       "args": {
         "name": "google",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv4.txt"
+        "uri": "./ipranges/google/ipv4_merged.txt"
       }
     },
     {
@@ -92,7 +92,7 @@
       "action": "add",
       "args": {
         "name": "google",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/google/ipv6.txt"
+        "uri": "./ipranges/google/ipv6_merged.txt"
       }
     },
     {
@@ -100,7 +100,7 @@
       "action": "add",
       "args": {
         "name": "amazon",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv4.txt"
+        "uri": "./ipranges/amazon/ipv4_merged.txt"
       }
     },
     {
@@ -108,7 +108,7 @@
       "action": "add",
       "args": {
         "name": "amazon",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/amazon/ipv6.txt"
+        "uri": "./ipranges/amazon/ipv6_merged.txt"
       }
     },
     {
@@ -116,7 +116,7 @@
       "action": "add",
       "args": {
         "name": "microsoft",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv4.txt"
+        "uri": "./ipranges/microsoft/ipv4_merged.txt"
       }
     },
     {
@@ -124,7 +124,7 @@
       "action": "add",
       "args": {
         "name": "microsoft",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/microsoft/ipv6.txt"
+        "uri": "./ipranges/microsoft/ipv6_merged.txt"
       }
     },
     {
@@ -132,7 +132,7 @@
       "action": "add",
       "args": {
         "name": "bing",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/bing/ipv4.txt"
+        "uri": "./ipranges/bing/ipv4_merged.txt"
       }
     },
     {
@@ -140,7 +140,7 @@
       "action": "add",
       "args": {
         "name": "github",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv4.txt"
+        "uri": "./ipranges/github/ipv4_merged.txt"
       }
     },
     {
@@ -148,7 +148,7 @@
       "action": "add",
       "args": {
         "name": "github",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/github/ipv6.txt"
+        "uri": "./ipranges/github/ipv6_merged.txt"
       }
     },
     {
@@ -156,7 +156,7 @@
       "action": "add",
       "args": {
         "name": "facebook",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv4.txt"
+        "uri": "./ipranges/facebook/ipv4_merged.txt"
       }
     },
     {
@@ -164,7 +164,7 @@
       "action": "add",
       "args": {
         "name": "facebook",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/facebook/ipv6.txt"
+        "uri": "./ipranges/facebook/ipv6_merged.txt"
       }
     },
     {
@@ -172,7 +172,7 @@
       "action": "add",
       "args": {
         "name": "twitter",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv4.txt"
+        "uri": "./ipranges/twitter/ipv4_merged.txt"
       }
     },
     {
@@ -180,7 +180,7 @@
       "action": "add",
       "args": {
         "name": "twitter",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/twitter/ipv6.txt"
+        "uri": "./ipranges/twitter/ipv6_merged.txt"
       }
     },
     {
@@ -188,7 +188,15 @@
       "action": "add",
       "args": {
         "name": "telegram",
-        "uri": "https://core.telegram.org/resources/cidr.txt"
+        "uri": "./ipranges/telegram/ipv4_merged.txt"
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "telegram",
+        "uri": "./ipranges/telegram/ipv6_merged.txt"
       }
     },
     {
@@ -196,7 +204,7 @@
       "action": "add",
       "args": {
         "name": "oracle",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/oracle/ipv4.txt"
+        "uri": "./ipranges/oracle/ipv4_merged.txt"
       }
     },
     {
@@ -204,7 +212,7 @@
       "action": "add",
       "args": {
         "name": "digitalocean",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv4.txt"
+        "uri": "./ipranges/digitalocean/ipv4_merged.txt"
       }
     },
     {
@@ -212,7 +220,7 @@
       "action": "add",
       "args": {
         "name": "digitalocean",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/digitalocean/ipv6.txt"
+        "uri": "./ipranges/digitalocean/ipv6_merged.txt"
       }
     },
     {
@@ -220,7 +228,7 @@
       "action": "add",
       "args": {
         "name": "linode",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv4.txt"
+        "uri": "./ipranges/linode/ipv4_merged.txt"
       }
     },
     {
@@ -228,7 +236,7 @@
       "action": "add",
       "args": {
         "name": "linode",
-        "uri": "https://raw.githubusercontent.com/lord-alfred/ipranges/main/linode/ipv6.txt"
+        "uri": "./ipranges/linode/ipv6_merged.txt"
       }
     },
     {
@@ -236,7 +244,7 @@
       "action": "add",
       "args": {
         "name": "openai",
-        "uri": "https://openai.com/gptbot-ranges.txt"
+        "uri": "./ipranges/openai/ipv4_merged.txt"
       }
     },
     {
@@ -244,7 +252,7 @@
       "action": "add",
       "args": {
         "name": "phishing",
-        "uri": "phishing-ip.txt"
+        "uri": "./phishing-ip.txt"
       }
     },
     {
@@ -252,7 +260,7 @@
       "action": "add",
       "args": {
         "name": "malware",
-        "uri": "malware-ip.txt"
+        "uri": "./malware-ip.txt"
       }
     },
     {

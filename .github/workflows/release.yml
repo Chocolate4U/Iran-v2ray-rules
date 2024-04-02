@@ -24,12 +24,30 @@ jobs:
         with:
           ref: ip2location
           path: ip2location
+      
+      - name: Checkout redundant branch
+        uses: actions/checkout@v4
+        with:
+          ref: redundant
+          path: redundant
 
+      - name: Checkout ito.gov.ir-Mirror repository
+        uses: actions/checkout@v4
+        with:
+          repository: Chocolate4U/ito.gov.ir-Mirror
+          path: ito.gov.ir-Mirror
+      
       - name: Checkout domain-list-community repository
         uses: actions/checkout@v4
         with:
           repository: v2fly/domain-list-community
           path: v2ray-geosite
+
+      - name: Checkout ipranges repository
+        uses: actions/checkout@v4
+        with:
+          repository: lord-alfred/ipranges
+          path: ipranges
 
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -52,8 +70,7 @@ jobs:
         run: mkdir release
 
       - name: Get messengers IP list
-        run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/ito.gov.ir-Mirror/main/data/Messengers.csv | awk -F"," '{print $2}' | sed '1d' > messengers-ip.txt
+        run: awk -F"," '{print $2}' ./ito.gov.ir-Mirror/data/Messengers.csv | sed '1d' > messengers-ip.txt
 
       - name: Get domestic CDNs IP list
         run: |
@@ -76,8 +93,7 @@ jobs:
       - name: Generate ir domains list
         run: |
           curl --connect-timeout 15 -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ir.txt
-          curl --connect-timeout 15 -sSLO https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/redundant/redundant-domains.txt
-          comm -23 ir.txt redundant-domains.txt > ir-lite.txt
+          comm -23 ir.txt ./redundant/redundant-domains.txt > ir-lite.txt
           echo "TOTAL_IR=$(wc -l < ir.txt)" >> $GITHUB_ENV
           echo "TOTAL_IR_LITE=$(wc -l < ir-lite.txt)" >> $GITHUB_ENV
           mv ir.txt ir-lite.txt release
