@@ -3,7 +3,7 @@ name: Find Redundant Domains
 on: 
   workflow_dispatch:
   schedule:
-    - cron: "0 23 * * *"
+    - cron: "20 23 * * *"
 
 env:
   RELEASE_NAME: $(date +%Y%m%d%H%M)
