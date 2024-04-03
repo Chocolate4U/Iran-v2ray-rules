@@ -1,0 +1,37 @@
+name: Get GeoLite2 database
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "20 4 * * tue,fri"
+
+env:
+  RELEASE_NAME: $(date +%Y%m%d%H%M)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get GeoLite2
+        env:
+          LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
+        run: |
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          unzip GeoLite2-Country-CSV.zip
+          rm -f GeoLite2-Country-CSV.zip
+          mv GeoLite2* geolite2
+
+      - name: Push assets to geolite2 branch
+        run: |
+          cd geolite2 || exit 1
+          git init
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b geolite2
+          git add .
+          git commit -m "${{ env.RELEASE_NAME }}"
+          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          git push -f origin geolite2
