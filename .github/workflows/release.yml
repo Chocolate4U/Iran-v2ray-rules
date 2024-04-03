@@ -9,7 +9,7 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "40 4 * * *"
 
 jobs:
   build:
@@ -18,6 +18,12 @@ jobs:
     steps:
       - name: Checkout Iran-v2ray-rules repository
         uses: actions/checkout@v4
+
+      - name: Checkout geolite2 branch
+        uses: actions/checkout@v4
+        with:
+          ref: geolite2
+          path: geolite2
 
       - name: Checkout ip2location branch
         uses: actions/checkout@v4
@@ -80,15 +86,6 @@ jobs:
           curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 >> ir-cdn/derakcloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
           curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt > ir-cdn/iranserver.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt > ir-cdn/iranserver.txt
           curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt > ir-cdn/parspack.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt > ir-cdn/parspack.txt
-
-      - name: Get GeoLite2
-        env:
-          LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
-        run: |
-          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
-          unzip GeoLite2-Country-CSV.zip
-          rm -f GeoLite2-Country-CSV.zip
-          mv GeoLite2* geolite2
 
       - name: Generate ir domains list
         run: |
