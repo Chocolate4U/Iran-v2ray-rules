@@ -59,13 +59,18 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.21"
-          cache-dependency-path: v2ray-geosite/go.sum
+          cache: false
+
+      - name: Download geo-tools
+        run: gh release download -p "*.tar.gz" --repo Chocolate4U/geo-tools
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set ENV variables
         run: |
           echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "RELEASE_DATE=$(date +'%F %T %Z')" >> $GITHUB_ENV
+          echo "RELEASE_DATE=$(date +'%A %F %T %Z')" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: |
@@ -80,113 +85,65 @@ jobs:
 
       - name: Get domestic CDNs IP list
         run: |
-          mkdir ir-cdn
-          curl --connect-timeout 15 -sSL https://www.arvancloud.ir/en/ips.txt > ir-cdn/arvancloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/arvancloud.txt > ir-cdn/arvancloud.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv4 > ir-cdn/derakcloud.txt && sed -i -e '$a\' ir-cdn/derakcloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
-          curl --connect-timeout 15 -sSL https://api.derak.cloud/public/ipv6 >> ir-cdn/derakcloud.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/derakcloud.txt > ir-cdn/derakcloud.txt
-          curl --connect-timeout 15 -sSL https://ips.f95.com/ip.txt > ir-cdn/iranserver.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/iranserver.txt > ir-cdn/iranserver.txt
-          curl --connect-timeout 15 -sSL https://parspack.com/cdnips.txt > ir-cdn/parspack.txt || curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/text/parspack.txt > ir-cdn/parspack.txt
+          chmod +x ./scripts/generate-domestic-cdn-ips.sh
+          ./generate-domestic-cdn-ips.sh
 
       - name: Generate ir domains list
         run: |
-          curl --connect-timeout 15 -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sed '1 a\ir\nxn--mgba3a4f16a' | LC_ALL=C sort -u > ir.txt
-          comm -23 ir.txt ./redundant/redundant-domains.txt > ir-lite.txt
-          echo "TOTAL_IR=$(wc -l < ir.txt)" >> $GITHUB_ENV
-          echo "TOTAL_IR_LITE=$(wc -l < ir-lite.txt)" >> $GITHUB_ENV
-          mv ir.txt ir-lite.txt release
+          chmod +x ./scripts/generate-ir-domains.sh
+          ./generate-ir-domains.sh
 
-      - name: Generate ads list
+      - name: Generate ad domains list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > ads.txt
-          echo "TOTAL_IR_ADS=$(wc -l < ads.txt)" >> $GITHUB_ENV
-
-      - name: Generate category-ads-all list
-        run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/MasterKia/PersianBlocker/main/PersianBlockerHosts.txt > category-ads-all-raw.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/hagezi/dns-blocklists/main/wildcard/light-onlydomains.txt >> category-ads-all-raw.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Samsung-AdBlock.txt >> category-ads-all-raw.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Extension/GoodbyeAds-Xiaomi-Extension.txt >> category-ads-all-raw.txt
-          cat category-ads-all-raw.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > category-ads-all-temp.txt
-
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt > whitelist-raw.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt >> whitelist-raw.txt
-          cat whitelist-raw.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > whitelist-temp.txt
-
-          comm -23 category-ads-all-temp.txt whitelist-temp.txt > category-ads-all-temp-temp.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' category-ads-all-temp-temp.txt > category-ads-all-sub.txt
-          cat category-ads-all-temp-temp.txt | LC_ALL=C grep -f category-ads-all-sub.txt | LC_ALL=C sort -u > category-ads-all-redundant-sub.txt
-          comm -23 category-ads-all-temp-temp.txt category-ads-all-redundant-sub.txt > category-ads-all.txt
-          echo "TOTAL_ADS=$(wc -l < category-ads-all.txt)" >> $GITHUB_ENV
-          rm -f category-ads-all-raw.txt whitelist-raw.txt category-ads-all-temp.txt whitelist-temp.txt
-          mv ads.txt category-ads-all.txt release
+          chmod +x ./scripts/generate-ad-domains.sh
+          ./generate-ad-domains.sh
 
       - name: Generate malware list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/curbengh/urlhaus-filter/gh-pages/urlhaus-filter-dnscrypt-blocked-names-online.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > malware-temp.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/curbengh/urlhaus-filter/gh-pages/urlhaus-filter-dnscrypt-blocked-ips-online.txt | sed '/#/d' > malware-ip.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' malware-temp.txt > malware-sub.txt
-          cat malware-temp.txt | LC_ALL=C grep -f malware-sub.txt | LC_ALL=C sort -u > malware-redundant-sub.txt
-          comm -23 malware-temp.txt malware-redundant-sub.txt > malware.txt
-          echo "TOTAL_MALWARE=$(wc -l < malware.txt)" >> $GITHUB_ENV
-          mv malware.txt release
+          chmod +x ./scripts/generate-malware-domains-ips.sh
+          ./generate-malware-domains-ips.sh
 
       - name: Generate phishing list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/curbengh/phishing-filter/gh-pages/phishing-filter-dnscrypt-blocked-names.txt | sed -e 's/^\(|\|@\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > phishing-temp.txt
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/curbengh/phishing-filter/gh-pages/phishing-filter-dnscrypt-blocked-ips.txt | sed '/#/d' > phishing-ip.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' phishing-temp.txt > phishing-sub.txt
-          cat phishing-temp.txt | LC_ALL=C grep -f phishing-sub.txt | LC_ALL=C sort -u > phishing-redundant-sub.txt
-          comm -23 phishing-temp.txt phishing-redundant-sub.txt > phishing.txt
-          echo "TOTAL_PHISHING=$(wc -l < phishing.txt)" >> $GITHUB_ENV
-          mv phishing.txt release
+          chmod +x ./scripts/generate-phishing-domains-ips.sh
+          ./generate-phishing-domains-ips.sh
 
       - name: Generate cryptominers domains list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0\|127\.0\.0\.1\)*//g' -e 's/\^.*$//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > cryptominers-temp.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' cryptominers-temp.txt > cryptominers-sub.txt
-          cat cryptominers-temp.txt | LC_ALL=C grep -f cryptominers-sub.txt | LC_ALL=C sort -u > cryptominers-redundant-sub.txt
-          comm -23 cryptominers-temp.txt cryptominers-redundant-sub.txt > cryptominers.txt
-          echo "TOTAL_CRYPTO=$(wc -l < cryptominers.txt)" >> $GITHUB_ENV
-          mv cryptominers.txt release
+          chmod +x ./scripts/generate-cryptominer-domains.sh
+          ./generate-cryptominer-domains.sh
 
       - name: Generate Social Media domains list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/social-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > social-temp.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' social-temp.txt > social-sub.txt
-          cat social-temp.txt | LC_ALL=C grep -f social-sub.txt | LC_ALL=C sort -u > social-redundant-sub.txt
-          comm -23 social-temp.txt social-redundant-sub.txt > social.txt
-          echo "TOTAL_SOCIAL=$(wc -l < social.txt)" >> $GITHUB_ENV
-          mv social.txt release
+          chmod +x ./scripts/generate-social-media-domains.sh
+          ./generate-social-media-domains.sh
 
       - name: Generate nsfw domains list
         run: |
-          curl --connect-timeout 15 -sSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling-porn-only/hosts | sed -e 's/^\(|\|\*\|\.\|\-\|0\.0\.0\.0 \|127\.0\.0\.1 \)*//g' -e 's/\^.*$//g' -e 's/^\(www\.\)*//g' -e '/!\|?\|@\|#\|\*\|_\|\\\|\/\|\[\|]\|\[\|\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}/d' -e '/\.$/d' -e '/^\s*$/d' | awk '{$1=$1};1' | dos2unix | idn2 --no-alabelroundtrip --no-tr46 | LC_ALL=C sort -u > nsfw-temp.txt
-          sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' nsfw-temp.txt > nsfw-sub.txt
-          cat nsfw-temp.txt | LC_ALL=C grep -f nsfw-sub.txt | LC_ALL=C sort -u > nsfw-redundant-sub.txt
-          comm -23 nsfw-temp.txt nsfw-redundant-sub.txt > nsfw.txt
-          echo "TOTAL_NSFW=$(wc -l < nsfw.txt)" >> $GITHUB_ENV
-          mv nsfw.txt release
+          chmod +x ./scripts/generate-nsfw-domains.sh
+          ./generate-nsfw-domains.sh
 
-      - name: Generate geoip.dat, geoip-lite.dat, security-ip.dat, Country.mmdb, Country-lite.mmdb and Security-ip.mmdb files
+      - name: Generate geoip files
         run: |
-          go install -v github.com/Loyalsoldier/geoip@latest
+          tar -xvzf geoip.tar.gz
           rm -rf ip2location/.git
-          $(go env GOPATH)/bin/geoip -c config.json
+          ./geoip -c config.json
           cp output/dat/geoip.dat output/dat/geoip-lite.dat output/dat/security-ip.dat output/dat/geoip-services.dat release
           cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb output/maxmind/Security-ip.mmdb output/maxmind/Services.mmdb release
           cp -fpPR output/text release
 
       - name: Verify *.mmdb files
         run: |
-          go install -v github.com/maxmind/mmdbverify@latest
-          $(go env GOPATH)/bin/mmdbverify -file release/Country.mmdb
-          $(go env GOPATH)/bin/mmdbverify -file release/Country-lite.mmdb
-          $(go env GOPATH)/bin/mmdbverify -file release/Security-ip.mmdb
-          $(go env GOPATH)/bin/mmdbverify -file release/Services.mmdb
+          tar -xvzf mmdbverify.tar.gz
+          ./mmdbverify -file release/Country.mmdb
+          ./mmdbverify -file release/Country-lite.mmdb
+          ./mmdbverify -file release/Security-ip.mmdb
+          ./mmdbverify -file release/Services.mmdb
 
       - name: Generate geosite.dat, geosite-lite.dat and security.dat files
         run: |
-          cd v2ray-geosite
+          tar -xvzf geosite.tar.gz
+
           cp ../release/ir.txt data/ir
           cp ../release/ads.txt data/ads
           cp ../release/category-ads-all.txt data/category-ads-all
@@ -196,20 +153,19 @@ jobs:
           cp ../release/social.txt data/social
           cp ../release/nsfw.txt data/nsfw
 
-          go mod edit -go=1.21
-          go run ./ --datapath=data --outputdir=../release --outputname=geosite.dat
+          ./geosite --datapath=data --outputdir=../release --outputname=geosite.dat
 
           mkdir datalite
           cp ../release/ir-lite.txt datalite/ir
           cp ../release/ads.txt datalite/ads
-          go run ./ --datapath=datalite --outputdir=../release --outputname=geosite-lite.dat
+          ./geosite --datapath=datalite --outputdir=../release --outputname=geosite-lite.dat
 
           mkdir security
           cp ../release/category-ads-all.txt security/category-ads-all
           cp ../release/malware.txt security/malware
           cp ../release/phishing.txt security/phishing
           cp ../release/cryptominers.txt security/cryptominers
-          go run ./ --datapath=security --outputdir=../release --outputname=security.dat
+          ./geosite --datapath=security --outputdir=../release --outputname=security.dat
 
       - name: Generate sha256sum
         run: |
@@ -228,15 +184,6 @@ jobs:
       - name: Generate Release Notes
         run: |
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-          echo "* IR Domains (Excluding .ir Domains) -> ${{ env.TOTAL_IR }}" >> RELEASE_NOTES
-          echo "* Active IR Domains (Excluding .ir Domains, Used in geosite-lite) -> ${{ env.TOTAL_IR_LITE }}" >> RELEASE_NOTES
-          echo "* IR Ad Domains -> ${{ env.TOTAL_IR_ADS }}" >> RELEASE_NOTES
-          echo "* All Ad Domains -> ${{ env.TOTAL_ADS }}" >> RELEASE_NOTES
-          echo "* Malware Domains -> ${{ env.TOTAL_MALWARE }}" >> RELEASE_NOTES
-          echo "* Phishing Domains -> ${{ env.TOTAL_PHISHING }}" >> RELEASE_NOTES
-          echo "* CryptoMiner Domains -> ${{ env.TOTAL_CRYPTO }}" >> RELEASE_NOTES
-          echo "* Social Media Domains -> ${{ env.TOTAL_SOCIAL }}" >> RELEASE_NOTES
-          echo "* NSFW Domains -> ${{ env.TOTAL_NSFW }}" >> RELEASE_NOTES
 
       - name: Push assets to release branch
         if: ${{ !inputs.PRE_RELEASE }}
