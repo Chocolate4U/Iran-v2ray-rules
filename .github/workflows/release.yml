@@ -154,28 +154,29 @@ jobs:
         run: |
           tar -xvzf geosite.tar.gz
 
-          cp ../release/ir.txt data/ir
-          cp ../release/ads.txt data/ads
-          cp ../release/category-ads-all.txt data/category-ads-all
-          cp ../release/malware.txt data/malware
-          cp ../release/phishing.txt data/phishing
-          cp ../release/cryptominers.txt data/cryptominers
-          cp ../release/social.txt data/social
-          cp ../release/nsfw.txt data/nsfw
+          mkdir data
+          cp ./release/ir.txt data/ir
+          cp ./release/ads.txt data/ads
+          cp ./release/category-ads-all.txt data/category-ads-all
+          cp ./release/malware.txt data/malware
+          cp ./release/phishing.txt data/phishing
+          cp ./release/cryptominers.txt data/cryptominers
+          cp ./release/social.txt data/social
+          cp ./release/nsfw.txt data/nsfw
 
-          ./geosite --datapath=data --outputdir=../release --outputname=geosite.dat
+          ./geosite --datapath=data --outputdir=./release --outputname=geosite.dat
 
           mkdir datalite
-          cp ../release/ir-lite.txt datalite/ir
-          cp ../release/ads.txt datalite/ads
-          ./geosite --datapath=datalite --outputdir=../release --outputname=geosite-lite.dat
+          cp ./release/ir-lite.txt datalite/ir
+          cp ./release/ads.txt datalite/ads
+          ./geosite --datapath=datalite --outputdir=./release --outputname=geosite-lite.dat
 
           mkdir security
-          cp ../release/category-ads-all.txt security/category-ads-all
-          cp ../release/malware.txt security/malware
-          cp ../release/phishing.txt security/phishing
-          cp ../release/cryptominers.txt security/cryptominers
-          ./geosite --datapath=security --outputdir=../release --outputname=security.dat
+          cp ./release/category-ads-all.txt security/category-ads-all
+          cp ./release/malware.txt security/malware
+          cp ./release/phishing.txt security/phishing
+          cp ./release/cryptominers.txt security/cryptominers
+          ./geosite --datapath=security --outputdir=./release --outputname=security.dat
 
       - name: Generate sha256sum
         run: |
