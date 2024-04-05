@@ -55,12 +55,6 @@ jobs:
           repository: lord-alfred/ipranges
           path: ipranges
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "1.21"
-          cache: false
-
       - name: Download geo-tools
         run: gh release download -p "*.tar.gz" --repo Chocolate4U/geo-tools
         env:
