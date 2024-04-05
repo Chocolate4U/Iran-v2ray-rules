@@ -86,56 +86,56 @@ jobs:
       - name: Get domestic CDNs IP list
         run: |
           chmod +x ./scripts/generate-domestic-cdn-ips.sh
-          ./generate-domestic-cdn-ips.sh
+          ./scripts/generate-domestic-cdn-ips.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate ir domains list
         run: |
           chmod +x ./scripts/generate-ir-domains.sh
-          ./generate-ir-domains.sh
+          ./scripts/generate-ir-domains.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate ad domains list
         run: |
           chmod +x ./scripts/generate-ad-domains.sh
-          ./generate-ad-domains.sh
+          ./scripts/generate-ad-domains.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate malware list
         run: |
           chmod +x ./scripts/generate-malware-domains-ips.sh
-          ./generate-malware-domains-ips.sh
+          ./scripts/generate-malware-domains-ips.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate phishing list
         run: |
           chmod +x ./scripts/generate-phishing-domains-ips.sh
-          ./generate-phishing-domains-ips.sh
+          ./scripts/generate-phishing-domains-ips.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate cryptominers domains list
         run: |
           chmod +x ./scripts/generate-cryptominer-domains.sh
-          ./generate-cryptominer-domains.sh
+          ./scripts/generate-cryptominer-domains.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate Social Media domains list
         run: |
           chmod +x ./scripts/generate-social-media-domains.sh
-          ./generate-social-media-domains.sh
+          ./scripts/generate-social-media-domains.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate nsfw domains list
         run: |
           chmod +x ./scripts/generate-nsfw-domains.sh
-          ./generate-nsfw-domains.sh
+          ./scripts/generate-nsfw-domains.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
