@@ -230,14 +230,14 @@
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> از گیت هاب
 
-`GeoIP` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip.dat)  
-`GeoSite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite.dat)
+`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
+`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
 
-`GeoIP-Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geoip-lite.dat)  
-`GeoSite-Lite` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/geosite-lite.dat)
+`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
+`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
 
-`Security-IP` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/security-ip.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/security-ip.dat)  
-`Security` [https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/security.dat](https://github.com/chocolate4u/Iran-v2ray-rules/releases/latest/download/security.dat)
+`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
+`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> از سرویس توزیع محتوای jsDelivr
 
