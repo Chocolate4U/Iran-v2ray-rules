@@ -154,17 +154,16 @@ jobs:
         run: |
           tar -xvzf geosite.tar.gz
 
-          mkdir data
-          cp ./release/ir.txt data/ir
-          cp ./release/ads.txt data/ads
-          cp ./release/category-ads-all.txt data/category-ads-all
-          cp ./release/malware.txt data/malware
-          cp ./release/phishing.txt data/phishing
-          cp ./release/cryptominers.txt data/cryptominers
-          cp ./release/social.txt data/social
-          cp ./release/nsfw.txt data/nsfw
+          cp ./release/ir.txt ./v2ray-geosite/data/ir
+          cp ./release/ads.txt ./v2ray-geosite/data/ads
+          cp ./release/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
+          cp ./release/malware.txt ./v2ray-geosite/data/malware
+          cp ./release/phishing.txt ./v2ray-geosite/data/phishing
+          cp ./release/cryptominers.txt ./v2ray-geosite/data/cryptominers
+          cp ./release/social.txt ./v2ray-geosite/data/social
+          cp ./release/nsfw.txt ./v2ray-geosite/data/nsfw
 
-          ./geosite --datapath=data --outputdir=./release --outputname=geosite.dat
+          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat
 
           mkdir datalite
           cp ./release/ir-lite.txt datalite/ir
