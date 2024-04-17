@@ -20,211 +20,258 @@
 
 # :page_with_curl: دسته بندی ها
 
-## GeoIP
+<h2 dir="rtl">GeoIP</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>geoip.dat</code></strong></summary>
 
-- <p align="right">شامل کلیه IP های تمامی کشورها از هر دو دیتابیس Maxmind و IP2Location.</p>
+<ul dir="rtl">
+<li>شامل کلیه IP های تمامی کشورها از هر دو دیتابیس Maxmind و IP2Location.</li>
 
-- `geoip:ir`
+<li><code>geoip:ir</code></li>
   <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس Maxmind و IP2Location به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
 
-- `geoip:private`
+<li><code>geoip:private</code></li>
   <p align="right">دربر گیرنده IP های ایالات متحده استخراج شده از دیتابس MaxMind.</p>
 
-- `geoip:arvancloud`
+<li><code>geoip:arvancloud</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابرآروان. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
-- `geoip:derakcloud`
+<li><code>geoip:derakcloud</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابردراک. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
-- `geoip:iranserver`
+<li><code>geoip:iranserver</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
-- `geoip:parspack`
+<li><code>geoip:parspack</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک. :information_source: این دسته بندی در "geoip:ir" ادغام شده و در صورت استفاده از "geoip:ir"، نیازی به این دسته بندی نیست.</p>
 
-- `geoip:cloudflare`
+<li><code>geoip:cloudflare</code></li>
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
 
-- `geoip:google`
+<li><code>geoip:google</code></li>
   <p align="right">دربر گیرنده IP های گوگل، گوگل کلود و گوگل بات.</p>
 
-- `geoip:amazon`
+<li><code>geoip:amazon</code></li>
   <p align="right">در برگیرنده IP های آمازون و سرویس ابری آمازون(AWS).</p>
 
-- `geoip:microsoft`
+<li><code>geoip:microsoft</code></li>
   <p align="right">دربر گیرنده IP های مایکروسافت و سرویس ابری آژور.</p>
 
-- `geoip:bing`
+<li><code>geoip:bing</code></li>
   <p align="right">دربر گیرنده IP های موتور جستجوی بینگ.</p>
 
-- `geoip:github`
+<li><code>geoip:github</code></li>
   <p align="right">دربر گیرنده IP های گیت هاب.</p>
 
-- `geoip:facebook`
+<li><code>geoip:facebook</code></li>
   <p align="right">دربر گیرنده IP های اکوسیستم متا، از جمله فیسبوک، اینستاگرام و واتس اپ.</p>
 
-- `geoip:twitter`
+<li><code>geoip:twitter</code></li>
   <p align="right">دربر گیرنده IP های توییتر (یا به عبارتی X!).</p>
 
-- `geoip:telegram`
+<li><code>geoip:telegram</code></li>
   <p align="right">دربر گیرنده IP های تلگرام.</p>
 
-- `geoip:oracle`
+<li><code>geoip:oracle</code></li>
   <p align="right">دربر گیرنده IP های سرویس ابری اوراکل.</p>
 
-- `geoip:digitalocean`
+<li><code>geoip:digitalocean</code></li>
   <p align="right">دربر گیرنده IP سرویس های ابری دیجیتال اوشن.</p>
 
-- `geoip:linode`
+<li><code>geoip:linode</code></li>
   <p align="right">دربر گیرنده IP سرویس ابری لینود.</p>
 
-- `geoip:openai`
+<li><code>geoip:openai</code></li>
   <p align="right">دربر گیرنده IP های OpenAI و ChatGPT.</p>
 
-- `geoip:phishing`
+<li><code>geoip:phishing</code></li>
   <p align="right">دربر گینده IP های فیشینگ.</p>
 
-- `geoip:malware`
+<li><code>geoip:malware</code></li>
   <p align="right">دربر گیرنده IP های بدافزار.</p>
+</ul>
+</details>
 
-## GeoIP-Lite
+<h2 dir="rtl">GeoIP-Lite</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>geoip-lite.dat</code></strong></summary>
 
-- `geoip:ir`
+<ul dir="rtl">
+<li><code>geoip:ir</code></li>
   <p align="right">دربر گیرنده IP های ایران استخراج شده از دیتابیس Maxmind و IP2Location به علاوه IP های پیامرسان های ایرانی از جمله "ایتا"، "روبیکا" و غیره.</p>
 
-- `geoip:private`
+<li><code>geoip:private</code></li>
   <p align="right">دربر گیرنده IP های شبکه محلی (LAN).</p>
+</ul>
+</details>
 
-## Security-IP
+<h2 dir="rtl">Security-IP</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>security-ip.dat</code></strong></summary>
 
-- `geoip:phishing`
+<ul dir="rtl">
+<li><code>geoip:phishing</code></li>
   <p align="right">دربر گینده IP های فیشینگ.</p>
 
-- `geoip:malware`
+<li><code>geoip:malware</code></li>
   <p align="right">دربر گیرنده IP های بدافزار.</p>
+</ul>
+</details>
 
-## GeoIP-Services
+<h2 dir="rtl">GeoIP-Services</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>geoip-services.dat</code></strong></summary>
 
-- `geoip:arvancloud`
+<ul dir="rtl">
+<li><code>geoip:arvancloud</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابرآروان.</p>
 
-- `geoip:derakcloud`
+<li><code>geoip:derakcloud</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ابردراک.</p>
 
-- `geoip:iranserver`
+<li><code>geoip:iranserver</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای ایران سرور.</p>
 
-- `geoip:parspack`
+<li><code>geoip:parspack</code></li>
   <p align="right">دربر گیرنده IP های سرویس توزیع محتوای پارس پک.</p>
 
-- `geoip:cloudflare`
+<li><code>geoip:cloudflare</code></li>
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
 
-- `geoip:google`
+<li><code>geoip:google</code></li>
   <p align="right">دربر گیرنده IP های گوگل، گوگل کلود و گوگل بات.</p>
 
-- `geoip:amazon`
+<li><code>geoip:amazon</code></li>
   <p align="right">در برگیرنده IP های آمازون و سرویس ابری آمازون(AWS).</p>
 
-- `geoip:microsoft`
+<li><code>geoip:microsoft</code></li>
   <p align="right">دربر گیرنده IP های مایکروسافت و سرویس ابری آژور.</p>
 
-- `geoip:bing`
+<li><code>geoip:bing</code></li>
   <p align="right">دربر گیرنده IP های موتور جستجوی بینگ.</p>
 
-- `geoip:github`
+<li><code>geoip:github</code></li>
   <p align="right">دربر گیرنده IP های گیت هاب.</p>
 
-- `geoip:facebook`
+<li><code>geoip:facebook</code></li>
   <p align="right">دربر گیرنده IP های اکوسیستم متا، از جمله فیسبوک، اینستاگرام و واتس اپ.</p>
 
-- `geoip:twitter`
+<li><code>geoip:twitter</code></li>
   <p align="right">دربر گیرنده IP های توییتر (یا به عبارتی X!).</p>
 
-- `geoip:telegram`
+<li><code>geoip:telegram</code></li>
   <p align="right">دربر گیرنده IP های تلگرام.</p>
 
-- `geoip:oracle`
+<li><code>geoip:oracle</code></li>
   <p align="right">دربر گیرنده IP های سرویس ابری اوراکل.</p>
 
-- `geoip:digitalocean`
+<li><code>geoip:digitalocean</code></li>
   <p align="right">دربر گیرنده IP سرویس های ابری دیجیتال اوشن.</p>
 
-- `geoip:linode`
+<li><code>geoip:linode</code></li>
   <p align="right">دربر گیرنده IP سرویس ابری لینود.</p>
 
-- `geoip:openai`
+<li><code>geoip:openai</code></li>
   <p align="right">دربر گیرنده IP های OpenAI و ChatGPT.</p>
+</ul>
+</details>
 
-## Country.mmdb
+<h2 dir="rtl">Country.mmdb</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>Country.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "GeoIP" اما با فرمت اختصاصی MaxMind.</p>
+</details>
 
-## Country-lite.mmdb
+<h2 dir="rtl">Country-lite.mmdb</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>Country-lite.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "GeoIP-Lite" اما با فرمت اختصاصی MaxMind.</p>
+</details>
 
-## Security-IP.mmdb
+<h2 dir="rtl">Security-IP.mmdb</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>Security-IP.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "Security-IP" اما با فرمت اختصاصی MaxMind.</p>
+</details>
 
-## Services.mmdb
+<h2 dir="rtl">Services.mmdb</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>Services.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "GeoIP-Services" اما با فرمت اختصاصی MaxMind.</p>
+</details>
 
-## GeoSite
+<h2 dir="rtl">GeoSite</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>geosite.dat</code></strong></summary>
 
-- کلیه دسته بندی ها موجود در مخزن [domain-list-community](https://github.com/v2fly/domain-list-community) پشتبانی می شوند، به علاوه موارد زیر:
+<ul dir="rtl">
+<li>کلیه دسته بندی ها موجود در مخزن <a href="https://github.com/v2fly/domain-list-community">domain-list-community</a> پشتبانی می شوند، به علاوه موارد زیر:</li>
 
-- `geosite:ir`
+<li><code>geosite:ir</code></li>
   <p align="right">دربر گیرنده وبسایت های ایرانی به غیر از دامنه های "ir." و قوانینی جهت بایپس کردن کلیه دامنه های "ir.".</p>
 
-- `geosite:ads`
+<li><code>geosite:ads</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تبلیغاتی ایرانی.</p>
 
-- `geosite:category-ads-all`
+<li><code>geosite:category-ads-all</code></li>
   <p align="right">دربر گیرنده لیستی سفارشی شده از دامنه های تبلیغاتی ایرانی و خارجی. این لیست به گونه ای بهینه شده که تا حد امکان خالی از اشتباه باشد در حالی که سبک بودن و موثر بودن خود را نیز حفظ کند.</p>
 
-- `geosite:malware`
+<li><code>geosite:malware</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های حاوی بدافزار.</p>
 
-- `geosite:phishing`
+<li><code>geosite:phishing</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تقلبی و فیشینگ.</p>
 
-- `geosite:cryptominers`
+<li><code>geosite:cryptominers</code></li>
   <p align="right">دربر گیرنده لیستی از استخراج کننده های رمزارز که در پس زمینه مرورگر شروع به استخراج کرده و بر کارایی سیستم کاربر تاثیر منفی می گزارند.</p>
 
-- `geosite:social`
+<li><code>geosite:social</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های شبکه های اجتماعی از جمله "Facebook", "Instagram", "Whatsapp", "Twitter", "LinkedIn", "MySpace", "Pinterest", "Tumblr", "Reddit", "TikTok", "clubhouse".</p>
 
-- `geosite:nsfw`
+<li><code>geosite:nsfw</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های محتوای بزرگسال و قمار.</p>
+</ul>
+</details>
 
-## GeoSite-Lite
+<h2 dir="rtl">GeoSite-Lite</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>geosite-lite.dat</code></strong></summary>
 
-- `geosite:ir`
+<ul dir="rtl">
+<li><code>geosite:ir</code></li>
 <p align="right">
   دربر گیرنده وبسایت های ایرانی فعال به غیر از دامنه های "ir." و قوانینی جهت بایپس کردن کلیه دامنه های "ir.".<br>
   همه دامنه های ایرانی در لیست معمولی هر 24 ساعت یکبار بررسی شده و پس از حذف دامنه های غیرفعال به این لیست راه میابند.<br>
   این تست ممکن است زیاد دقیق نباشد، به همین دلیل پیشنهاد میکنم هر روز و یا به طور مرتب این لیست را بروزرسانی کنید.
 </p>
 
-- `geosite:ads`
+<li><code>geosite:ads</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تبلیغاتی ایرانی.</p>
+</ul>
+</details>
 
-## Security
+<h2 dir="rtl">Security</h2>
+<details dir="rtl">
+  <summary><strong>دسته‌های موجود در<code>security.dat</code></strong></summary>
 
-- `geosite:category-ads-all`
+<ul dir="rtl">
+<li><code>geosite:category-ads-all</code></li>
   <p align="right">دربر گیرنده لیستی سفارشی شده از دامنه های تبلیغاتی ایرانی و خارجی. این لیست به گونه ای بهینه شده که تا حد امکان خالی از اشتباه باشد در حالی که سبک بودن و موثر بودن خود را نیز حفظ کند.</p>
 
-- `geosite:malware`
+<li><code>geosite:malware</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های حاوی بدافزار.</p>
 
-- `geosite:phishing`
+<li><code>geosite:phishing</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تقلبی و فیشینگ.</p>
 
-- `geosite:cryptominers`
+<li><code>geosite:cryptominers</code></li>
   <p align="right">دربر گیرنده لیستی از استخراج کننده های رمزارز که در پس زمینه مرورگر شروع به استخراج کرده و بر کارایی سیستم کاربر تاثیر منفی می گزارند.</p>
+</ul>
+</details>
 
 # :arrow_down: نحوه دانلود
 
@@ -252,7 +299,7 @@
 
 # :computer: نحوه استفاده
 
-## هسته v2ray/xray
+<h2 dir="rtl">هسته v2ray/xray</h2>
 
 قسمت زیر را به قسمت مسیریابی فایل کانفیگ خود اضافه کنید:
 
