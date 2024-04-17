@@ -20,6 +20,89 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 :bulb: For Sing-Box geolocation rules please refer to [Iran Sing-Box Rules](https://github.com/Chocolate4U/Iran-sing-box-rules)  
 :bulb: For Clash geolocation rules please refer to [Iran Clash Rules](https://github.com/Chocolate4U/Iran-clash-rules)
 
+# :arrow_down: How to download
+
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> From GitHub
+
+`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
+`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+
+`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
+`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+
+`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
+`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> From jsDelivr CDN
+
+`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
+`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+
+`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
+`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+
+`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
+`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+
+# :computer: Usage
+
+## v2ray/xray core
+
+Add the following to your v2ray/xray client configuration:
+
+```
+"outbounds": [
+  {
+    "tag": "direct",
+    "protocol": "freedom",
+    "settings": {}
+  },
+  {
+    "tag": "block",
+    "protocol": "blackhole",
+    "settings": {}
+  }
+],
+"routing": {
+  "domainStrategy": "IPIfNonMatch",
+  "rules": [
+    {
+      "outboundTag": "block",
+      "domain": [
+        "geosite:category-ads-all",
+        "geosite:malware",
+        "geosite:phishing",
+        "geosite:cryptominers"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "block",
+      "ip": [
+        "geoip:malware",
+        "geoip:phishing"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "direct",
+      "domain": [
+        "geosite:ir"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "direct",
+      "ip": [
+        "geoip:ir",
+        "geoip:private"
+      ],
+      "type": "field"
+    },
+  ]
+}
+```
+
 # :page_with_curl: Categories
 
 ## GeoIP
@@ -257,89 +340,6 @@ same as `GeoIP-Services` but in Maxmind's MMDB format.
 - `geosite:cryptominers`  
   Contains a list of cryptocurrency miners that run in the background of a web browser and affect system performance.
 </details>
-
-# :arrow_down: How to download
-
-## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> From GitHub
-
-`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
-`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
-
-`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
-`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
-
-`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
-`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
-
-## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> From jsDelivr CDN
-
-`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
-`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
-
-`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
-`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
-
-`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
-`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
-
-# :computer: Usage
-
-## v2ray/xray core
-
-Add the following to your v2ray/xray client configuration:
-
-```
-"outbounds": [
-  {
-    "tag": "direct",
-    "protocol": "freedom",
-    "settings": {}
-  },
-  {
-    "tag": "block",
-    "protocol": "blackhole",
-    "settings": {}
-  }
-],
-"routing": {
-  "domainStrategy": "IPIfNonMatch",
-  "rules": [
-    {
-      "outboundTag": "block",
-      "domain": [
-        "geosite:category-ads-all",
-        "geosite:malware",
-        "geosite:phishing",
-        "geosite:cryptominers"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "block",
-      "ip": [
-        "geoip:malware",
-        "geoip:phishing"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "direct",
-      "domain": [
-        "geosite:ir"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "direct",
-      "ip": [
-        "geoip:ir",
-        "geoip:private"
-      ],
-      "type": "field"
-    },
-  ]
-}
-```
 
 # :information_desk_person: How is this made?
 

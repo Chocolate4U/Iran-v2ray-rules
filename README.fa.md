@@ -18,6 +18,89 @@
 :bulb: برای قوانین مسیریابی sing-box به اینجا مراجعه کنید [Iran Sing-Box Rules](https://github.com/Chocolate4U/Iran-sing-box-rules)  
 :bulb: برای قوانین مسیریابی Clash به اینجا مراجعه کنید [Iran Clash Rules](https://github.com/Chocolate4U/Iran-clash-rules)
 
+# :arrow_down: نحوه دانلود
+
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> از گیت هاب
+
+`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
+`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+
+`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
+`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+
+`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
+`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> از سرویس توزیع محتوای jsDelivr
+
+`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
+`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+
+`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
+`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+
+`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
+`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+
+# :computer: نحوه استفاده
+
+<h2 dir="rtl">هسته v2ray/xray</h2>
+
+قسمت زیر را به قسمت مسیریابی فایل کانفیگ خود اضافه کنید:
+
+```
+"outbounds": [
+  {
+    "tag": "direct",
+    "protocol": "freedom",
+    "settings": {}
+  },
+  {
+    "tag": "block",
+    "protocol": "blackhole",
+    "settings": {}
+  }
+],
+"routing": {
+  "domainStrategy": "IPIfNonMatch",
+  "rules": [
+    {
+      "outboundTag": "block",
+      "domain": [
+        "geosite:category-ads-all",
+        "geosite:malware",
+        "geosite:phishing",
+        "geosite:cryptominers"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "block",
+      "ip": [
+        "geoip:malware",
+        "geoip:phishing"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "direct",
+      "domain": [
+        "geosite:ir"
+      ],
+      "type": "field"
+    },
+    {
+      "outboundTag": "direct",
+      "ip": [
+        "geoip:ir",
+        "geoip:private"
+      ],
+      "type": "field"
+    },
+  ]
+}
+```
+
 # :page_with_curl: دسته بندی ها
 
 <h2 dir="rtl">GeoIP</h2>
@@ -272,89 +355,6 @@
   <p align="right">دربر گیرنده لیستی از استخراج کننده های رمزارز که در پس زمینه مرورگر شروع به استخراج کرده و بر کارایی سیستم کاربر تاثیر منفی می گزارند.</p>
 </ul>
 </details>
-
-# :arrow_down: نحوه دانلود
-
-## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> از گیت هاب
-
-`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
-`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
-
-`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
-`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
-
-`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
-`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
-
-## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> از سرویس توزیع محتوای jsDelivr
-
-`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
-`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
-
-`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
-`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
-
-`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
-`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
-
-# :computer: نحوه استفاده
-
-<h2 dir="rtl">هسته v2ray/xray</h2>
-
-قسمت زیر را به قسمت مسیریابی فایل کانفیگ خود اضافه کنید:
-
-```
-"outbounds": [
-  {
-    "tag": "direct",
-    "protocol": "freedom",
-    "settings": {}
-  },
-  {
-    "tag": "block",
-    "protocol": "blackhole",
-    "settings": {}
-  }
-],
-"routing": {
-  "domainStrategy": "IPIfNonMatch",
-  "rules": [
-    {
-      "outboundTag": "block",
-      "domain": [
-        "geosite:category-ads-all",
-        "geosite:malware",
-        "geosite:phishing",
-        "geosite:cryptominers"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "block",
-      "ip": [
-        "geoip:malware",
-        "geoip:phishing"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "direct",
-      "domain": [
-        "geosite:ir"
-      ],
-      "type": "field"
-    },
-    {
-      "outboundTag": "direct",
-      "ip": [
-        "geoip:ir",
-        "geoip:private"
-      ],
-      "type": "field"
-    },
-  ]
-}
-```
 
 # :information_desk_person: این ها چطوری ساخته شدن؟
 
