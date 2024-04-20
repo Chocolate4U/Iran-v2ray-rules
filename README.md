@@ -24,25 +24,125 @@ This is an Enhanced and All-in-One set of geo-location routing files optimized f
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> From GitHub
 
-`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
-`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+### geoip.dat
 
-`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
-`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip.dat file from github" src="assets/geoip.png" width="200" height="200">
+</details>
 
-`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
-`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+---
+
+### geosite.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite.dat file from github" src="assets/geosite.png" width="200" height="200">
+</details>
+
+---
+
+### geoip-lite.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip-lite.dat file from github" src="assets/geoip-lite.png" width="200" height="200">
+</details>
+
+---
+
+### geosite-lite.dat
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite-lite.dat file from github" src="assets/geosite-lite.png" width="200" height="200">
+</details>
+
+---
+
+### security-ip.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security-ip.dat file from github" src="assets/security-ip.png" width="200" height="200">
+</details>
+
+---
+
+### security.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security.dat file from github" src="assets/security.png" width="200" height="200">
+</details>
+
+---
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> From jsDelivr CDN
 
-`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
-`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+### geoip.dat
 
-`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
-`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip.dat file from jsdelivr" src="assets/geoip-jsdelivr.png" width="200" height="200">
+</details>
 
-`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
-`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+---
+
+### geosite.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite.dat file from jsdelivr" src="assets/geosite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### geoip-lite.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip-lite.dat file from jsdelivr" src="assets/geoip-lite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### geosite-lite.dat
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite-lite.dat file from jsdelivr" src="assets/geosite-lite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### security-ip.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security-ip.dat file from jsdelivr" src="assets/security-ip-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### security.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security.dat file from jsdelivr" src="assets/security-jsdelivr.png" width="200" height="200">
+</details>
+
+---
 
 # :computer: Usage
 
@@ -175,7 +275,6 @@ Add the following to your v2ray/xray client configuration:
   Contains Active Malware IP addresses.
 </details>
 
-## GeoIP-Lite
 <details>
   <summary><strong>Categories in <code>geoip-lite.dat</code></strong></summary>
 
@@ -186,7 +285,6 @@ Add the following to your v2ray/xray client configuration:
   Contains a list of local (LAN) IP addresses.
 </details>
 
-## Security-IP
 <details>
   <summary><strong>Categories in <code>security-ip.dat</code></strong></summary>
 
@@ -197,7 +295,6 @@ Add the following to your v2ray/xray client configuration:
   Contains Active Malware IP addresses.
 </details>
 
-## GeoIP-Services
 <details>
   <summary><strong>Categories in <code>geoip-services.dat</code></strong></summary>
 
@@ -253,28 +350,24 @@ Add the following to your v2ray/xray client configuration:
   Contains the IP addresses of OpenAI and ChatGPT.
 </details>
 
-## Country.mmdb
 <details>
   <summary><strong>Categories in <code>Country.mmdb</code></strong></summary>
 
 Same as `GeoIP` but in Maxmind's MMDB format.
 </details>
 
-## Country-lite.mmdb
 <details>
   <summary><strong>Categories in <code>Country-lite.mmdb</code></strong></summary>
 
 Same as `GeoIP Lite` but in Maxmind's MMDB format.
 </details>
 
-## Security-IP.mmdb
 <details>
   <summary><strong>Categories in <code>Security-IP.mmdb</code></strong></summary>
 
 Same as `Security-IP` but in Maxmind's MMDB format.
 </details>
 
-## Services.mmdb
 <details>
   <summary><strong>Categories in <code>Services.mmdb</code></strong></summary>
 
@@ -312,7 +405,6 @@ same as `GeoIP-Services` but in Maxmind's MMDB format.
   Contains a list of porn and gambling websites.
 </details>
 
-## GeoSite-Lite
 <details>
   <summary><strong>Categories in <code>geosite-lite.dat</code></strong></summary>
 
@@ -324,7 +416,6 @@ same as `GeoIP-Services` but in Maxmind's MMDB format.
   Contains a list of Persian advertisement and tracking domains.
 </details>
 
-## Security
 <details>
   <summary><strong>Categories in <code>security.dat</code></strong></summary>
 

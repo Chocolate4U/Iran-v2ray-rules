@@ -22,25 +22,125 @@
 
 ## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/github/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/github/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/github/dark"></picture> از گیت هاب
 
-`GeoIP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)  
-`GeoSite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+### geoip.dat
 
-`GeoIP-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)  
-`GeoSite-Lite` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip.dat file from github" src="assets/geoip.png" width="200" height="200">
+</details>
 
-`Security-IP` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)  
-`Security` [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+---
 
-## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> از سرویس توزیع محتوای jsDelivr
+### geosite.dat
 
-`GeoIP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)  
-`GeoSite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite.dat file from github" src="assets/geosite.png" width="200" height="200">
+</details>
 
-`GeoIP-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)  
-`GeoSite-Lite` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+---
 
-`Security-IP` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)  
-`Security` [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+### geoip-lite.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip-lite.dat file from github" src="assets/geoip-lite.png" width="200" height="200">
+</details>
+
+---
+
+### geosite-lite.dat
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite-lite.dat file from github" src="assets/geosite-lite.png" width="200" height="200">
+</details>
+
+---
+
+### security-ip.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security-ip.dat file from github" src="assets/security-ip.png" width="200" height="200">
+</details>
+
+---
+
+### security.dat
+
+[https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security.dat file from github" src="assets/security.png" width="200" height="200">
+</details>
+
+---
+
+## <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/jsdelivr/white"><source media="(prefers-color-scheme: light)" srcset="https://cdn.simpleicons.org/jsdelivr/dark"><img height="32" width="32" alt="github logo in dark and light mode." src="https://cdn.simpleicons.org/jsdelivr/dark"></picture> From jsDelivr CDN
+
+### geoip.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip.dat file from jsdelivr" src="assets/geoip-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### geosite.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite.dat file from jsdelivr" src="assets/geosite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### geoip-lite.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geoip-lite.dat file from jsdelivr" src="assets/geoip-lite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### geosite-lite.dat
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading geosite-lite.dat file from jsdelivr" src="assets/geosite-lite-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### security-ip.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security-ip.dat file from jsdelivr" src="assets/security-ip-jsdelivr.png" width="200" height="200">
+</details>
+
+---
+
+### security.dat
+
+[https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+<details>
+  <summary><strong>QR Code</strong></summary>
+  <img alt="QrCode for downloading security.dat file from jsdelivr" src="assets/security-jsdelivr.png" width="200" height="200">
+</details>
+
+---
 
 # :computer: نحوه استفاده
 
@@ -175,7 +275,6 @@
 </ul>
 </details>
 
-<h2 dir="rtl">GeoIP-Lite</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>geoip-lite.dat</code></strong></summary>
 
@@ -188,7 +287,6 @@
 </ul>
 </details>
 
-<h2 dir="rtl">Security-IP</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>security-ip.dat</code></strong></summary>
 
@@ -201,7 +299,6 @@
 </ul>
 </details>
 
-<h2 dir="rtl">GeoIP-Services</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>geoip-services.dat</code></strong></summary>
 
@@ -259,28 +356,24 @@
 </ul>
 </details>
 
-<h2 dir="rtl">Country.mmdb</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>Country.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "GeoIP" اما با فرمت اختصاصی MaxMind.</p>
 </details>
 
-<h2 dir="rtl">Country-lite.mmdb</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>Country-lite.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "GeoIP-Lite" اما با فرمت اختصاصی MaxMind.</p>
 </details>
 
-<h2 dir="rtl">Security-IP.mmdb</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>Security-IP.mmdb</code></strong></summary>
 
 <p align="right">مثل دسته "Security-IP" اما با فرمت اختصاصی MaxMind.</p>
 </details>
 
-<h2 dir="rtl">Services.mmdb</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>Services.mmdb</code></strong></summary>
 
@@ -320,7 +413,6 @@
 </ul>
 </details>
 
-<h2 dir="rtl">GeoSite-Lite</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>geosite-lite.dat</code></strong></summary>
 
@@ -337,7 +429,6 @@
 </ul>
 </details>
 
-<h2 dir="rtl">Security</h2>
 <details dir="rtl">
   <summary><strong>دسته‌های موجود در<code>security.dat</code></strong></summary>
 
