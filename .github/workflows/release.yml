@@ -137,7 +137,7 @@ jobs:
         run: |
           tar -xvzf geoip.tar.gz
           rm -rf ip2location/.git
-          ./geoip -c config.json
+          ./geoip convert -c config.json
           cp output/dat/geoip.dat output/dat/geoip-lite.dat output/dat/security-ip.dat output/dat/geoip-services.dat release
           cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb output/maxmind/Security-ip.mmdb output/maxmind/Services.mmdb release
           cp -fpPR output/text release
