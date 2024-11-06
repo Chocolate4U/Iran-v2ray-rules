@@ -67,6 +67,21 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "ir",
+        "ipOrCIDR": [
+          "10.202.10.102",
+          "10.202.10.202",
+          "10.202.10.10",
+          "10.202.10.11",
+          "172.29.0.100",
+          "172.29.2.100"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "name": "cloudflare",
         "uri": "./ipranges/cloudflare/ipv4_merged.txt"
       }
