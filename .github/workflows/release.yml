@@ -1,4 +1,4 @@
-name: Generate v2ray routing rules
+name: Generate v2ray category-ads-all domains list
 
 on:
   workflow_dispatch:
@@ -8,8 +8,6 @@ on:
         required: false
         type: boolean
         default: false
-  schedule:
-    - cron: "40 4 * * *"
 
 jobs:
   build:
@@ -19,41 +17,11 @@ jobs:
       - name: Checkout Iran-v2ray-rules repository
         uses: actions/checkout@v4
 
-      - name: Checkout geolite2 branch
-        uses: actions/checkout@v4
-        with:
-          ref: geolite2
-          path: geolite2
-
-      - name: Checkout ip2location branch
-        uses: actions/checkout@v4
-        with:
-          ref: ip2location
-          path: ip2location
-      
-      - name: Checkout redundant branch
-        uses: actions/checkout@v4
-        with:
-          ref: redundant
-          path: redundant
-
-      - name: Checkout ito.gov.ir-Mirror repository
-        uses: actions/checkout@v4
-        with:
-          repository: Chocolate4U/ito.gov.ir-Mirror
-          path: ito.gov.ir-Mirror
-      
       - name: Checkout domain-list-community repository
         uses: actions/checkout@v4
         with:
           repository: v2fly/domain-list-community
           path: v2ray-geosite
-
-      - name: Checkout ipranges repository
-        uses: actions/checkout@v4
-        with:
-          repository: lord-alfred/ipranges
-          path: ipranges
 
       - name: Download geo-tools
         run: gh release download -p "*.tar.gz" --repo Chocolate4U/geo-tools
@@ -74,147 +42,32 @@ jobs:
       - name: Create release directory
         run: mkdir release
 
-      - name: Get messengers IP list
-        run: awk -F"," '{print $2}' ./ito.gov.ir-Mirror/data/Messengers.csv | sed '1d' > messengers-ip.txt
-
-      - name: Get domestic CDNs IP list
+      - name: Generate category-ads-all domains list
         run: |
-          chmod +x ./scripts/generate-domestic-cdn-ips.sh
-          ./scripts/generate-domestic-cdn-ips.sh
+          chmod +x ./scripts/generate-category-ads-all.sh
+          ./scripts/generate-category-ads-all.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate ir domains list
-        run: |
-          chmod +x ./scripts/generate-ir-domains.sh
-          ./scripts/generate-ir-domains.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate ad domains list
-        run: |
-          chmod +x ./scripts/generate-ad-domains.sh
-          ./scripts/generate-ad-domains.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate malware list
-        run: |
-          chmod +x ./scripts/generate-malware-domains-ips.sh
-          ./scripts/generate-malware-domains-ips.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate phishing list
-        run: |
-          chmod +x ./scripts/generate-phishing-domains-ips.sh
-          ./scripts/generate-phishing-domains-ips.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate cryptominers domains list
-        run: |
-          chmod +x ./scripts/generate-cryptominer-domains.sh
-          ./scripts/generate-cryptominer-domains.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate Social Media domains list
-        run: |
-          chmod +x ./scripts/generate-social-media-domains.sh
-          ./scripts/generate-social-media-domains.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate nsfw domains list
-        run: |
-          chmod +x ./scripts/generate-nsfw-domains.sh
-          ./scripts/generate-nsfw-domains.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate geoip files
-        run: |
-          tar -xvzf geoip.tar.gz
-          rm -rf ip2location/.git
-          ./geoip convert -c config.json
-          cp output/dat/geoip.dat output/dat/geoip-lite.dat output/dat/security-ip.dat output/dat/geoip-services.dat release
-          cp output/maxmind/Country.mmdb output/maxmind/Country-lite.mmdb output/maxmind/Security-ip.mmdb output/maxmind/Services.mmdb release
-          cp -fpPR output/text release
-
-      - name: Verify *.mmdb files
-        run: |
-          tar -xvzf mmdbverify.tar.gz
-          ./mmdbverify -file release/Country.mmdb
-          ./mmdbverify -file release/Country-lite.mmdb
-          ./mmdbverify -file release/Security-ip.mmdb
-          ./mmdbverify -file release/Services.mmdb
-
-      - name: Generate geosite.dat, geosite-lite.dat and security.dat files
+      - name: Generate geosite.dat, geosite-lite.dat files for category-ads-all
         run: |
           tar -xvzf geosite.tar.gz
 
-          cp ./release/ir.txt ./v2ray-geosite/data/ir
-          cp ./release/ads.txt ./v2ray-geosite/data/ads
           cp ./release/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
-          cp ./release/malware.txt ./v2ray-geosite/data/malware
-          cp ./release/phishing.txt ./v2ray-geosite/data/phishing
-          cp ./release/cryptominers.txt ./v2ray-geosite/data/cryptominers
-          cp ./release/social.txt ./v2ray-geosite/data/social
-          cp ./release/nsfw.txt ./v2ray-geosite/data/nsfw
-
           ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat
 
           mkdir datalite
-          cp ./release/ir-lite.txt datalite/ir
-          cp ./release/ads.txt datalite/ads
+          cp ./release/category-ads-all.txt datalite/category-ads-all
           ./geosite --datapath=datalite --outputdir=./release --outputname=geosite-lite.dat
 
-          mkdir security
-          cp ./release/category-ads-all.txt security/category-ads-all
-          cp ./release/malware.txt security/malware
-          cp ./release/phishing.txt security/phishing
-          cp ./release/cryptominers.txt security/cryptominers
-          ./geosite --datapath=security --outputdir=./release --outputname=security.dat
-
-      - name: Generate sha256sum
+      - name: Generate sha256sum for category-ads-all files
         run: |
-          sha256sum release/geoip.dat > release/geoip.dat.sha256sum
-          sha256sum release/geoip-lite.dat > release/geoip-lite.dat.sha256sum
-          sha256sum release/security-ip.dat > release/security-ip.dat.sha256sum
-          sha256sum release/geoip-services.dat > release/geoip-services.dat.sha256sum
-          sha256sum release/Country.mmdb > release/Country.mmdb.sha256sum
-          sha256sum release/Country-lite.mmdb > release/Country-lite.mmdb.sha256sum
-          sha256sum release/Security-ip.mmdb > release/Security-ip.mmdb.sha256sum
-          sha256sum release/Services.mmdb > release/Services.mmdb.sha256sum
           sha256sum release/geosite.dat > release/geosite.dat.sha256sum
           sha256sum release/geosite-lite.dat > release/geosite-lite.dat.sha256sum
-          sha256sum release/security.dat > release/security.dat.sha256sum
 
       - name: Generate Release Notes
         run: |
           echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
-
-      - name: Push assets to release branch
-        if: ${{ !inputs.PRE_RELEASE }}
-        run: |
-          cd release || exit 1
-          git init
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b release
-          git add .
-          git commit -m "${{ env.RELEASE_NAME }}"
-          git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f origin release
-
-      - name: Purge jsDelivr CDN cache
-        if: ${{ !inputs.PRE_RELEASE }}
-        run: |
-          cd release || exit 1
-          for file in $(ls); do
-            curl -i "https://purge.jsdelivr.net/gh/${{ github.repository }}@release/${file}"
-          done
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v2
@@ -226,16 +79,6 @@ jobs:
           prerelease: ${{ inputs.PRE_RELEASE }}
           files: |
             release/*.dat
-            release/*.mmdb
             release/*.sha256sum
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Clean older releases
-        if: ${{ !inputs.PRE_RELEASE }}
-        uses: dev-drprasad/delete-older-releases@v0.3.4
-        with:
-          keep_latest: 7
-          delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
