@@ -8,39 +8,23 @@ on:
         required: false
         type: boolean
         default: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Iran-v2ray-rules repository
         uses: actions/checkout@v4
 
-      - name: Checkout domain-list-community repository
+      - name: Checkout category-ads-all list
         uses: actions/checkout@v4
         with:
           repository: v2fly/domain-list-community
           path: v2ray-geosite
 
-      - name: Download geo-tools
-        run: gh release download -p "*.tar.gz" --repo Chocolate4U/geo-tools
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set ENV variables
-        run: |
-          echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          echo "RELEASE_DATE=$(date +'%A %F %T %Z')" >> $GITHUB_ENV
-
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install dos2unix idn2
-
-      - name: Create release directory
-        run: mkdir release
+          sudo apt-get install -y dos2unix parallel
 
       - name: Generate category-ads-all domains list
         run: |
@@ -49,25 +33,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate geosite.dat, geosite-lite.dat files for category-ads-all
+      - name: Optimize processing with parallel (if needed)
         run: |
-          tar -xvzf geosite.tar.gz
+          parallel -j 4 ./scripts/generate-category-ads-all.sh ::: $(cat ./v2ray-geosite/data/category-ads-all.txt)
 
-          cp ./release/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
-          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat
-
-          mkdir datalite
-          cp ./release/category-ads-all.txt datalite/category-ads-all
-          ./geosite --datapath=datalite --outputdir=./release --outputname=geosite-lite.dat
-
-      - name: Generate sha256sum for category-ads-all files
+      - name: Generate sha256sum
         run: |
-          sha256sum release/geosite.dat > release/geosite.dat.sha256sum
-          sha256sum release/geosite-lite.dat > release/geosite-lite.dat.sha256sum
-
-      - name: Generate Release Notes
-        run: |
-          echo "* Updated on ${{ env.RELEASE_DATE }}" > RELEASE_NOTES
+          sha256sum release/category-ads-all.txt > release/category-ads-all.txt.sha256sum
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v2
@@ -75,10 +47,8 @@ jobs:
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.TAG_NAME }}
           body_path: RELEASE_NOTES
-          draft: false
-          prerelease: ${{ inputs.PRE_RELEASE }}
           files: |
-            release/*.dat
-            release/*.sha256sum
+            release/category-ads-all.txt
+            release/category-ads-all.txt.sha256sum
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
