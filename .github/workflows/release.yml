@@ -1,13 +1,10 @@
-name: Generate v2ray category-ads-all domains list
+name: Build and Release Category Ads All
 
 on:
-  workflow_dispatch:
-    inputs:
-      PRE_RELEASE:
-        description: "Set as pre-release"
-        required: false
-        type: boolean
-        default: false
+  push:
+    branches:
+      - parallel
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y dos2unix parallel
+          sudo apt-get install -y dos2unix parallel idn2
 
       - name: Generate category-ads-all domains list
         run: |
@@ -35,20 +32,4 @@ jobs:
 
       - name: Optimize processing with parallel (if needed)
         run: |
-          parallel -j 4 ./scripts/generate-category-ads-all.sh ::: $(cat ./v2ray-geosite/data/category-ads-all.txt)
-
-      - name: Generate sha256sum
-        run: |
-          sha256sum release/category-ads-all.txt > release/category-ads-all.txt.sha256sum
-
-      - name: Release and upload assets
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ env.RELEASE_NAME }}
-          tag_name: ${{ env.TAG_NAME }}
-          body_path: RELEASE_NOTES
-          files: |
-            release/category-ads-all.txt
-            release/category-ads-all.txt.sha256sum
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          parallel -j 4 ./scripts/generate-category-ads-all.sh ::: $(cat ./v2ray-geosite/data/category-ads-all
