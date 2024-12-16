@@ -21,15 +21,12 @@ jobs:
       - name: Get domains
         run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
 
-      - name: List files for debugging
-        run: ls -la
-
       - name: Check Domains
         shell: pwsh
         run: |
-          # Define the script path (adjust if necessary)
+          # Define the script path
           $scriptPath = "./Check-Domains.ps1"
-          
+
           # Check if the script exists
           if (-Not (Test-Path $scriptPath)) {
               Write-Error "The script Check-Domains.ps1 was not found in the expected path."
@@ -38,9 +35,15 @@ jobs:
 
           # Execute the script for each DOH server
           foreach ($server in $env:DOH_SERVERS.Split(',')) {
+            # Create directory for each server if it doesn't exist
+            if (-Not (Test-Path $server)) {
+                New-Item -Name $server -ItemType "directory" -Force
+            }
+            # Run the script with parameters
             & $scriptPath -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
-            New-Item -Name $server -ItemType "directory" -Force
-            Move-Item -Path "./Results-DOH.csv" -Destination "./$server" -Force
+            
+            # Move results to corresponding server directory
+            Move-Item -Path "./Results-DOH.csv" -Destination "./$server/Results-DOH.csv" -Force
           }
 
       - name: Generate final result
