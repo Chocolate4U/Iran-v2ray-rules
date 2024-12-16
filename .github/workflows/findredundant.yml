@@ -32,24 +32,39 @@ jobs:
       - name: Check Domains with DOH Server
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Stop"
+          $ErrorActionPreference = "Stop"  # Stop execution on error
           $servers = @("Cloudflare", "Google")
+
           foreach ($server in $servers) {
+            # Run the domain check script
             .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
+            
+            # Determine the directory for results
             $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
-            New-Item -Path $dir -ItemType Directory -ErrorAction Stop
+
+            # Create the directory if it doesn't exist
+            if (-not (Test-Path $dir)) {
+              New-Item -Path $dir -ItemType Directory | Out-Null
+            }
+
+            # Move the results to the appropriate directory
             Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
           }
 
       - name: Generate final result
         shell: pwsh
         run: |
-          $ErrorActionPreference = "Stop"
+          $ErrorActionPreference = "Stop"  # Stop execution on error
+
+          # Define file paths for results from both servers
           $cloudflareFile = "${{ env.CLOUD_FLARE_DIR }}/Results-DOH.csv"
           $googleFile = "${{ env.GOOGLE_DIR }}/Results-DOH.csv"
 
+          # Extract dead domains from both files and generate a final list of redundant domains
           csvgrep -c 2 -m "DEAD" $cloudflareFile | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
           csvgrep -c 2 -m "DEAD" $googleFile | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
+
+          # Find common domains in both lists
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
 
       - name: Clean up temporary files
@@ -58,14 +73,20 @@ jobs:
 
       - name: Push result to redundant branch
         run: |
-          mkdir ${{ env.REDUNDANT_DIR }}
+          mkdir -p ${{ env.REDUNDANT_DIR }}  # Use `mkdir` with `-p` to avoid errors if directory exists
           cp redundant-domains.txt ${{ env.REDUNDANT_DIR }}/
+          
           cd ${{ env.REDUNDANT_DIR }} || exit 1
+          
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b redundant
+          
+          git checkout -b redundant || git checkout redundant  # Checkout branch if it exists, or create it.
+          
           git add .
           git commit -m "${{ env.RELEASE_NAME }}"
+          
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+          
           git push -f origin redundant
