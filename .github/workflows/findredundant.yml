@@ -10,6 +10,7 @@ env:
   CLOUD_FLARE_DIR: "Cloudflare"
   GOOGLE_DIR: "Google"
   REDUNDANT_DIR: "redundant"
+  DOMAINS_FILE: "domains.txt"
 
 jobs:
   check-domains:
@@ -26,41 +27,38 @@ jobs:
 
       - name: Get domains
         run: |
-          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt \
-          | grep -Ev ".+\.ir$" | sort -u > domains.txt
+          curl -sSL -o ${{ env.DOMAINS_FILE }} https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt \
+          && grep -Ev ".+\.ir$" ${{ env.DOMAINS_FILE }} | sort -u > ${{ env.DOMAINS_FILE }}
 
-      - name: Check Domains with Cloudflare
+      - name: Check Domains with DOH Server
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
-          mkdir $env:CLOUD_FLARE_DIR
-          Move-Item -Path "./Results-DOH.csv" -Destination "./$env:CLOUD_FLARE_DIR"
-
-      - name: Check Domains with Google
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-          .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
-          mkdir $env:GOOGLE_DIR
-          Move-Item -Path "./Results-DOH.csv" -Destination "./$env:GOOGLE_DIR"
+          foreach ($server in @("Cloudflare", "Google")) {
+            .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
+            $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
+            mkdir $dir
+            Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
+          }
 
       - name: Generate final result
+        shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          csvgrep -c 2 -m "DEAD" ./$env:CLOUD_FLARE_DIR/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
-          csvgrep -c 2 -m "DEAD" ./$env:GOOGLE_DIR/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
+          foreach ($server in @("Cloudflare", "Google")) {
+            csvgrep -c 2 -m "DEAD" ./${{ env[("${server}_DIR")] }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-${server.ToLower()}.txt
+          }
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
 
       - name: Clean up temporary files
         run: |
-          rm redundant-cloudflare.txt redundant-google.txt
+          rm redundant-cloudflare.txt redundant-google.txt || true
 
       - name: Push result to redundant branch
         run: |
-          mkdir $env:REDUNDANT_DIR
-          cp redundant-domains.txt $env:REDUNDANT_DIR/
-          cd $env:REDUNDANT_DIR || exit 1
+          mkdir ${{ env.REDUNDANT_DIR }}
+          cp redundant-domains.txt ${{ env.REDUNDANT_DIR }}/
+          cd ${{ env.REDUNDANT_DIR }} || exit 1
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
