@@ -43,20 +43,25 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"  # Stop execution on error
           $servers = @("Cloudflare", "Google")
+          $jobs = @()  # Array to hold job references
 
           foreach ($server in $servers) {
-            # Run the domain check script
-            .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
-            
-            # Determine the directory for results
-            $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
+            # Run the domain check script as a background job
+            $jobs += Start-Job -ScriptBlock {
+              param($server)
+              .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
+            } -ArgumentList $server
+          }
 
-            # Create the directory if it doesn't exist
+          # Wait for all background jobs to finish
+          $jobs | ForEach-Object { Wait-Job $_ }
+          
+          # Move results to appropriate directories
+          foreach ($server in $servers) {
+            $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
             if (-not (Test-Path $dir)) {
               New-Item -Path $dir -ItemType Directory | Out-Null
             }
-
-            # Move the results to the appropriate directory
             Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
           }
 
@@ -73,8 +78,8 @@ jobs:
           csvgrep -c 2 -m "DEAD" $cloudflareFile | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt &
           csvgrep -c 2 -m "DEAD" $googleFile | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt &
 
-          # Wait for background tasks to finish
-          wait
+          # Wait for background tasks to finish (using PowerShell's Wait-Job)
+          Get-Job | Wait-Job
 
           # Find common domains in both lists
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
