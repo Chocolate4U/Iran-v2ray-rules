@@ -5,41 +5,43 @@ on:
   schedule:
     - cron: "20 4 1,15 * *"
 
-env:
-  RELEASE_NAME: $(date +%Y%m%d%H%M)
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache CSV files
+        uses: actions/cache@v3
+        with:
+          path: IP2LOCATION-LITE-DB1
+          key: ip2location-${{ runner.os }}-${{ hashFiles('**/IP2LOCATION-LITE-DB1.CSV.ZIP') }}
+          restore-keys: |
+            ip2location-${{ runner.os }}-
 
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install csvkit
+          sudo apt-get install -y csvkit python3-pip
+          pip3 install ip2location-python-csv-converter
 
       - name: Get IP2Location-Lite database
         env:
           DOWNLOAD_TOKEN: ${{ secrets.IP2LOCATION_DOWNLOAD_TOKEN }}
         run: |
           curl -sSL "https://www.ip2location.com/download/?token=${DOWNLOAD_TOKEN}&file=DB1LITECSV" -o IP2LOCATION-LITE-DB1.CSV.ZIP
-          unzip IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1
+          unzip -o IP2LOCATION-LITE-DB1.CSV.ZIP -d IP2LOCATION-LITE-DB1
       
-      - name: install ip2location-csv-converter script
-        run: pip install ip2location-python-csv-converter
-    
-      - name: Convert database from numeric to cidr
+      - name: Convert database from numeric to CIDR
         run: |
           ip2location-csv-converter -cidr -replace IP2LOCATION-LITE-DB1/IP2LOCATION-LITE-DB1.CSV IP2LOCATION-LITE-DB1.CIDR.CSV
-    
+
       - name: Extract Countries IPs
         run: |
           mkdir -p ip2location
-          cat IP2LOCATION-LITE-DB1.CIDR.CSV | awk -F"," '{print $2}' | sort -u | sed -e '1d' -e 's/\"//g' > countries.txt
-          while read l
-          do
+          awk -F"," 'NR > 1 {print $2}' IP2LOCATION-LITE-DB1.CIDR.CSV | sort -u > countries.txt
+          while read l; do
             csvgrep -c 2 -m "$l" IP2LOCATION-LITE-DB1.CIDR.CSV | csvcut -c 1 | sed '1d' > "ip2location/$l.txt"
           done < countries.txt
 
