@@ -23,7 +23,7 @@ jobs:
         run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
 
       - name: List files to verify script location
-        run: ls
+        run: ls -l
 
       - name: Get domains
         run: |
@@ -36,10 +36,10 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          # Run the Check-Domains script for Cloudflare
-          ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
-          New-Item -Name "Cloudflare" -ItemType "directory"
-          Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
+          # Execute the Check-Domains script for Cloudflare
+          pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          New-Item -Name "Cloudflare" -ItemType "directory" -Force
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare" -Force
 
   check-google:
     runs-on: ubuntu-latest
@@ -48,10 +48,10 @@ jobs:
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          # Run the Check-Domains script for Google
-          ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
-          New-Item -Name "Google" -ItemType "directory"
-          Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
+          # Execute the Check-Domains script for Google
+          pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          New-Item -Name "Google" -ItemType "directory" -Force
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Google" -Force
 
   generate-results:
     runs-on: ubuntu-latest
