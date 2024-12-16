@@ -24,13 +24,16 @@ jobs:
       - name: Check Domains
         shell: pwsh
         run: |
-          # Ensure the Check-Domains.ps1 script is in the current directory
+          # Define the script path
           $scriptPath = "./Check-Domains.ps1"
+          
+          # Check if the script exists
           if (-Not (Test-Path $scriptPath)) {
               Write-Error "The script Check-Domains.ps1 was not found in the expected path."
               exit 1
           }
 
+          # Execute the script for each DOH server
           foreach ($server in $env:DOH_SERVERS.Split(',')) {
             & $scriptPath -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
             New-Item -Name $server -ItemType "directory" -Force
