@@ -19,40 +19,14 @@ jobs:
         env:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
         run: |
-          set -e
-          mkdir -p geolite2
-          
-          # Function to download files with retries
-          download_with_retry() {
-            local url=$1
-            local output=$2
-            local attempts=5
-            
-            for ((i=1; i<=attempts; i++)); do
-              echo "Downloading ${output} (attempt $i)..."
-              curl --connect-timeout 15 -sSL "$url" -o "$output" && break || {
-                echo "Download failed, retrying..."
-                sleep 5
-              }
-            done
-            
-            if [[ ! -f "$output" || ! -s "$output" ]]; then
-              echo "Failed to download $output after $attempts attempts."
-              exit 1
-            fi
-          }
-
-          # Download files in parallel with retries
-          download_with_retry "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" "GeoLite2-Country-CSV.zip" &
-          download_with_retry "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" "GeoLite2-ASN.tar.gz" &
-          wait
-
-          # Unzip and extract files
-          unzip GeoLite2-Country-CSV.zip -d geolite2 || { echo "Unzip failed"; exit 1; }
-          tar -xvzf GeoLite2-ASN.tar.gz -C geolite2 || { echo "Tar extraction failed"; exit 1; }
-          
-          # Clean up downloaded files
-          rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
+          unzip GeoLite2-Country-CSV.zip
+          tar -xvzf GeoLite2-ASN.tar.gz
+          rm -f GeoLite2-Country-CSV.zip
+          rm -f GeoLite2-ASN.tar.gz
+          mv GeoLite2-Country-CSV* geolite2
+          mv GeoLite2-ASN*/GeoLite2-ASN.mmdb geolite2
 
       - name: Push assets to geolite2 branch
         run: |
