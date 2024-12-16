@@ -62,7 +62,13 @@ jobs:
             if (-not (Test-Path $dir)) {
               New-Item -Path $dir -ItemType Directory | Out-Null
             }
-            Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
+
+            # Check if Results-DOH.csv exists before moving it
+            if (Test-Path "./Results-DOH.csv") {
+              Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
+            } else {
+              Write-Host "Warning: Results-DOH.csv does not exist for server $server."
+            }
           }
 
       - name: Generate final result
