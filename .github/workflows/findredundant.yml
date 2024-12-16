@@ -38,8 +38,15 @@ jobs:
         run: |
           # Execute the Check-Domains script for Cloudflare
           pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
-          New-Item -Name "Cloudflare" -ItemType "directory" -Force
-          Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare" -Force
+
+          # Verify if Results-DOH.csv was created
+          if (Test-Path "./Results-DOH.csv") {
+              New-Item -Name "Cloudflare" -ItemType "directory" -Force
+              Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare" -Force
+          } else {
+              Write-Host "Results-DOH.csv not found after Cloudflare check."
+              exit 1 # Exit with error if the file does not exist
+          }
 
   check-google:
     runs-on: ubuntu-latest
@@ -50,8 +57,15 @@ jobs:
         run: |
           # Execute the Check-Domains script for Google
           pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
-          New-Item -Name "Google" -ItemType "directory" -Force
-          Move-Item -Path "./Results-DOH.csv" -Destination "./Google" -Force
+
+          # Verify if Results-DOH.csv was created
+          if (Test-Path "./Results-DOH.csv") {
+              New-Item -Name "Google" -ItemType "directory" -Force
+              Move-Item -Path "./Results-DOH.csv" -Destination "./Google" -Force
+          } else {
+              Write-Host "Results-DOH.csv not found after Google check."
+              exit 1 # Exit with error if the file does not exist
+          }
 
   generate-results:
     runs-on: ubuntu-latest
