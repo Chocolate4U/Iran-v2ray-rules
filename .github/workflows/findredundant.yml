@@ -19,7 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          set -e
           sudo apt-get update && sudo apt-get install -y csvkit
 
       - name: Get Check-Domains script
@@ -33,7 +32,7 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          set -e
+          $ErrorActionPreference = "Stop"
           .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
           mkdir $env:CLOUD_FLARE_DIR
           Move-Item -Path "./Results-DOH.csv" -Destination "./$env:CLOUD_FLARE_DIR"
@@ -41,14 +40,14 @@ jobs:
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          set -e
+          $ErrorActionPreference = "Stop"
           .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
           mkdir $env:GOOGLE_DIR
           Move-Item -Path "./Results-DOH.csv" -Destination "./$env:GOOGLE_DIR"
 
       - name: Generate final result
         run: |
-          set -e
+          $ErrorActionPreference = "Stop"
           csvgrep -c 2 -m "DEAD" ./$env:CLOUD_FLARE_DIR/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
           csvgrep -c 2 -m "DEAD" ./$env:GOOGLE_DIR/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
