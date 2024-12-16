@@ -5,9 +5,6 @@ on:
   schedule:
     - cron: "20 4 * * tue,fri"
 
-env:
-  RELEASE_NAME: $(date +%Y%m%d%H%M)
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,18 +12,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Get GeoLite2
+      - name: Cache GeoLite2 Downloads
+        uses: actions/cache@v3
+        with:
+          path: geolite2
+          key: geolite2-${{ runner.os }}-${{ hashFiles('**/GeoLite2-Country-CSV.zip', '**/GeoLite2-ASN.tar.gz') }}
+          restore-keys: |
+            geolite2-${{ runner.os }}-
+
+      - name: Get GeoLite2 Country
         env:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
         run: |
-          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
-          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
-          unzip GeoLite2-Country-CSV.zip
+          mkdir -p geolite2 && cd geolite2
+          if [ ! -f "GeoLite2-Country-CSV.zip" ]; then
+            curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          fi
+
+      - name: Get GeoLite2 ASN
+        env:
+          LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
+        run: |
+          cd geolite2
+          if [ ! -f "GeoLite2-ASN.tar.gz" ]; then
+            curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
+          fi
+
+      - name: Extract GeoLite2 Files
+        run: |
+          cd geolite2
+          unzip -o GeoLite2-Country-CSV.zip
           tar -xvzf GeoLite2-ASN.tar.gz
-          rm -f GeoLite2-Country-CSV.zip
-          rm -f GeoLite2-ASN.tar.gz
-          mv GeoLite2-Country-CSV* geolite2
-          mv GeoLite2-ASN*/GeoLite2-ASN.mmdb geolite2
+          mv GeoLite2-Country-CSV* . && mv GeoLite2-ASN*/GeoLite2-ASN.mmdb .
+          rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz GeoLite2-ASN/*
 
       - name: Push assets to geolite2 branch
         run: |
