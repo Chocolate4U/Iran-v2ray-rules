@@ -37,7 +37,7 @@ jobs:
           foreach ($server in $servers) {
             .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
             $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
-            mkdir $dir -ErrorAction Stop
+            New-Item -Path $dir -ItemType Directory -ErrorAction Stop
             Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
           }
 
