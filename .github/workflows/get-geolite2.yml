@@ -22,16 +22,30 @@ jobs:
           set -e
           mkdir -p geolite2
           
-          # Download files in parallel
-          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip &
-          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz &
+          # Function to download files with retries
+          download_with_retry() {
+            local url=$1
+            local output=$2
+            local attempts=5
+            
+            for ((i=1; i<=attempts; i++)); do
+              echo "Downloading ${output} (attempt $i)..."
+              curl --connect-timeout 15 -sSL "$url" -o "$output" && break || {
+                echo "Download failed, retrying..."
+                sleep 5
+              }
+            done
+            
+            if [[ ! -f "$output" || ! -s "$output" ]]; then
+              echo "Failed to download $output after $attempts attempts."
+              exit 1
+            fi
+          }
+
+          # Download files in parallel with retries
+          download_with_retry "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" "GeoLite2-Country-CSV.zip" &
+          download_with_retry "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" "GeoLite2-ASN.tar.gz" &
           wait
-          
-          # Check if downloads were successful
-          if [[ ! -f GeoLite2-Country-CSV.zip || ! -f GeoLite2-ASN.tar.gz ]]; then
-            echo "Download failed"
-            exit 1
-          fi
 
           # Unzip and extract files
           unzip GeoLite2-Country-CSV.zip -d geolite2 || { echo "Unzip failed"; exit 1; }
