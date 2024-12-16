@@ -19,8 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: |
-          sudo apt-get update && sudo apt-get install -y csvkit
+        run: sudo apt-get update && sudo apt-get install -y csvkit
 
       - name: Get Check-Domains script
         run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
@@ -34,10 +33,11 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          foreach ($server in @("Cloudflare", "Google")) {
+          $servers = @("Cloudflare", "Google")
+          foreach ($server in $servers) {
             .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
             $dir = if ($server -eq "Cloudflare") { $env:CLOUD_FLARE_DIR } else { $env:GOOGLE_DIR }
-            mkdir $dir
+            mkdir $dir -ErrorAction Stop
             Move-Item -Path "./Results-DOH.csv" -Destination "./$dir" -ErrorAction Stop
           }
 
@@ -45,10 +45,11 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          foreach ($server in @("Cloudflare", "Google")) {
-            csvgrep -c 2 -m "DEAD" ./${{ env.CLOUD_FLARE_DIR }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
-            csvgrep -c 2 -m "DEAD" ./${{ env.GOOGLE_DIR }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
-          }
+          $cloudflareFile = "${{ env.CLOUD_FLARE_DIR }}/Results-DOH.csv"
+          $googleFile = "${{ env.GOOGLE_DIR }}/Results-DOH.csv"
+
+          csvgrep -c 2 -m "DEAD" $cloudflareFile | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
+          csvgrep -c 2 -m "DEAD" $googleFile | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
 
       - name: Clean up temporary files
