@@ -24,9 +24,6 @@ jobs:
       - name: Check Domains
         shell: pwsh
         run: |
-          # Set execution policy to allow script execution
-          Set-ExecutionPolicy Bypass -Scope Process -Force
-          
           # Ensure the Check-Domains.ps1 script is in the current directory
           $scriptPath = "./Check-Domains.ps1"
           if (-Not (Test-Path $scriptPath)) {
@@ -35,7 +32,7 @@ jobs:
           }
 
           foreach ($server in $env:DOH_SERVERS.Split(',')) {
-            .\Check-Domains.ps1 -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
+            & $scriptPath -Mode DOH -DOHServer $server -Http3 -Concurrency 100 -Quiet
             New-Item -Name $server -ItemType "directory" -Force
             Move-Item -Path "./Results-DOH.csv" -Destination "./$server" -Force
           }
