@@ -21,11 +21,23 @@ jobs:
         run: |
           set -e
           mkdir -p geolite2
+          
+          # Download files in parallel
           curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip &
           curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz &
           wait
-          unzip GeoLite2-Country-CSV.zip -d geolite2
-          tar -xvzf GeoLite2-ASN.tar.gz -C geolite2
+          
+          # Check if downloads were successful
+          if [[ ! -f GeoLite2-Country-CSV.zip || ! -f GeoLite2-ASN.tar.gz ]]; then
+            echo "Download failed"
+            exit 1
+          fi
+
+          # Unzip and extract files
+          unzip GeoLite2-Country-CSV.zip -d geolite2 || { echo "Unzip failed"; exit 1; }
+          tar -xvzf GeoLite2-ASN.tar.gz -C geolite2 || { echo "Tar extraction failed"; exit 1; }
+          
+          # Clean up downloaded files
           rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz
 
       - name: Push assets to geolite2 branch
