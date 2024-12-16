@@ -26,7 +26,12 @@ jobs:
         run: |
           mkdir -p geolite2 && cd geolite2
           if [ ! -f "GeoLite2-Country-CSV.zip" ]; then
+            echo "Downloading GeoLite2 Country database..."
             curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+            if [ $? -ne 0 ]; then
+              echo "Error downloading GeoLite2 Country database."
+              exit 1
+            fi
           fi
 
       - name: Get GeoLite2 ASN
@@ -35,14 +40,32 @@ jobs:
         run: |
           cd geolite2
           if [ ! -f "GeoLite2-ASN.tar.gz" ]; then
+            echo "Downloading GeoLite2 ASN database..."
             curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
+            if [ $? -ne 0 ]; then
+              echo "Error downloading GeoLite2 ASN database."
+              exit 1
+            fi
           fi
 
       - name: Extract GeoLite2 Files
         run: |
           cd geolite2
-          unzip -o GeoLite2-Country-CSV.zip
-          tar -xvzf GeoLite2-ASN.tar.gz
+          echo "Extracting files..."
+          if [ -f "GeoLite2-Country-CSV.zip" ]; then
+            unzip -o GeoLite2-Country-CSV.zip || { echo "Failed to unzip GeoLite2-Country-CSV.zip"; exit 1; }
+          else
+            echo "GeoLite2-Country-CSV.zip not found."
+            exit 1
+          fi
+
+          if [ -f "GeoLite2-ASN.tar.gz" ]; then
+            tar -xvzf GeoLite2-ASN.tar.gz || { echo "Failed to extract GeoLite2-ASN.tar.gz"; exit 1; }
+          else
+            echo "GeoLite2-ASN.tar.gz not found."
+            exit 1
+          fi
+
           mv GeoLite2-Country-CSV* . && mv GeoLite2-ASN*/GeoLite2-ASN.mmdb .
           rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz GeoLite2-ASN/*
 
