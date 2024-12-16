@@ -24,8 +24,8 @@ jobs:
       - name: Check Domains
         shell: pwsh
         run: |
-          # Define the script path using GITHUB_ACTION_PATH
-          $scriptPath = "$env:GITHUB_ACTION_PATH/Check-Domains.ps1"
+          # Define the script path relative to the current directory
+          $scriptPath = "./Check-Domains.ps1"
           
           # Check if the script exists
           if (-Not (Test-Path $scriptPath)) {
