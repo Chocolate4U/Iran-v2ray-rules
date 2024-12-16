@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: "20 4 * * tue,fri"
 
+env:
+  RELEASE_NAME: $(date +%Y%m%d%H%M)
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,62 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache GeoLite2 Downloads
-        uses: actions/cache@v3
-        with:
-          path: geolite2
-          key: geolite2-${{ runner.os }}-${{ hashFiles('**/GeoLite2-Country-CSV.zip', '**/GeoLite2-ASN.tar.gz') }}
-          restore-keys: |
-            geolite2-${{ runner.os }}-
-
-      - name: Get GeoLite2 Country
+      - name: Get GeoLite2
         env:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
         run: |
-          mkdir -p geolite2 && cd geolite2
-          if [ ! -f "GeoLite2-Country-CSV.zip" ]; then
-            echo "Downloading GeoLite2 Country database..."
-            curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
-            if [ $? -ne 0 ]; then
-              echo "Error downloading GeoLite2 Country database."
-              exit 1
-            fi
-          fi
-
-      - name: Get GeoLite2 ASN
-        env:
-          LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
-        run: |
-          cd geolite2
-          if [ ! -f "GeoLite2-ASN.tar.gz" ]; then
-            echo "Downloading GeoLite2 ASN database..."
-            curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
-            if [ $? -ne 0 ]; then
-              echo "Error downloading GeoLite2 ASN database."
-              exit 1
-            fi
-          fi
-
-      - name: Extract GeoLite2 Files
-        run: |
-          cd geolite2
-          echo "Extracting files..."
-          if [ -f "GeoLite2-Country-CSV.zip" ]; then
-            unzip -o GeoLite2-Country-CSV.zip || { echo "Failed to unzip GeoLite2-Country-CSV.zip"; exit 1; }
-          else
-            echo "GeoLite2-Country-CSV.zip not found."
-            exit 1
-          fi
-
-          if [ -f "GeoLite2-ASN.tar.gz" ]; then
-            tar -xvzf GeoLite2-ASN.tar.gz || { echo "Failed to extract GeoLite2-ASN.tar.gz"; exit 1; }
-          else
-            echo "GeoLite2-ASN.tar.gz not found."
-            exit 1
-          fi
-
-          mv GeoLite2-Country-CSV* . && mv GeoLite2-ASN*/GeoLite2-ASN.mmdb .
-          rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz GeoLite2-ASN/*
+          set -e
+          mkdir -p geolite2
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip &
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz &
+          wait
+          unzip GeoLite2-Country-CSV.zip -d geolite2
+          tar -xvzf GeoLite2-ASN.tar.gz -C geolite2
+          rm -f GeoLite2-Country-CSV.zip GeoLite2-ASN.tar.gz
 
       - name: Push assets to geolite2 branch
         run: |
