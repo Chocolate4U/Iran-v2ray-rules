@@ -9,7 +9,7 @@ jobs:
   check-domains:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3  # Ensure the repository is checked out
 
       - name: Set up environment variables
         run: echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
@@ -36,7 +36,7 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          # Execute the Check-Domains script for Cloudflare
+          # Verify if Check-Domains.ps1 exists before running it
           if (Test-Path "./Check-Domains.ps1") {
               pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
           } else {
@@ -60,7 +60,7 @@ jobs:
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          # Execute the Check-Domains script for Google
+          # Verify if Check-Domains.ps1 exists before running it
           if (Test-Path "./Check-Domains.ps1") {
               pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
           } else {
