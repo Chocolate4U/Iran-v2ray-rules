@@ -37,7 +37,12 @@ jobs:
         shell: pwsh
         run: |
           # Execute the Check-Domains script for Cloudflare
-          pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          if (Test-Path "./Check-Domains.ps1") {
+              pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          } else {
+              Write-Host "Check-Domains.ps1 not found."
+              exit 1
+          }
 
           # Verify if Results-DOH.csv was created
           if (Test-Path "./Results-DOH.csv") {
@@ -56,7 +61,12 @@ jobs:
         shell: pwsh
         run: |
           # Execute the Check-Domains script for Google
-          pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          if (Test-Path "./Check-Domains.ps1") {
+              pwsh ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          } else {
+              Write-Host "Check-Domains.ps1 not found."
+              exit 1
+          }
 
           # Verify if Results-DOH.csv was created
           if (Test-Path "./Results-DOH.csv") {
