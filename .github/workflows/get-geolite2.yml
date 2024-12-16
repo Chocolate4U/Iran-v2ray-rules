@@ -47,3 +47,9 @@ jobs:
           git commit -m "${{ env.RELEASE_NAME }}"
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
           git push -f origin geolite2
+
+      # Enable debug logging for troubleshooting (optional)
+      - name: Enable Debug Logging
+        env:
+          ACTIONS_RUNNER_DEBUG: true
+          ACTIONS_STEP_DEBUG: true
