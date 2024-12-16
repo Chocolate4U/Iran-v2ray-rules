@@ -14,14 +14,6 @@ jobs:
       - name: Set up environment variables
         run: echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - name: Install dependencies
         run: |
           sudo apt-get update
@@ -29,6 +21,9 @@ jobs:
 
       - name: Get Check-Domains script
         run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
+
+      - name: List files to verify script location
+        run: ls
 
       - name: Get domains
         run: |
@@ -41,7 +36,8 @@ jobs:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-          .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          # Run the Check-Domains script for Cloudflare
+          ./Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Cloudflare" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
 
@@ -52,7 +48,8 @@ jobs:
       - name: Check Domains with Google
         shell: pwsh
         run: |
-          .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          # Run the Check-Domains script for Google
+          ./Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
           New-Item -Name "Google" -ItemType "directory"
           Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
 
