@@ -21,13 +21,10 @@ jobs:
       - name: Get domains
         run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
 
-      - name: List files for debugging
-        run: ls -la
-
       - name: Check Domains
         shell: pwsh
         run: |
-          # Define the script path (adjust if necessary)
+          # Define the script path
           $scriptPath = "./Check-Domains.ps1"
           
           # Check if the script exists
