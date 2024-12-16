@@ -1,13 +1,9 @@
 name: Find Redundant Domains
 
-on:
+on: 
   workflow_dispatch:
   schedule:
     - cron: "20 23 * * *"
-
-env:
-  RELEASE_NAME: $(date +%Y%m%d%H%M)
-  DOH_SERVERS: "Cloudflare,Google"
 
 jobs:
   check-domains:
@@ -15,26 +11,55 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up environment variables
+        run: echo "RELEASE_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y csvkit
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y csvkit
+
+      - name: Get Check-Domains script
+        run: curl -sSLO https://raw.githubusercontent.com/Chocolate4U/Domain-Health-Checker/main/Check-Domains.ps1
 
       - name: Get domains
-        run: curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
+        run: |
+          curl -sSL https://github.com/bootmortis/iran-hosted-domains/releases/latest/download/domains.txt | grep -Ev ".+\.ir$" | sort -u > domains.txt
 
+  check-cloudflare:
+    runs-on: ubuntu-latest
+    needs: check-domains
+    steps:
       - name: Check Domains with Cloudflare
         shell: pwsh
         run: |
-         .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
-         $cloudflareDir = New-Item -Name "Cloudflare" -ItemType "directory" -Force
-         Move-Item -Path "./Results-DOH.csv" -Destination "$($cloudflareDir.FullName)"
-    
+          .\Check-Domains.ps1 -Mode DOH -DOHServer Cloudflare -Http3 -Concurrency 100 -Quiet
+          New-Item -Name "Cloudflare" -ItemType "directory"
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Cloudflare"
+
+  check-google:
+    runs-on: ubuntu-latest
+    needs: check-domains
+    steps:
       - name: Check Domains with Google
         shell: pwsh
         run: |
-         .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
-          $googleDir = New-Item -Name "Google" -ItemType "directory" -Force
-          Move-Item -Path "./Results-DOH.csv" -Destination "$($googleDir.FullName)"
+          .\Check-Domains.ps1 -Mode DOH -DOHServer Google -Http3 -Concurrency 100 -Quiet
+          New-Item -Name "Google" -ItemType "directory"
+          Move-Item -Path "./Results-DOH.csv" -Destination "./Google"
 
+  generate-results:
+    runs-on: ubuntu-latest
+    needs: [check-cloudflare, check-google]
+    steps:
       - name: Generate final result
         run: |
           csvgrep -c 2 -m "DEAD" ./Cloudflare/Results-DOH.csv | awk -F"," '{print $1}' | sed '1d' | sort -u > redundant-cloudflare.txt
@@ -43,14 +68,14 @@ jobs:
 
       - name: Push result to redundant branch
         run: |
-          mkdir redundant
+          mkdir redundant || exit 0
           cp redundant-domains.txt redundant/
           cd redundant || exit 1
           git init
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b redundant
+          git checkout -b redundant || exit 0 # Create branch if it doesn't exist
           git add .
-          git commit -m "${{ env.RELEASE_NAME }}"
+          git commit -m "${{ env.RELEASE_NAME }}" || exit 0 # Avoid failure if there's nothing to commit
           git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
-          git push -f origin redundant
+          git push --force origin redundant || exit 0 # Force push to avoid errors if branch is ahead
