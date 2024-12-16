@@ -46,7 +46,8 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           foreach ($server in @("Cloudflare", "Google")) {
-            csvgrep -c 2 -m "DEAD" ./${{ env[("${server}_DIR")] }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-${server.ToLower()}.txt
+            csvgrep -c 2 -m "DEAD" ./${{ env.CLOUD_FLARE_DIR }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-cloudflare.txt
+            csvgrep -c 2 -m "DEAD" ./${{ env.GOOGLE_DIR }}/Results-DOH.csv | awk 'NR>1 {print $1}' | sort -u > redundant-google.txt
           }
           comm -12 redundant-cloudflare.txt redundant-google.txt > redundant-domains.txt
 
