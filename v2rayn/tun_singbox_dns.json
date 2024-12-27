@@ -1,0 +1,29 @@
+{
+  "servers": [
+    {
+      "tag": "remote",
+      "address": "1.1.1.1",
+      "strategy": "prefer_ipv4",
+      "detour": "proxy"
+    },
+    {
+      "tag": "local",
+      "address": "8.8.8.8",
+      "strategy": "prefer_ipv4",
+      "detour": "direct"
+    },
+    {
+      "tag": "block",
+      "address": "rcode://success"
+    }
+  ],
+  "rules": [
+    {
+      "rule_set": [
+        "geosite-category-ads-all"
+      ],
+      "server": "block"
+    }
+  ],
+  "final": "remote"
+}
