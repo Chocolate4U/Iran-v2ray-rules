@@ -2,13 +2,13 @@
   "servers": [
     {
       "tag": "remote",
-      "address": "1.1.1.1",
+      "address": "8.8.8.8",
       "strategy": "prefer_ipv4",
       "detour": "proxy"
     },
     {
       "tag": "local",
-      "address": "8.8.8.8",
+      "address": "185.51.200.2",
       "strategy": "prefer_ipv4",
       "detour": "direct"
     },
@@ -23,6 +23,15 @@
         "geosite-category-ads-all"
       ],
       "server": "block"
+    },
+    {
+      "domain_suffix": [
+        ".ir"
+      ],
+      "geosite": [
+        "ir"
+      ],
+      "server": "local"
     }
   ],
   "final": "remote"

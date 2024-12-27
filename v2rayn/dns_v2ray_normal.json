@@ -1,12 +1,13 @@
 {
   "hosts": {
-    "geosite:category-ads-all": "127.0.0.1"
+    "dns.google": "8.8.4.4"
   },
   "servers": [
+    "8.8.8.8",
     "1.1.1.1",
-    "9.9.9.10",
+    "https://dns.google/dns-query",
     {
-      "address": "8.8.8.8",
+      "address": "178.22.122.100",
       "domains": [
         "domain:ir",
         "geosite:ir"
