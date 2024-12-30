@@ -1,7 +1,7 @@
 {
-  "useSystemHosts": false,
+  "useSystemHosts": true,
   "normalDNS": "https://cdn.jsdelivr.net/gh/Chocolate4U/Iran-v2ray-rules@main/v2rayN/dns_v2ray_normal.json",
   "tunDNS": null,
-  "domainStrategy4Freedom": null,
+  "domainStrategy4Freedom": "UseIP",
   "domainDNSAddress": "8.8.8.8"
 }

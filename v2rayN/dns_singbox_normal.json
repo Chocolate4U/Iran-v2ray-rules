@@ -23,6 +23,15 @@
         "geosite-category-ads-all"
       ],
       "server": "block"
+    },
+    {
+      "domain_suffix": [
+        ".ir"
+      ],
+      "geosite": [
+        "ir"
+      ],
+      "server": "local"
     }
   ],
   "final": "remote"
