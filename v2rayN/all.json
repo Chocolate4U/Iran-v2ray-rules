@@ -1,5 +1,20 @@
 [
   {
+    "outboundtag": "block",
+    "port": "443",
+    "network": "udp",
+    "enabled": true,
+    "remarks": "udp443 - \u0645\u0633\u062F\u0648\u062F"
+  },
+  {
+    "outboundTag":"direct",
+    "protocol":[
+      "bittorrent"
+    ],
+    "enabled":true,
+    "remarks":"\u062a\u0648\u0631\u0646\u062a\u0020\u002d\u0020\u0645\u0633\u062a\u0642\u06cc\u0645"
+  },
+  {
     "outboundTag":"block",
     "domain":[
       "geosite:category-ads-all"
