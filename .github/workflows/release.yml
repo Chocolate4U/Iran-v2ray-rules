@@ -71,8 +71,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install dos2unix idn2
 
-      - name: Create release directory
-        run: mkdir release
+      - name: Create domains and release directories
+        run: mkdir domains release
 
       - name: Get messengers IP list
         run: awk -F"," '{print $2}' ./ito.gov.ir-Mirror/data/Messengers.csv | sed '1d' > messengers-ip.txt
@@ -154,28 +154,29 @@ jobs:
         run: |
           tar -xvzf geosite.tar.gz
 
-          cp ./release/ir.txt ./v2ray-geosite/data/ir
-          cp ./release/ir-lite.txt ./v2ray-geosite/category-ir
-          cp ./release/ads.txt ./v2ray-geosite/data/ads
-          cp ./release/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
-          cp ./release/malware.txt ./v2ray-geosite/data/malware
-          cp ./release/phishing.txt ./v2ray-geosite/data/phishing
-          cp ./release/cryptominers.txt ./v2ray-geosite/data/cryptominers
-          cp ./release/social.txt ./v2ray-geosite/data/social
-          cp ./release/nsfw.txt ./v2ray-geosite/data/nsfw
+          cp ./domains/ir.txt ./v2ray-geosite/data/ir
+          cp ./domains/ir-lite.txt ./v2ray-geosite/category-ir
+          cp ./domains/ads.txt ./v2ray-geosite/data/ads
+          cp ./domains/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
+          cp ./domains/malware.txt ./v2ray-geosite/data/malware
+          cp ./domains/phishing.txt ./v2ray-geosite/data/phishing
+          cp ./domains/cryptominers.txt ./v2ray-geosite/data/cryptominers
+          cp ./domains/social.txt ./v2ray-geosite/data/social
+          cp ./domains/nsfw.txt ./v2ray-geosite/data/nsfw
 
-          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat
+          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat --exportlists=ir,category-ir,ads,category-ads-all,malware,phishing,cryptominers,social,nsfw
 
           mkdir datalite
-          cp ./release/ir-lite.txt datalite/ir
-          cp ./release/ads.txt datalite/ads
+          cp ./domains/ir-lite.txt datalite/ir
+          cp ./domains/ads.txt datalite/ads
           ./geosite --datapath=datalite --outputdir=./release --outputname=geosite-lite.dat
+          cp ./release/category-ir.txt ./release/ir-lite.txt
 
           mkdir security
-          cp ./release/category-ads-all.txt security/category-ads-all
-          cp ./release/malware.txt security/malware
-          cp ./release/phishing.txt security/phishing
-          cp ./release/cryptominers.txt security/cryptominers
+          cp ./domains/category-ads-all.txt security/category-ads-all
+          cp ./domains/malware.txt security/malware
+          cp ./domains/phishing.txt security/phishing
+          cp ./domains/cryptominers.txt security/cryptominers
           ./geosite --datapath=security --outputdir=./release --outputname=security.dat
 
       - name: Generate sha256sum
