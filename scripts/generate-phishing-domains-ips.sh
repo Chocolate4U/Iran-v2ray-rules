@@ -6,4 +6,4 @@ gh api https://api.github.com/repos/curbengh/phishing-filter/contents/phishing-f
 sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' phishing-temp.txt > phishing-sub.txt
 cat phishing-temp.txt | LC_ALL=C grep -f phishing-sub.txt | LC_ALL=C sort -u > phishing-redundant-sub.txt
 comm -23 phishing-temp.txt phishing-redundant-sub.txt > phishing.txt
-mv phishing.txt release
+mv phishing.txt domains

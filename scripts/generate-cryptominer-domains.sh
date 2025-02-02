@@ -4,4 +4,4 @@ gh api https://api.github.com/repos/hoshsadiq/adblock-nocoin-list/contents/hosts
 sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' cryptominers-temp.txt > cryptominers-sub.txt
 cat cryptominers-temp.txt | LC_ALL=C grep -f cryptominers-sub.txt | LC_ALL=C sort -u > cryptominers-redundant-sub.txt
 comm -23 cryptominers-temp.txt cryptominers-redundant-sub.txt > cryptominers.txt
-mv cryptominers.txt release
+mv cryptominers.txt domains

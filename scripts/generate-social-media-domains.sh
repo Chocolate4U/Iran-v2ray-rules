@@ -4,4 +4,4 @@ gh api https://api.github.com/repos/StevenBlack/hosts/contents/alternates/social
 sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' social-temp.txt > social-sub.txt
 cat social-temp.txt | LC_ALL=C grep -f social-sub.txt | LC_ALL=C sort -u > social-redundant-sub.txt
 comm -23 social-temp.txt social-redundant-sub.txt > social.txt
-mv social.txt release
+mv social.txt domains

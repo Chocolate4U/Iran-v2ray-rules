@@ -5,4 +5,4 @@ sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' nsfw-temp.txt > ns
 cat nsfw-temp.txt | LC_ALL=C grep -f nsfw-sub.txt | LC_ALL=C sort -u > nsfw-redundant-sub.txt
 comm -23 nsfw-temp.txt nsfw-redundant-sub.txt > nsfw.txt
 echo "TOTAL_NSFW=$(wc -l < nsfw.txt)" >> $GITHUB_ENV
-mv nsfw.txt release
+mv nsfw.txt domains
