@@ -18,4 +18,4 @@ sed -e 's/^/\./' -e 's/\./\\./g' -e 's/\-/\\-/g' -e 's/$/\$/' category-ads-all-t
 cat category-ads-all-temp-temp.txt | LC_ALL=C grep -f category-ads-all-sub.txt | LC_ALL=C sort -u > category-ads-all-redundant-sub.txt
 comm -23 category-ads-all-temp-temp.txt category-ads-all-redundant-sub.txt > category-ads-all.txt
 rm -f category-ads-all-raw.txt whitelist-raw.txt category-ads-all-temp.txt whitelist-temp.txt
-mv ads.txt category-ads-all.txt release
+mv ads.txt category-ads-all.txt domains
