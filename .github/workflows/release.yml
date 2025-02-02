@@ -155,7 +155,7 @@ jobs:
           tar -xvzf geosite.tar.gz
 
           cp ./domains/ir.txt ./v2ray-geosite/data/ir
-          cp ./domains/ir-lite.txt ./v2ray-geosite/category-ir
+          cp ./domains/ir-lite.txt ./v2ray-geosite/data/category-ir
           cp ./domains/ads.txt ./v2ray-geosite/data/ads
           cp ./domains/category-ads-all.txt ./v2ray-geosite/data/category-ads-all
           cp ./domains/malware.txt ./v2ray-geosite/data/malware
