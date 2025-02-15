@@ -75,7 +75,7 @@ jobs:
         run: mkdir domains release
 
       - name: Get messengers IP list
-        run: awk -F"," '{print $2}' ./ito.gov.ir-Mirror/data/Messengers.csv | sed '1d' > messengers-ip.txt
+        run: awk -F"," '{print $2}' ./ito.gov.ir-Mirror/data/Messengers.csv | sed -e '/IP\|\"/d' -e '/^$/d' -e '1d' > messengers-ip.txt
 
       - name: Get domestic CDNs IP list
         run: |
