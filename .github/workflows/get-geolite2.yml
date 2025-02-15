@@ -20,13 +20,18 @@ jobs:
           LICENSE_KEY: ${{ secrets.MAXMIND_GEOLITE2_LICENSE }}
         run: |
           curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-Country-CSV.zip
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-Country.tar.gz
+          curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o GeoLite2-ASN-CSV.zip
           curl --connect-timeout 15 -sSL "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=${LICENSE_KEY}&suffix=tar.gz" -o GeoLite2-ASN.tar.gz
           unzip GeoLite2-Country-CSV.zip
+          tar -xvzf GeoLite2-Country.tar.gz
+          unzip GeoLite2-ASN-CSV.zip
           tar -xvzf GeoLite2-ASN.tar.gz
-          rm -f GeoLite2-Country-CSV.zip
-          rm -f GeoLite2-ASN.tar.gz
-          mv GeoLite2-Country-CSV* geolite2
-          mv GeoLite2-ASN*/GeoLite2-ASN.mmdb geolite2
+          mkdir geolite2
+          mv GeoLite2-Country-CSV_*/*.csv geolite2
+          mv GeoLite2-Country_*/*.mmdb geolite2
+          mv GeoLite2-ASN-CSV_*/*.csv geolite2
+          mv GeoLite2-ASN_*/*.mmdb geolite2
 
       - name: Push assets to geolite2 branch
         run: |
