@@ -82,8 +82,8 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "cloudflare",
-        "uri": "./ipranges/cloudflare/ipv4_merged.txt"
+        "name": "tor",
+        "uri": "https://check.torproject.org/torbulkexitlist"
       }
     },
     {
@@ -91,23 +91,71 @@
       "action": "add",
       "args": {
         "name": "cloudflare",
-        "uri": "./ipranges/cloudflare/ipv6_merged.txt"
+        "uri": "https://www.cloudflare.com/ips-v4"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
-        "name": "google",
-        "uri": "./ipranges/google/ipv4_merged.txt"
+        "name": "cloudflare",
+        "uri": "https://www.cloudflare.com/ips-v6"
       }
     },
     {
       "type": "text",
       "action": "add",
       "args": {
+        "name": "telegram",
+        "uri": "https://core.telegram.org/resources/cidr.txt"
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
         "name": "google",
-        "uri": "./ipranges/google/ipv6_merged.txt"
+        "uri": "https://www.gstatic.com/ipranges/goog.json",
+        "jsonPath": ["prefixes.#.ipv4Prefix", "prefixes.#.ipv6Prefix"]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "google",
+        "uri": "https://www.gstatic.com/ipranges/cloud.json",
+        "jsonPath": ["prefixes.#.ipv4Prefix", "prefixes.#.ipv6Prefix"]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "fastly",
+        "uri": "https://api.fastly.com/public-ip-list",
+        "jsonPath": ["addresses", "ipv6_addresses"]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "cloudfront",
+        "uri": "https://ip-ranges.amazonaws.com/ip-ranges.json",
+        "jsonPath": [
+          "prefixes.#(service==\"CLOUDFRONT\")#.ip_prefix",
+          "ipv6_prefixes.#(service==\"CLOUDFRONT\")#.ipv6_prefix"
+        ]
+      }
+    },
+    {
+      "type": "json",
+      "action": "add",
+      "args": {
+        "name": "gcore",
+        "uri": "https://api.gcore.com/cdn/public-ip-list",
+        "jsonPath": ["addresses", "addresses_v6"]
       }
     },
     {
@@ -202,22 +250,6 @@
       "type": "text",
       "action": "add",
       "args": {
-        "name": "telegram",
-        "uri": "./ipranges/telegram/ipv4_merged.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
-        "name": "telegram",
-        "uri": "./ipranges/telegram/ipv6_merged.txt"
-      }
-    },
-    {
-      "type": "text",
-      "action": "add",
-      "args": {
         "name": "oracle",
         "uri": "./ipranges/oracle/ipv4_merged.txt"
       }
@@ -279,6 +311,66 @@
       }
     },
     {
+      "type": "maxmindGeoLite2ASNCSV",
+      "action": "add",
+      "args": {
+        "ipv4": "geolite2/GeoLite2-ASN-Blocks-IPv4.csv",
+        "ipv6": "geolite2/GeoLite2-ASN-Blocks-IPv6.csv",
+        "wantedList": {
+          "cloudflare": [
+            "AS395747",
+            "AS394536",
+            "AS209242",
+            "AS203898",
+            "AS202623",
+            "AS14789",
+            "AS139242",
+            "AS133877",
+            "AS13335",
+            "AS132892"
+          ],
+          "facebook": ["AS63293", "AS54115", "AS32934"],
+          "fastly": ["AS54113", "AS394192"],
+          "gcore": ["199524", "202422"],
+          "google": [
+            "AS6432",
+            "AS55023",
+            "AS45566",
+            "AS43515",
+            "AS41264",
+            "AS40873",
+            "AS396982",
+            "AS395973",
+            "AS394699",
+            "AS394639",
+            "AS394507",
+            "AS36987",
+            "AS36492",
+            "AS36385",
+            "AS36384",
+            "AS36040",
+            "AS36039",
+            "AS26910",
+            "AS26684",
+            "AS22859",
+            "AS22577",
+            "AS19527",
+            "AS19448",
+            "AS19425",
+            "AS16591",
+            "AS16550",
+            "AS15169",
+            "AS13949",
+            "AS139190",
+            "AS139070"
+          ],
+          "netflix": ["AS55095", "AS40027", "AS394406", "AS2906"],
+          "telegram": ["AS62041", "AS62014", "AS59930", "AS44907", "AS211157"],
+          "twitter": ["AS8945", "AS63179", "AS54888", "AS35995", "AS13414"]
+        }
+      }
+    },
+    {
       "type": "private",
       "action": "add"
     }
@@ -305,23 +397,28 @@
       "args": {
         "outputName": "geoip-services.dat",
         "wantedList": [
-          "arvancloud",
-          "derakcloud",
-          "iranserver",
-          "parspack",
-          "cloudflare",
-          "google",
           "amazon",
-          "microsoft",
+          "arvancloud",
           "bing",
-          "github",
-          "facebook",
-          "twitter",
-          "telegram",
-          "oracle",
+          "cloudflare",
+          "cloudfront",
+          "derakcloud",
           "digitalocean",
+          "facebook",
+          "fastly",
+          "gcore",
+          "github",
+          "google",
+          "iranserver",
           "linode",
-          "openai"
+          "microsoft",
+          "netflix",
+          "openai",
+          "oracle",
+          "parspack",
+          "telegram",
+          "tor",
+          "twitter"
         ]
       }
     },
@@ -340,21 +437,21 @@
         "outputName": "Country.mmdb",
         "overwriteList": [
           "ir",
-          "cloudflare",
-          "google",
           "amazon",
-          "microsoft",
           "bing",
-          "github",
-          "facebook",
-          "twitter",
-          "telegram",
-          "oracle",
+          "cloudflare",
           "digitalocean",
+          "facebook",
+          "github",
+          "google",
           "linode",
-          "openai",
-          "phishing",
           "malware",
+          "microsoft",
+          "openai",
+          "oracle",
+          "phishing",
+          "telegram",
+          "twitter",
           "private"
         ]
       }
@@ -381,23 +478,28 @@
       "args": {
         "outputName": "Services.mmdb",
         "wantedList": [
-          "arvancloud",
-          "derakcloud",
-          "iranserver",
-          "parspack",
-          "cloudflare",
-          "google",
           "amazon",
-          "microsoft",
+          "arvancloud",
           "bing",
-          "github",
-          "facebook",
-          "twitter",
-          "telegram",
-          "oracle",
+          "cloudflare",
+          "cloudfront",
+          "derakcloud",
           "digitalocean",
+          "facebook",
+          "fastly",
+          "gcore",
+          "github",
+          "google",
+          "iranserver",
           "linode",
-          "openai"
+          "microsoft",
+          "netflix",
+          "openai",
+          "oracle",
+          "parspack",
+          "telegram",
+          "tor",
+          "twitter"
         ]
       }
     },
