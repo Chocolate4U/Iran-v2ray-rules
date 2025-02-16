@@ -167,7 +167,8 @@ jobs:
           ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat --exportlists=ir,category-ir,ads,category-ads-all,malware,phishing,cryptominers,social,nsfw
 
           mkdir datalite
-          cp ./domains/ir-lite.txt datalite/ir
+          cp ./domains/ir.txt datalite/ir
+          cp ./domains/ir-lite.txt datalite/category-ir
           cp ./domains/ads.txt datalite/ads
           ./geosite --datapath=datalite --outputdir=./release --outputname=geosite-lite.dat
           cp ./release/category-ir.txt ./release/ir-lite.txt
