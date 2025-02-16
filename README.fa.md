@@ -25,6 +25,7 @@
 ### geoip.dat
 
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geoip.dat file from github" src="assets/geoip.png" width="200" height="200">
@@ -35,6 +36,7 @@
 ### geosite.dat
 
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geosite.dat file from github" src="assets/geosite.png" width="200" height="200">
@@ -45,6 +47,7 @@
 ### geoip-lite.dat
 
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geoip-lite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geoip-lite.dat file from github" src="assets/geoip-lite.png" width="200" height="200">
@@ -53,7 +56,9 @@
 ---
 
 ### geosite-lite.dat
+
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/geosite-lite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geosite-lite.dat file from github" src="assets/geosite-lite.png" width="200" height="200">
@@ -64,6 +69,7 @@
 ### security-ip.dat
 
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security-ip.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading security-ip.dat file from github" src="assets/security-ip.png" width="200" height="200">
@@ -74,6 +80,7 @@
 ### security.dat
 
 [https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat](https://raw.githubusercontent.com/Chocolate4U/Iran-v2ray-rules/release/security.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading security.dat file from github" src="assets/security.png" width="200" height="200">
@@ -86,6 +93,7 @@
 ### geoip.dat
 
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geoip.dat file from jsdelivr" src="assets/geoip-jsdelivr.png" width="200" height="200">
@@ -96,6 +104,7 @@
 ### geosite.dat
 
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geosite.dat file from jsdelivr" src="assets/geosite-jsdelivr.png" width="200" height="200">
@@ -106,6 +115,7 @@
 ### geoip-lite.dat
 
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geoip-lite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geoip-lite.dat file from jsdelivr" src="assets/geoip-lite-jsdelivr.png" width="200" height="200">
@@ -114,7 +124,9 @@
 ---
 
 ### geosite-lite.dat
+
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/geosite-lite.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading geosite-lite.dat file from jsdelivr" src="assets/geosite-lite-jsdelivr.png" width="200" height="200">
@@ -125,6 +137,7 @@
 ### security-ip.dat
 
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security-ip.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading security-ip.dat file from jsdelivr" src="assets/security-ip-jsdelivr.png" width="200" height="200">
@@ -135,6 +148,7 @@
 ### security.dat
 
 [https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat](https://cdn.jsdelivr.net/gh/chocolate4u/Iran-v2ray-rules@release/security.dat)
+
 <details>
   <summary><strong>QR Code</strong></summary>
   <img alt="QrCode for downloading security.dat file from jsdelivr" src="assets/security-jsdelivr.png" width="200" height="200">
@@ -231,6 +245,15 @@
 <li><code>geoip:cloudflare</code></li>
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
 
+<li><code>geoip:cloudfront</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای cloudfront.</p>
+
+<li><code>geoip:fastly</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای fastly.</p>
+
+<li><code>geoip:gcore</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای gcore.</p>
+
 <li><code>geoip:google</code></li>
   <p align="right">دربر گیرنده IP های گوگل، گوگل کلود و گوگل بات.</p>
 
@@ -239,6 +262,9 @@
 
 <li><code>geoip:microsoft</code></li>
   <p align="right">دربر گیرنده IP های مایکروسافت و سرویس ابری آژور.</p>
+
+<li><code>geoip:netflix</code></li>
+  <p align="right">دربر گیرنده IP های Netflix.</p>
 
 <li><code>geoip:bing</code></li>
   <p align="right">دربر گیرنده IP های موتور جستجوی بینگ.</p>
@@ -266,6 +292,9 @@
 
 <li><code>geoip:openai</code></li>
   <p align="right">دربر گیرنده IP های OpenAI و ChatGPT.</p>
+
+<li><code>geoip:tor</code></li>
+  <p align="right">دربر گیرنده IP های Tor exit nodes.</p>
 
 <li><code>geoip:phishing</code></li>
   <p align="right">دربر گینده IP های فیشینگ.</p>
@@ -318,6 +347,15 @@
 <li><code>geoip:cloudflare</code></li>
   <p align="right">دربرگیرنده IP های سرویس توزیع محتوای کلودفلر.</p>
 
+<li><code>geoip:cloudfront</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای cloudfront.</p>
+
+<li><code>geoip:fastly</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای fastly.</p>
+
+<li><code>geoip:gcore</code></li>
+  <p align="right">دربرگیرنده IP های سرویس توزیع محتوای gcore.</p>
+
 <li><code>geoip:google</code></li>
   <p align="right">دربر گیرنده IP های گوگل، گوگل کلود و گوگل بات.</p>
 
@@ -326,6 +364,9 @@
 
 <li><code>geoip:microsoft</code></li>
   <p align="right">دربر گیرنده IP های مایکروسافت و سرویس ابری آژور.</p>
+
+<li><code>geoip:netflix</code></li>
+  <p align="right">دربر گیرنده IP های Netflix.</p>
 
 <li><code>geoip:bing</code></li>
   <p align="right">دربر گیرنده IP های موتور جستجوی بینگ.</p>
@@ -353,6 +394,9 @@
 
 <li><code>geoip:openai</code></li>
   <p align="right">دربر گیرنده IP های OpenAI و ChatGPT.</p>
+
+<li><code>geoip:tor</code></li>
+  <p align="right">دربر گیرنده IP های Tor exit nodes.</p>
 </ul>
 </details>
 
@@ -390,6 +434,9 @@
 <li><code>geosite:ir</code></li>
   <p align="right">دربر گیرنده وبسایت های ایرانی به غیر از دامنه های "ir." و قوانینی جهت بایپس کردن کلیه دامنه های "ir.".</p>
 
+<li><code>geosite:category-ir</code></li>
+  <p align="right">کپی از "geosite:ir" پس از حذف دامنه‌های غیرفعال. همه دامنه‌های IR هر 24 ساعت جهت یافتن دامنه‌های غیرفعال بررسی می‌شوند.</p>
+
 <li><code>geosite:ads</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تبلیغاتی ایرانی.</p>
 
@@ -418,11 +465,10 @@
 
 <ul dir="rtl">
 <li><code>geosite:ir</code></li>
-<p align="right">
-  دربر گیرنده وبسایت های ایرانی فعال به غیر از دامنه های "ir." و قوانینی جهت بایپس کردن کلیه دامنه های "ir.".<br>
-  همه دامنه های ایرانی در لیست معمولی هر 24 ساعت یکبار بررسی شده و پس از حذف دامنه های غیرفعال به این لیست راه میابند.<br>
-  این تست ممکن است زیاد دقیق نباشد، به همین دلیل پیشنهاد میکنم هر روز و یا به طور مرتب این لیست را بروزرسانی کنید.
-</p>
+  <p align="right">دربر گیرنده وبسایت های ایرانی به غیر از دامنه های "ir." و قوانینی جهت بایپس کردن کلیه دامنه های "ir.".</p>
+
+<li><code>geosite:category-ir</code></li>
+  <p align="right">کپی از "geosite:ir" پس از حذف دامنه‌های غیرفعال. همه دامنه‌های IR هر 24 ساعت جهت یافتن دامنه‌های غیرفعال بررسی می‌شوند.</p>
 
 <li><code>geosite:ads</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های تبلیغاتی ایرانی.</p>
@@ -486,25 +532,30 @@
 | IranServer             | IranServer           | [Home Page](https://docs.iranserver.com/irserver-cloud/cdn/allow-iranserver-ip-addresses) | All rights reserved                                                                  | iranserver        |
 | ParsPack               | ParsPack             | [Home Page](https://parspack.com/cdnips.txt)                                              | All rights reserved                                                                  | parspack          |
 | Cloudflare             | Cloudflare           | [Home Page](https://www.cloudflare.com/ips)                                               | All rights reserved                                                                  | cloudflare        |
-| Telegram               | Telegram             | [Home Page](https://core.telegram.org/resources/cidr.txt)                                 | All rights reserved                                                                  | Telegram          |
+| Cloudfront             | Cloudfront           | [Home Page](https://ip-ranges.amazonaws.com/ip-ranges.json)                               | All rights reserved                                                                  | cloudfront        |
+| Fastly                 | Fastly               | [Home Page](https://api.fastly.com/public-ip-list)                                        | All rights reserved                                                                  | fastly            |
+| G-Core                 | G-Core               | [Home Page](https://api.gcore.com/cdn/public-ip-list)                                     | All rights reserved                                                                  | gcore             |
+| Netflix                | Netflix              | [Home Page](https://www.netflix.com)                                                      | All rights reserved                                                                  | netflix           |
+| Telegram               | Telegram             | [Home Page](https://core.telegram.org/resources/cidr.txt)                                 | All rights reserved                                                                  | telegram          |
+| Tor                    | Tor Project          | [Home Page](https://check.torproject.org/torbulkexitlist)                                 | All rights reserved                                                                  | tor               |
 | URLhaus                | abuse.ch             | [Home Page](https://urlhaus.abuse.ch)                                                     | [CC0](https://urlhaus.abuse.ch/api/#tos)                                             | malware           |
 | Phishing URL Blocklist | malware-filter Group | [Home Page](https://gitlab.com/malware-filter/phishing-filter)                            | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE)         | phishing          |
 | IPRanges               | lord-alfred          | [Home Page](https://github.com/lord-alfred/ipranges)                                      | [CC0 1.0](https://github.com/lord-alfred/ipranges/blob/main/LICENSE)                 | everything else   |
 
 ## GeoSite
 
-| Source                      | Maintainer            | Home Page                                                      | License                                                                         | Category        |
-| --------------------------- | --------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------- |
-| Iran Hosted Domains         | bootmortis            | [Home Page](https://github.com/bootmortis/iran-hosted-domains) | [MIT](https://github.com/bootmortis/iran-hosted-domains/blob/main/LICENSE)      | ir              |
-| PersianBlocker              | MasterKia             | [Home Page](https://github.com/MasterKia/PersianBlocker)       | [AGPL-3.0](https://github.com/MasterKia/PersianBlocker/blob/main/LICENSE)       | ads             |
-| DNS Blocklists              | Hagezi                | [Home Page](https://github.com/hagezi/dns-blocklists)          | All rights reserved                                                             | ads             |
-| GoodbyeAds                  | jerryn70              | [Home Page](https://github.com/jerryn70/GoodbyeAds)            | [MIT](https://github.com/jerryn70/GoodbyeAds/blob/master/LICENSE)               | ads             |
-| AdGuard DNS filter          | Adguard Team          | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter)  | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads             |
-| URLhaus                     | abuse.ch              | [Home Page](https://urlhaus.abuse.ch)                          | [CC0](https://urlhaus.abuse.ch/api/#tos)                                        | malware         |
-| Phishing URL Blocklist      | malware-filter Group  | [Home Page](https://gitlab.com/malware-filter/phishing-filter) | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE)    | phishing        |
-| NoCoin adblock list         | hoshsadiq             | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list)  | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE)     | cryptominers    |
-| Unified Hosts               | StevenBlack           | [Home Page](https://github.com/StevenBlack/hosts)              | [MIT](https://github.com/StevenBlack/hosts/blob/master/license.txt)             | social, nsfw    |
-| Domain list community       | Domain list community | [Home Page](https://github.com/v2fly/domain-list-community)    | [MIT](https://github.com/v2fly/domain-list-community/blob/master/LICENSE)       | everything else |
+| Source                 | Maintainer            | Home Page                                                      | License                                                                         | Category        |
+| ---------------------- | --------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Iran Hosted Domains    | bootmortis            | [Home Page](https://github.com/bootmortis/iran-hosted-domains) | [MIT](https://github.com/bootmortis/iran-hosted-domains/blob/main/LICENSE)      | ir              |
+| PersianBlocker         | MasterKia             | [Home Page](https://github.com/MasterKia/PersianBlocker)       | [AGPL-3.0](https://github.com/MasterKia/PersianBlocker/blob/main/LICENSE)       | ads             |
+| DNS Blocklists         | Hagezi                | [Home Page](https://github.com/hagezi/dns-blocklists)          | All rights reserved                                                             | ads             |
+| GoodbyeAds             | jerryn70              | [Home Page](https://github.com/jerryn70/GoodbyeAds)            | [MIT](https://github.com/jerryn70/GoodbyeAds/blob/master/LICENSE)               | ads             |
+| AdGuard DNS filter     | Adguard Team          | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter)  | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads             |
+| URLhaus                | abuse.ch              | [Home Page](https://urlhaus.abuse.ch)                          | [CC0](https://urlhaus.abuse.ch/api/#tos)                                        | malware         |
+| Phishing URL Blocklist | malware-filter Group  | [Home Page](https://gitlab.com/malware-filter/phishing-filter) | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE)    | phishing        |
+| NoCoin adblock list    | hoshsadiq             | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list)  | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE)     | cryptominers    |
+| Unified Hosts          | StevenBlack           | [Home Page](https://github.com/StevenBlack/hosts)              | [MIT](https://github.com/StevenBlack/hosts/blob/master/license.txt)             | social, nsfw    |
+| Domain list community  | Domain list community | [Home Page](https://github.com/v2fly/domain-list-community)    | [MIT](https://github.com/v2fly/domain-list-community/blob/master/LICENSE)       | everything else |
 
 # :warning: سلب مسئولیت
 
