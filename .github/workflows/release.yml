@@ -133,6 +133,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Generate sanctioned domains list
+        run: |
+          chmod +x ./scripts/generate-sanctioned-domains.sh
+          ./scripts/generate-sanctioned-domains.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Generate geoip files
         run: |
           tar -xvzf geoip.tar.gz
@@ -163,8 +170,9 @@ jobs:
           cp ./domains/cryptominers.txt ./v2ray-geosite/data/cryptominers
           cp ./domains/social.txt ./v2ray-geosite/data/social
           cp ./domains/nsfw.txt ./v2ray-geosite/data/nsfw
+          cp ./domains/sanctioned.txt ./v2ray-geosite/data/sanctioned
 
-          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat --exportlists=ir,category-ir,ads,category-ads-all,malware,phishing,cryptominers,social,nsfw
+          ./geosite --datapath=./v2ray-geosite/data --outputdir=./release --outputname=geosite.dat --exportlists=ir,category-ir,ads,category-ads-all,malware,phishing,cryptominers,social,nsfw,sanctioned
 
           mkdir datalite
           cp ./domains/ir.txt datalite/ir

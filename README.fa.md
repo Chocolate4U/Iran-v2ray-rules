@@ -458,6 +458,10 @@
 <li><code>geosite:nsfw</code></li>
   <p align="right">دربر گیرنده لیستی از دامنه های محتوای بزرگسال و قمار.</p>
 </ul>
+
+<li><code>geosite:sanctioned</code></li>
+  <p align="right">دربر گیرنده لیستی از وبسایت هایی که ایران را تحریم کرده اند.</p>
+</ul>
 </details>
 
 <details dir="rtl">
@@ -544,18 +548,20 @@
 
 ## GeoSite
 
-| Source                 | Maintainer            | Home Page                                                      | License                                                                         | Category        |
-| ---------------------- | --------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------- |
-| Iran Hosted Domains    | bootmortis            | [Home Page](https://github.com/bootmortis/iran-hosted-domains) | [MIT](https://github.com/bootmortis/iran-hosted-domains/blob/main/LICENSE)      | ir              |
-| PersianBlocker         | MasterKia             | [Home Page](https://github.com/MasterKia/PersianBlocker)       | [AGPL-3.0](https://github.com/MasterKia/PersianBlocker/blob/main/LICENSE)       | ads             |
-| DNS Blocklists         | Hagezi                | [Home Page](https://github.com/hagezi/dns-blocklists)          | All rights reserved                                                             | ads             |
-| GoodbyeAds             | jerryn70              | [Home Page](https://github.com/jerryn70/GoodbyeAds)            | [MIT](https://github.com/jerryn70/GoodbyeAds/blob/master/LICENSE)               | ads             |
-| AdGuard DNS filter     | Adguard Team          | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter)  | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads             |
-| URLhaus                | abuse.ch              | [Home Page](https://urlhaus.abuse.ch)                          | [CC0](https://urlhaus.abuse.ch/api/#tos)                                        | malware         |
-| Phishing URL Blocklist | malware-filter Group  | [Home Page](https://gitlab.com/malware-filter/phishing-filter) | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE)    | phishing        |
-| NoCoin adblock list    | hoshsadiq             | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list)  | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE)     | cryptominers    |
-| Unified Hosts          | StevenBlack           | [Home Page](https://github.com/StevenBlack/hosts)              | [MIT](https://github.com/StevenBlack/hosts/blob/master/license.txt)             | social, nsfw    |
-| Domain list community  | Domain list community | [Home Page](https://github.com/v2fly/domain-list-community)    | [MIT](https://github.com/v2fly/domain-list-community/blob/master/LICENSE)       | everything else |
+| Source                 | Maintainer            | Home Page                                                       | License                                                                         | Category        |
+| ---------------------- | --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------- | --------------- |
+| Iran Hosted Domains    | bootmortis            | [Home Page](https://github.com/bootmortis/iran-hosted-domains)  | [MIT](https://github.com/bootmortis/iran-hosted-domains/blob/main/LICENSE)      | ir              |
+| PersianBlocker         | MasterKia             | [Home Page](https://github.com/MasterKia/PersianBlocker)        | [AGPL-3.0](https://github.com/MasterKia/PersianBlocker/blob/main/LICENSE)       | ads             |
+| DNS Blocklists         | Hagezi                | [Home Page](https://github.com/hagezi/dns-blocklists)           | All rights reserved                                                             | ads             |
+| GoodbyeAds             | jerryn70              | [Home Page](https://github.com/jerryn70/GoodbyeAds)             | [MIT](https://github.com/jerryn70/GoodbyeAds/blob/master/LICENSE)               | ads             |
+| AdGuard DNS filter     | Adguard Team          | [Home Page](https://github.com/AdguardTeam/AdGuardSDNSFilter)   | [GPL-3.0](https://github.com/AdguardTeam/AdGuardSDNSFilter/blob/master/LICENSE) | ads             |
+| URLhaus                | abuse.ch              | [Home Page](https://urlhaus.abuse.ch)                           | [CC0](https://urlhaus.abuse.ch/api/#tos)                                        | malware         |
+| Phishing URL Blocklist | malware-filter Group  | [Home Page](https://gitlab.com/malware-filter/phishing-filter)  | [MIT](https://gitlab.com/malware-filter/phishing-filter/-/blob/main/LICENSE)    | phishing        |
+| NoCoin adblock list    | hoshsadiq             | [Home Page](https://github.com/hoshsadiq/adblock-nocoin-list)   | [MIT](https://github.com/hoshsadiq/adblock-nocoin-list/blob/master/LICENSE)     | cryptominers    |
+| Unified Hosts          | StevenBlack           | [Home Page](https://github.com/StevenBlack/hosts)               | [MIT](https://github.com/StevenBlack/hosts/blob/master/license.txt)             | social, nsfw    |
+| DynX-AntiBan-Domains   | MrDevAnony            | [Home Page](https://github.com/MrDevAnony/DynX-AntiBan-Domains) | [MIT](https://github.com/MrDevAnony/DynX-AntiBan-Domains/blob/main/LICENSE)     | sanctioned      |
+| ir-sanctioned-domain   | filteryab             | [Home Page](https://github.com/filteryab/ir-sanctioned-domain)  | All rights reserved                                                             | sanctioned      |
+| Domain list community  | Domain list community | [Home Page](https://github.com/v2fly/domain-list-community)     | [MIT](https://github.com/v2fly/domain-list-community/blob/master/LICENSE)       | everything else |
 
 # :warning: سلب مسئولیت
 
