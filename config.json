@@ -82,6 +82,63 @@
       "type": "text",
       "action": "add",
       "args": {
+        "name": "irgfw-block-injected-ips",
+        "ipOrCIDR": [
+          "10.10.34.0/24",
+          "2001:4188:2:600:10:10:34:34",
+          "2001:4188:2:600:10:10:34:35",
+          "2001:4188:2:600:10:10:34:36"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "irgfw-other-injected-ips",
+        "ipOrCIDR": [
+          "216.239.38.120",
+          "2001:4860:4802:32::78",
+          "93.115.151.123",
+          "87.107.132.83",
+          "52.250.41.2",
+          "213.180.193.56",
+          "204.79.197.220",
+          "185.130.45.94",
+          "162.62.116.251",
+          "162.62.115.144",
+          "10.202.7.212"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "name": "irgfw-all-injected-ips",
+        "ipOrCIDR": [
+          "10.10.34.0/24",
+          "2001:4188:2:600:10:10:34:34",
+          "2001:4188:2:600:10:10:34:35",
+          "2001:4188:2:600:10:10:34:36",
+          "216.239.38.120",
+          "2001:4860:4802:32::78",
+          "93.115.151.123",
+          "87.107.132.83",
+          "52.250.41.2",
+          "213.180.193.56",
+          "204.79.197.220",
+          "185.130.45.94",
+          "162.62.116.251",
+          "162.62.115.144",
+          "10.202.7.212"
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
         "name": "tor",
         "uri": "https://check.torproject.org/torbulkexitlist"
       }
@@ -388,7 +445,13 @@
       "action": "output",
       "args": {
         "outputName": "geoip-lite.dat",
-        "wantedList": ["ir", "private"]
+        "wantedList": [
+          "ir",
+          "irgfw-block-injected-ips",
+          "irgfw-other-injected-ips",
+          "irgfw-all-injected-ips",
+          "private"
+        ]
       }
     },
     {
@@ -461,7 +524,13 @@
       "action": "output",
       "args": {
         "outputName": "Country-lite.mmdb",
-        "wantedList": ["ir", "private"]
+        "wantedList": [
+          "ir",
+          "irgfw-block-injected-ips",
+          "irgfw-other-injected-ips",
+          "irgfw-all-injected-ips",
+          "private"
+        ]
       }
     },
     {
