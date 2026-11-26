@@ -215,6 +215,20 @@
 }
 ```
 
+<h2 dir="rtl">کانفیگ RoutingA در V2rayA</h2>
+
+```
+default: proxy
+
+domain(geosite:category-ads-all, geosite:malware, geosite:phishing, geosite:cryptominers) -> block
+ip(geoip:malware, geoip:phishing) -> block
+
+domain(geosite:social, geosite:nsfw, geosite:sanctioned) -> proxy
+
+domain(geosite:ir) -> direct
+ip(geoip:private, geoip:ir) -> direct
+```
+
 # :page_with_curl: دسته بندی ها
 
 <h2 dir="rtl">GeoIP</h2>

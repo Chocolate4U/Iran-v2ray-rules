@@ -217,6 +217,20 @@ Add the following to your v2ray/xray client configuration:
 }
 ```
 
+## V2rayA RoutingA config
+
+```
+default: proxy
+
+domain(geosite:category-ads-all, geosite:malware, geosite:phishing, geosite:cryptominers) -> block
+ip(geoip:malware, geoip:phishing) -> block
+
+domain(geosite:social, geosite:nsfw, geosite:sanctioned) -> proxy
+
+domain(geosite:ir) -> direct
+ip(geoip:private, geoip:ir) -> direct
+```
+
 # :page_with_curl: Categories
 
 ## GeoIP
